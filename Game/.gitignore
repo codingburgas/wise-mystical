@@ -1,0 +1,4 @@
+.vs
+_bin/Debug/**
+_build/obj/**
+_build/*.user
