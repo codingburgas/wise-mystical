@@ -12,7 +12,8 @@ void startGame()
 	{
 		BeginDrawing();
 
-		ClearBackground(BLUE);
+		// Set background color for the framebuffer
+		ClearBackground(mapBackgroundColor);
 
 		EndDrawing();
 	}
