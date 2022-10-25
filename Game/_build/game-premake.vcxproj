@@ -173,10 +173,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="activeCityAnimation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="game.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="activeCityAnimation.h" />
     <ClInclude Include="game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

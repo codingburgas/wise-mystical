@@ -1,9 +1,10 @@
 #include "raylib.h"
 #include "game.h"
+#include "activeCityAnimation.h"
 #include <iostream>
 
 void startGame()
-{	
+{
 	int width = 1920;
 	int height = 1080;
 
@@ -17,14 +18,23 @@ void startGame()
 	float cameraPosX = float(GetScreenWidth()) / 2;
 	float cameraPosY = float(GetScreenHeight()) / 2;
 
-	Camera2D camera;
+	Camera2D camera = {};
 	camera.offset = { float(width) / 2, float(height) / 2 };
 	camera.target = { cameraPosX, cameraPosY };
 	camera.zoom = 1;
 	camera.rotation = 0;
 
-	while(!WindowShouldClose())
+	// Define variables for active city animation
+	animationFrame activeCityAnimationParts[3] = {
+		{5, '+', frame1},
+		{10, '+', frame6},
+		{15, '+', frame10},
+	};
+	animationFrame* ptr = activeCityAnimationParts;
+
+	while (!WindowShouldClose())
 	{
+		// Update camera position
 		mousePoint = GetScreenToWorld2D(GetMousePosition(), camera);
 		camera.target.x = cameraPosX;
 		camera.target.y = cameraPosY;
@@ -41,12 +51,12 @@ void startGame()
 			{
 				cameraPosX += 3.0f;
 			}
-			
+
 			// Check top or bottom key down
 			if (IsKeyDown(KEY_W))
 			{
 				// Check top boundary
-				if (cameraPosY > 490)
+				if (cameraPosY > 550)
 				{
 					cameraPosY -= 3.0f;
 				}
@@ -71,7 +81,7 @@ void startGame()
 		else if (IsKeyDown(KEY_D))
 		{
 			// Check right camera boundary 
-			if (cameraPosX < 1915)
+			if (cameraPosX < 1815)
 			{
 				cameraPosX += 3.0f;
 			}
@@ -84,7 +94,7 @@ void startGame()
 			if (IsKeyDown(KEY_W))
 			{
 				// Check top boundary
-				if (cameraPosY > 490)
+				if (cameraPosY > 550)
 				{
 					cameraPosY -= 3.0f;
 				}
@@ -110,7 +120,7 @@ void startGame()
 		// Update camera, based on seperate key input - W, A, S, D 
 		if (IsKeyDown(KEY_W))
 		{
-			if (cameraPosY > 490)
+			if (cameraPosY > 550)
 			{
 				cameraPosY -= 3.0f;
 			}
@@ -143,7 +153,7 @@ void startGame()
 		}
 		else if (IsKeyDown(KEY_D))
 		{
-			if (cameraPosX < 1915)
+			if (cameraPosX < 1815)
 			{
 				cameraPosX += 3.0f;
 			}
@@ -163,6 +173,9 @@ void startGame()
 
 		// Draw the map on the screen
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
+
+		// Sample usage of drawActiveCityAnimation
+		drawActiveCityAnimation(ptr, Vector2{ 570,810 });
 
 		// End 2D mode
 		EndMode2D();
