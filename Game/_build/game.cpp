@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "game.h"
 #include "activeCityAnimation.h"
+#include "City.h"
 #include <iostream>
 
 void startGame()
@@ -12,6 +13,7 @@ void startGame()
 
 	// Load map texture from the file structure
 	Texture2D map = LoadTexture("../resources/map.png");
+	Font comfortaaLight = LoadFontEx("../resources/Comfortaa-Light.ttf", 25, 0, 250);
 
 	Vector2 mousePoint = { 0.0f, 0.0f };
 
@@ -24,6 +26,12 @@ void startGame()
 	camera.zoom = 1;
 	camera.rotation = 0;
 
+	// Define city dynamic arra
+	int citiesCounter = 2;
+
+	Vector2 conCity1;
+	Vector2 conCity2;
+		
 	// Define variables for active city animation
 	animationFrame activeCityAnimationParts[3] = {
 		{5, '+', frame1},
@@ -164,8 +172,8 @@ void startGame()
 		}
 
 		BeginDrawing();
-
-		// Set background color for the framebuffer
+		
+		// Set background color for the framebuffer 
 		ClearBackground(mapBackgroundColor);
 
 		// Begin 2D mode
@@ -173,6 +181,8 @@ void startGame()
 
 		// Draw the map on the screen
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
+
+		DrawTextEx(comfortaaLight, "Test", { float(GetScreenWidth() / 2) , float(GetScreenHeight() / 2) }, (float)comfortaaLight.baseSize, 2, BLACK);
 
 		// Sample usage of drawActiveCityAnimation
 		drawActiveCityAnimation(ptr, Vector2{ 570,810 });
