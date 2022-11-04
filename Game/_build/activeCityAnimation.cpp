@@ -52,7 +52,7 @@ void drawActiveCityAnimation(animationFrame* activeCityAnimationParts, Vector2 a
 	for (int i = 0; i < 3; i++)
 	{
 		// Draw the 3 circles
-		DrawCircleV(Vector2{ float((GetScreenWidth() + activeCityCoords.x) / 2),float((GetScreenHeight() + activeCityCoords.y) / 2) }, activeCityAnimationParts[i].size, activeCityAnimationParts[i].color);
+		DrawCircleV(Vector2{ activeCityCoords.x, activeCityCoords.y }, activeCityAnimationParts[i].size, activeCityAnimationParts[i].color);
 
 		// Check for circle radius update direction (+, -)
 		if (activeCityAnimationParts[i].direction == '+')

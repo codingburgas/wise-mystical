@@ -1,7 +1,8 @@
 #include "raylib.h"
 #include "game.h"
 #include "activeCityAnimation.h"
-#include "City.h"
+#include "cityOperations.h"
+#include "travelLogic.h"
 #include <iostream>
 
 void startGame()
@@ -12,14 +13,20 @@ void startGame()
 	InitWindow(width, height, "Game");
 
 	// Load map texture from the file structure
-	Texture2D map = LoadTexture("../resources/map.png");
+	Texture2D map = LoadTexture("../resources/map.png");	
 	Font comfortaaLight = LoadFontEx("../resources/Comfortaa-Light.ttf", 25, 0, 250);
 
+	//
 	Vector2 mousePoint = { 0.0f, 0.0f };
 
+	//
 	float cameraPosX = float(GetScreenWidth()) / 2;
 	float cameraPosY = float(GetScreenHeight()) / 2;
+	
+	//
+	Vector2 button1Pos = { GetScreenWidth() - 30, GetScreenHeight() - 30};
 
+	// Declare game camera
 	Camera2D camera = {};
 	camera.offset = { float(width) / 2, float(height) / 2 };
 	camera.target = { cameraPosX, cameraPosY };
@@ -27,11 +34,20 @@ void startGame()
 	camera.rotation = 0;
 
 	// Define city dynamic arra
-	int citiesCounter = 2;
+	int citiesCounter = 40;
 
-	Vector2 conCity1;
+	// Vector for all cities
+	City cities[40];
+	City* ptr1 = intialiseCitiesArray(cities);
+	ptr1 = cities;
+	
+	//
+	int startCityNum = GetRandomValue(0, 39);
+	Vector2 conCity1 = cities[startCityNum].coordinates;
 	Vector2 conCity2;
-		
+
+	//cities[startCityNum].isActive = true;
+
 	// Define variables for active city animation
 	animationFrame activeCityAnimationParts[3] = {
 		{5, '+', frame1},
@@ -43,9 +59,12 @@ void startGame()
 	while (!WindowShouldClose())
 	{
 		// Update camera position
-		mousePoint = GetScreenToWorld2D(GetMousePosition(), camera);
+		mousePoint = GetScreenToWorld2D({ GetMousePosition().x, GetMousePosition().y + 40 }, camera);
 		camera.target.x = cameraPosX;
 		camera.target.y = cameraPosY;
+
+		//
+		button1Pos = GetScreenToWorld2D(Vector2{ float(GetScreenWidth()) - 450, float(GetScreenHeight()) - 120 }, camera);
 
 		// Uptade camera position, based on W, A, S, D keys
 		if (IsKeyDown(KEY_A))
@@ -171,6 +190,14 @@ void startGame()
 			}
 		}
 
+		if (CheckCollisionPointRec(mousePoint, Rectangle{ button1Pos.x, button1Pos.y, 200, 90 }))
+		{
+			if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				conCity2 = goToNextCity(mousePoint, cities, citiesCounter);
+			}
+		}
+
 		BeginDrawing();
 		
 		// Set background color for the framebuffer 
@@ -182,10 +209,25 @@ void startGame()
 		// Draw the map on the screen
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
 
+		for (int i = 0; i < citiesCounter; i++)
+		{
+			DrawRectangleRec(Rectangle{ cities[i].hitbox.x - (cities[i].hitbox.width / 2), cities[i].hitbox.y - (cities[i].hitbox.height / 2), cities[i].hitbox.width, cities[i].hitbox.height }, BLACK);
+			DrawText(cities[i].name, cities[i].coordinates.x + 15, cities[i].coordinates.y + 15, 20, BLACK);
+			
+		}
+
+		drawActiveCityAnimation(ptr, cities[1].coordinates);
+
+		//
+		DrawRectangle(button1Pos.x, button1Pos.y, 200, 90, BLACK);
+		
+		//
 		DrawTextEx(comfortaaLight, "Test", { float(GetScreenWidth() / 2) , float(GetScreenHeight() / 2) }, (float)comfortaaLight.baseSize, 2, BLACK);
 
+		// Draw active city points
+
 		// Sample usage of drawActiveCityAnimation
-		drawActiveCityAnimation(ptr, Vector2{ 570,810 });
+		// drawActiveCityAnimation(ptr, Vector2{ 570,810 });
 
 		// End 2D mode
 		EndMode2D();

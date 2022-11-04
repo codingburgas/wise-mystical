@@ -18,7 +18,10 @@
     <ClCompile Include="activeCityAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="City.cpp">
+    <ClCompile Include="cityOperations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="travelLogic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +32,10 @@
     <ClInclude Include="activeCityAnimation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="City.h">
+    <ClInclude Include="cityOperations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="travelLogic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
