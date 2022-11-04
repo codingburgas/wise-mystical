@@ -1,6 +1,6 @@
+#include <iostream>
 #include "raylib.h"
 #include "activeCityAnimation.h"
-#include <iostream>
 
 void drawActiveCityAnimation(animationFrame* activeCityAnimationParts, Vector2 activeCityCoords)
 {
@@ -12,6 +12,8 @@ void drawActiveCityAnimation(animationFrame* activeCityAnimationParts, Vector2 a
 	{
 		// Translate circles' radius to int 
 		opr = int(activeCityAnimationParts[i].size);
+
+		// Change the color's opacity based on the circles' radius
 		switch (opr)
 		{
 		case 5:

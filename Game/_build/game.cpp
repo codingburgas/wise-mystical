@@ -1,9 +1,9 @@
+#include <iostream>
 #include "raylib.h"
 #include "game.h"
 #include "activeCityAnimation.h"
 #include "cityOperations.h"
 #include "travelLogic.h"
-#include <iostream>
 
 void startGame()
 {
@@ -13,18 +13,18 @@ void startGame()
 	InitWindow(width, height, "Game");
 
 	// Load map texture from the file structure
-	Texture2D map = LoadTexture("../resources/map.png");	
-	Font comfortaaLight = LoadFontEx("../resources/Comfortaa-Light.ttf", 25, 0, 250);
+	Texture2D map = LoadTexture("../resources/images/map.png");	
+	Font comfortaaRegular = LoadFontEx("../resources/font/Comfortaa-Regular.ttf", 25, 0, 250);
 
-	//
+	// Mouse position
 	Vector2 mousePoint = { 0.0f, 0.0f };
 
-	//
+	// Camera position
 	float cameraPosX = float(GetScreenWidth()) / 2;
 	float cameraPosY = float(GetScreenHeight()) / 2;
 	
-	//
-	Vector2 button1Pos = { GetScreenWidth() - 30, GetScreenHeight() - 30};
+	// Position of testing button
+	Vector2 button1Pos = { GetScreenWidth() - 30, GetScreenHeight() - 30 };
 
 	// Declare game camera
 	Camera2D camera = {};
@@ -44,9 +44,7 @@ void startGame()
 	//
 	int startCityNum = GetRandomValue(0, 39);
 	Vector2 conCity1 = cities[startCityNum].coordinates;
-	Vector2 conCity2;
-
-	//cities[startCityNum].isActive = true;
+	Vector2 conCity2 = {};
 
 	// Define variables for active city animation
 	animationFrame activeCityAnimationParts[3] = {
@@ -190,13 +188,15 @@ void startGame()
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePoint, Rectangle{ button1Pos.x, button1Pos.y, 200, 90 }))
-		{
-			if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		/*
+			if (CheckCollisionPointRec(mousePoint, Rectangle{ button1Pos.x, button1Pos.y, 200, 90 }))
 			{
-				conCity2 = goToNextCity(mousePoint, cities, citiesCounter);
+				if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+				{
+					conCity2 = goToNextCity(mousePoint, cities, citiesCounter);
+				}
 			}
-		}
+		*/
 
 		BeginDrawing();
 		
@@ -209,25 +209,14 @@ void startGame()
 		// Draw the map on the screen
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
 
-		for (int i = 0; i < citiesCounter; i++)
-		{
-			DrawRectangleRec(Rectangle{ cities[i].hitbox.x - (cities[i].hitbox.width / 2), cities[i].hitbox.y - (cities[i].hitbox.height / 2), cities[i].hitbox.width, cities[i].hitbox.height }, BLACK);
-			DrawText(cities[i].name, cities[i].coordinates.x + 15, cities[i].coordinates.y + 15, 20, BLACK);
-			
-		}
+		// Draw city markers on the map
+		drawCityPoints(ptr1, citiesCounter, comfortaaRegular);
 
+		// Mark the current active city mark
 		drawActiveCityAnimation(ptr, cities[1].coordinates);
 
-		//
-		DrawRectangle(button1Pos.x, button1Pos.y, 200, 90, BLACK);
-		
-		//
-		DrawTextEx(comfortaaLight, "Test", { float(GetScreenWidth() / 2) , float(GetScreenHeight() / 2) }, (float)comfortaaLight.baseSize, 2, BLACK);
-
-		// Draw active city points
-
-		// Sample usage of drawActiveCityAnimation
-		// drawActiveCityAnimation(ptr, Vector2{ 570,810 });
+		// Testing button
+		// DrawRectangle(button1Pos.x, button1Pos.y, 200, 90, BLACK);
 
 		// End 2D mode
 		EndMode2D();

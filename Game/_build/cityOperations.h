@@ -17,3 +17,6 @@ struct City {
 
 // Initialise cities
 City* intialiseCitiesArray(City cities[40]);
+
+// Draw city marks on the map
+void drawCityPoints(City* cities, int citiesCounter, Font comfortaaRegular);
