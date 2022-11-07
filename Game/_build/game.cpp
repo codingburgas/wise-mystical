@@ -14,6 +14,12 @@ void startGame()
 
 	// Load map texture from the file structure
 	Texture2D map = LoadTexture("../resources/images/map.png");	
+
+	// Load UI from the file structure
+	Texture2D scoreBoard = LoadTexture("../resources/images/Score board.png");
+	Texture2D popUp = LoadTexture("../resources/images/Travel pop-up.png");
+
+	// Load font from the file structure
 	Font comfortaaRegular = LoadFontEx("../resources/font/Comfortaa-Regular.ttf", 25, 0, 250);
 
 	// Mouse position
@@ -220,6 +226,12 @@ void startGame()
 
 		// End 2D mode
 		EndMode2D();
+
+		// Draw score board
+		DrawTexture(scoreBoard, -2, 2, RAYWHITE);
+
+		// Draw pop-up 
+		DrawTexture(popUp, 1367, 919, RAYWHITE);
 
 		EndDrawing();
 	}
