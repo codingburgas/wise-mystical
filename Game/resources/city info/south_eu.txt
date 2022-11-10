@@ -2,15 +2,15 @@ Lisbon
 Castelo de S. Jorge
 Lisbon is one of the world’s oldest cities. During the Neolithic period, pre-Celtic tribes inhabited the region and archaeologists claim that Phoenicians established a trading port here in the sheltered Tagus estuary. The Romans began a 200-year reign here in 205BC, and Lisbon became one of the most significant cities in the Iberian Peninsula, particularly when Julius Caesar became governor in 60BC.
 
-Lisbon is located on the ________ River?
+On which river is the city of Lisbon located?
 a) Tiber
 b) Rio Grande
 c) Arno
 d) Tagus // true answer
 
-Standing guard on the left bank of the river, in Lisbon, is a very large statue of __________________?
+Which statue is standing guard on the left bank of the river, in Lisbon?
 a) Manuel I
-b) Jesus
+b) Jesus // true answer
 c) Marques de Pombal
 d) Dom Pedro IV
 ____________________________________________________________________________________________________________
@@ -25,7 +25,7 @@ b) Madrilenos // true answer
 c) Madridites
 d) Madridios
 
-The emblem of the city of Madrid is ________.
+What is the emblem of the city of Madrid?
 a) 2 Big lions
 b) A Bear
 c) A bear and a tree // true answer
@@ -35,12 +35,6 @@ ________________________________________________________________________________
 Barcelona
 La Sagrada Familia
 The first human settlements in Barcelona date back to Neolithic times. The city itself was founded by the Romans who set up a colony called Barcino at the end of the 1st century BC. The colony had some thousand inhabitants and was bounded by a defensive wall, the remains of which can still be seen in the old town.
-
-Where in Spain is Barcelona located?
-a) Southeast
-b) Southwest
-c) Northwest
-d) Northeast // true answer
 
 If we talk about the architecture in Barcelona, one particular architect comes to mind, with creations like the Park Guell and the Sagrada Familia.
 a) Antoni Gaudi // true answer
@@ -53,12 +47,6 @@ Cagliari
 Duomo di Cagliari
 Cagliari was the capital of the Kingdom of Sardinia from 1324 to 1848, when Turin became the formal capital of the kingdom (which in 1861 became the Kingdom of Italy). Today the city is a regional cultural, educational, political and artistic centre, known for its diverse Art Nouveau architecture and several monuments.
 
-What is the capital of Sardinia?
-a) Olbia
-b) Cagliari // true answer
-c) Arbatax
-d) Sassari
-
 By area, Sardinia is the third-biggest region of Italy.
 True // true answer
 False
@@ -67,11 +55,6 @@ ________________________________________________________________________________
 Palermo
 Cattedrale di Palermo
 Palermo was founded by Phoenician traders in the 8th century bc. It later became a Carthaginian settlement until its capture by the Romans in 254 bc. The city decayed under Roman rule but prospered after ad 535, when the Byzantine general Belisarius recovered it from the Ostrogoths.
-
-What is the capital of Sicily?
-a) Palermo // true answer
-b) Turin
-c) Venice
 
 Which ancient mathematician was born in Sicily?
 a) Archimedes // true answer
@@ -104,7 +87,7 @@ b) Alexander the Great when he was 18 years old.
 c) The Byzantine emperor Justinian in the 6th century AD. // true answer
 d) John of Constantinople. After that he changed his name to John of Ioannina.
 
-In the Center of Ioannina, near Lake Pamvotis you will find...
+In the Center of Ioannina, near Lake Pamvotis you will find?
 a) An underground ancient Greek town
 b) Seven great rollercoasters
 c) Pavlos Vrellis Wax Museum

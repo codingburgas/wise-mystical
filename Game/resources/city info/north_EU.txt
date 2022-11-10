@@ -2,12 +2,6 @@ Reykjavik
 Hallgrímskirkja
 The world's most northerly capital, Reykjavik, was founded by Norwegian Vikings fleeing from their king and the Celtic slaves they picked up in Scotland and Ireland during the late 9th century. A Viking called Ingolfur Arnarson named the place Reykjavik ('Smokey Bay') after the steam rising from the hot springs. 
 
-What is the capital of Iceland?
-a) Rejkyavík
-b) Reykjavík // true answer
-c) Nuuk
-d) Greenland
-
 Was the name 'Gayser land' the first name given to Reykjavik?
 a) true
 b) false // true answer
@@ -17,13 +11,7 @@ Oslo
 Akershus Castle and Fortress
 Oslo is one of the oldest places in Norway; the area around the Oslofjord has been inhabited since the last ice age due to its rich agricultural land. The oldest settlements date back to the Stone Age and the Bronze Age. Historically the area was called Viken, which means ‘the bay’.
 
-Where is Oslo located?
-a) Norway // true answer
-b) Sweden
-c) Greenland
-d) Finland
-
-Oslo is not only the capital but also the _______ in Norway.
+Which characteristic of the city also suits for Oslo?
 a) smallest city
 b) least populated
 c) most populated // true answer
@@ -32,12 +20,6 @@ ________________________________________________________________________________
 Copenhagen
 The Little Mermaid (statue)
 Copenhagen City was founded by Bishop Absalon (1128-1201), who was at that time adviser of King Valdemar I, and the archbishop of Roskilde, which was the capital of Denmark in the 12th century. Here he initiated the building of Roskilde cathedral, the royal burial place of Danish kings and queens for many centuries. 
-
-Where is Copenhagen?
-a) Norway
-b) Sweden
-c) Denmark // true answer
-d) England
 
 What is Copenhagen's famous statue?
 a) Little Mermaid //  true answer
@@ -51,12 +33,6 @@ Stockholm
 The Royal Palace
 Stockholm, capital and largest city of Sweden. Stockholm is located at the junction of Lake Mälar and Salt Bay , an arm of the Baltic Sea, opposite the Gulf of Finland. The city is built upon numerous islands as well as the mainland of Uppland and Södermanland. By virtue of its location, Stockholm is regarded as one of the most beautiful capital cities in the world.
 
-In which part of Sweden is Stockholm located?
-a) West
-b) South
-c) North
-d) East // true answer
-
 Which Sweden province is Stockholm located in?
 a) Dalsland and Närke
 b) Södermanland and Uppland // true answer
@@ -66,12 +42,6 @@ ________________________________________________________________________________
 Helsinki
 Fortress of Sveaborg & the Suomenlinna Islands
 The town of Helsinki was founded by King Gustavus Vasa of Sweden (which Finland belonged to for many centuries) as a new trading post in southern Finland and a competitor to Tallinn in Estonia, the Hanseatic city on the opposite shore of the Gulf of Finland. The King then ordered the burghers of Rauma, Ulvila, Porvoo and Tammisaari to move to Helsinki; the date on which this order was issued, 12.6.1550, is regarded as the date on which the city was founded.
-
-_____ is the warmest month in Helsinki?
-a) March
-b) September
-c) July // true answer
-d) June
 
 Operating system created by the Finnish software engineer Linus Torvalds?
 a) Linux // true answer
@@ -83,12 +53,6 @@ ________________________________________________________________________________
 Tallinn
 Toompea Castle
 Although there is evidence that the area around Tallinn was first settled around 5000 years ago, the city was never truly noteworthy until a wooden fortress was built upon Toompea hill in 1050. The fortress served as defence against King Valdemar II of Denmark, who led the Northern Crusades to Tallinn in 1219. Despite the best efforts of locals, the city was defeated and Denmark took control. 
-
-Where is Tallinn located?
-a) Finland
-b) Estonia // true answer
-c) Latvia
-d) Litwa
 
 What is the demonym for people from Tallinn?
 a) Estonian

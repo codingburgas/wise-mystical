@@ -1,27 +1,211 @@
-Paris
-Eiffel Tower, Louvre Museum
-Paris was founded towards the end of the 3rd century BC on what is now the Ile de la Cite by a tribe of Celtic Gauls known as the Parisii. Centuries of conflict between the Gauls and Romans ended in 52 BC, when Julius Caesar’s legions took control of the territory. Christianity was introduced in the 2nd century AD, and Roman rule finally ended in the 5th century with the arrival of the Franks. In 508 AD, Frankish king Clovis I united Gaul as a kingdom and made Paris the capital, naming it after the original Parisii tribe.
+London
+Buckingham Palace
+The city of London was founded by the Romans and their rule extended from 43 AD to the fifth century AD, when the Empire fell. During the third century, Londinium, the name given to the town by the Romans, had a population of 50,000, mainly due to the influence of its major port.
 
-What is the tallest building in Paris?
-a) Palace of Versailles
-b) Louvre Museum
-c) Eiffel Tower // true answer
-d) Cathédrale Notre-Dame de Paris
+How many world Unesco sites does London have?
+a) 2
+b) 5
+b) 3
+c) 4 // true answer
 
-Who designed the Eiffel Tower?
-a) Louis XIV
-b) Gustave Eiffel // true answer
-c) Coco Chanel
-d) Napoleon Bonaparte
-________________________________________________________________________________________________________________
+Why are London buses red?
+a) To stick out in the snow
+b) Because red paint is much cheaper than other colours to produce
+c) To help them stand out // true answer
+______________________________________________________________________________________________________________________________________
 
-Dublin
-St Patrick's Cathedral
-Dublin's history stretches back over a millennium. Back in the fourth century, the first known settlement here was built in the Cornmarket area of the city centre. It was called Áth Cliath – which means 'Hurdled Fort' and continues to inspire the modern Irish translation today.
+Brussels
+St Michael and St Gudula Cathedral
+Although the region has been inhabited since prehistoric times, the oldest known reference to Brussels dates to the 10th century, when it had the Frankish name Bruocsella, which means “settlement in the marshes.”
 
-Which river runs under Dublin Castle?
-a) The Dodder
-b) The Liffey
-c) The Poddle // true answer
-d) The Coddle
+Does Brussels have an active port?
+a) Yes // true answer
+b) No
+______________________________________________________________________________________________________________________________________
 
+Amsterdam
+Rijksmuseum
+Amsterdam was founded as a fishing village around the thirteenth century. Amsterdam developed round a dam in the Amstel river at the end of the 12th century. The name Amstelledamme occurs for the first time in the toll concession of Floris V, Count of Holland, dated October 27, 1275.
+
+The big river that runs through the city is called?
+a) Noordzeekanaal
+b) IJssel
+c) Amstel // true answer
+d) Boerenwetering
+
+Amsterdam was founded as which type of community in the thirteenth century?
+a) Farming Community
+b) Artist Community
+c) Mining Town
+d) Fishing Village // true answer
+______________________________________________________________________________________________________________________________________
+
+Marseille
+Basilique Notre-Dame de la Garde
+Founded around 600 BC by Greek settlers from Phocaea, Marseille is the oldest city in France, as well as one of Europe's oldest continuously inhabited settlements.
+
+Marseille's official founding was by which group of people who named it Massalia in 600 BC?
+a) Persians
+b) Greeks // true answer
+c) Etruscans
+d) Mongols
+
+What is the name of the scientist and explorer from Massalia who became the first person to study the Arctic and the North Pole?
+a) Pytheas // true answer
+b) Pythagoras
+c) Aristotle
+d) Euclid
+______________________________________________________________________________________________________________________________________
+
+Hamburg
+Hamburger Kunsthalle
+Hamburg was founded in the 9th century as a mission settlement to convert the Saxons. Since the Middle Ages, it has been an important trading center in Europe. The convenient location of the port and its independence as a city and state for centuries strengthened this position.
+
+Hamburg is Germany's biggest port. It is also Europe's second biggest port after which city?
+a) London
+b) Rotterdam // true answer
+c) Antwerp
+d) Odessa
+______________________________________________________________________________________________________________________________________
+
+Berlin
+Sanssouci Palace
+Berlin is the capital and chief urban center of Germany. Berlin was the capital of Prussia and then, from 1871, of a unified Germany. Though partitioned into East and West Berlin after World War II, the reunification of East and West Germany led to Berlin's reinstatement as the all-German capital in 1990.
+
+When did Berlin first become the capital of Germany?
+a) 1933
+b) 1871 // true answer
+c) 1438
+d) 1715
+
+Most of the terrain of Berlin consists of?
+a) Undulating
+b) Mountainous
+c) Hilly
+d) Flat // true answer
+______________________________________________________________________________________________________________________________________
+
+Munich
+Marienplatz
+Munich traces its origins to the Benedictine monastery at Tegernsee, which was probably founded in 750 ce. In 1157 Henry the Lion, duke of Bavaria, granted the monks the right to establish a market where the road from Salzburg met the Isar River.
+
+Which mobile phone company comes from Munich?
+a) Telefonica
+b) Vodafone
+c) O2
+d) Siemens // true answer
+
+On which river the Munich located?
+a) Isar // true answer
+b) Rhein
+c) Elbe
+d) Donau
+______________________________________________________________________________________________________________________________________
+
+Florence
+Palazzo Vecchio
+Florence was founded as a Roman military colony about the 1st century bce, and during its long history it has been a republic, a seat of the duchy of Tuscany, and a capital (1865–70) of Italy. During the 14th–16th century Florence achieved preeminence in commerce and finance, learning, and especially the arts.
+
+The San Lorenzo district of Florence was the birthplace of Carlo Lorenzini, alias Collodi, creator of what fabled character?
+a) Winnie the Pooh
+b) Snow White
+c) Cinderella
+d) Pinocchio // true answer
+______________________________________________________________________________________________________________________________________
+
+Rome
+Colosseum
+Beginning in the eighth century B.C., Ancient Rome grew from a small town on central Italy’s Tiber River into an empire that at its peak encompassed most of continental Europe, Britain, much of western Asia, northern Africa and the Mediterranean islands. Among the many legacies of Roman dominance are the widespread use of the Romance languages derived from Latin, the modern Western alphabet and calendar and the emergence of Christianity as a major world religion.
+
+What was the eastern half of the Roman Empire called?
+a) Byzantine Empire // true answer
+b) Gaza Empire
+c) Eastern Empire
+d) Akkadian Empire
+
+In which year did the Byzantine Empire fall to the Ottoman Empire?
+a) 1453 // true answer
+b) 1450
+c) 1394
+d) 1424
+______________________________________________________________________________________________________________________________________
+
+Prague
+St. Vitus Cathedral
+Prague became the capital of independent Czechoslovakia after the fall of the Austro-Hungarian empire in 1918. Prague Castle became the place for the first president of Czechoslovakia, Tomáš Garrigue Masaryk. In between World War I and World War II, Prague became closer to Paris.
+
+How many countries surround the Czech Republic?
+a) 1
+b) 2
+c) 3
+d) 4 // true answer
+______________________________________________________________________________________________________________________________________
+
+Vienna
+The Hofburg
+The city's name was recorded in 881 as Wenia and in 1030 as Wienis. The dukes of Babenberg, a Frankish dynasty, were overlords of Vienna from 1156 to 1246. The city developed into an important trading centre, where Crusaders on their way to the East bought provisions and equipment.
+
+Vienna has two former imperial palaces: one is the rococo Schloss Schoenbrunn in the south-western suburbs. What is the name of the older palace in the center?
+a) The Maria-Theresia Schloss
+b) Schloss Belvedere
+c) The Hofburg // true answer
+d) The Kaiserhof
+______________________________________________________________________________________________________________________________________
+
+Kraków
+Wawel Cathedral
+Throughout the 14th century Kraków served as Poland's economic and political centre and as a major trading point between England and Hungary. Concurrently, it grew into the nation's intellectual and cultural locus, as evidenced by one of its main surviving medieval structures, the Jagiellonian University.
+
+Krakow is known for its educational history as well as its economic history. Jagiellonian University is perhaps the most famous of them all, with students including mathematician Sierpinski and Nobel Laureate Ivo Andric. Which of these men, one of the first to suggest that the Earth orbited the sun, was another former student of this university?
+a) Copernicus // true answer
+b) Kepler
+c) Galileo
+d) Newton
+
+The history of Krakow has been one of invasion and destruction at the hands of numerous armies. This is seen in the huge fortifications which were built to protect the city from such attacks. Which structure, which has also been home to many early Polish kings and is currently a museum, shows these typical fortifications?
+a) Sigismund Chapel
+b) Skalka Sanctuary
+c) Lagiewniki Sanctuary
+d) Wawel Castle // true answer
+______________________________________________________________________________________________________________________________________
+
+Warsaw
+Łazienki Park
+Warsaw remained the capital of the Polish–Lithuanian Commonwealth until 1795, when it was annexed by the Kingdom of Prussia to become the capital of the province of South Prussia. Liberated by Napoleon's army in 1806, Warsaw was made the capital of the newly created Duchy of Warsaw.
+
+The 1656 Battle of Warsaw is widely regarded as the start of which region's military dynasty?
+a) Poland
+b) Brandenburg-Prussia // true answer
+c) Bavaria
+d) Papal States
+
+Warsaw became the capital of the independent Poland after which event?
+a) End of World War I // true answer
+b) End of World War II
+c) Fall of the Berlin Wall
+d) Beginning of the Napoleonic Wars
+______________________________________________________________________________________________________________________________________
+
+Lviv
+St. George's Cathedral
+Lviv history is as colorful and amazing as a city itself. It is filled with interesting events and outstanding figures. Today Lviv is more than 760 years old and it has lots of stories to tell you! City situated on the crossing of two profitable trade routes developed and flourished rapidly and became one of main trade centers of medieval Europe.
+
+Who was the founder of Lviv?
+a) Bohdan Khmelnytskyy
+b) Danylo Halytskyy // true answer
+c) Leo the son of Danylo Halytskyy
+______________________________________________________________________________________________________________________________________
+
+Minsk
+Lošyсki Park
+It was part of a region annexed by the Russian Empire in 1793, as a consequence of the Second Partition of Poland. From 1919 to 1991, after the Russian Revolution, Minsk was the capital of the Byelorussian Soviet Socialist Republic, in the Soviet Union.
+
+Where does the name of Minsk come from?
+a) There is a legend of a giant man with a name ‘Menesk’ who lived in the area and gave the name to a settlement. // true answer
+b) It was the name of the Prince who was the head of the city.
+c) The fortress once situated there had such a name.
+
+Forests, rivers and lakes occupy a large territory of Belarus. What name is also given to the city of Minsk?
+a) Heart of Europe
+b) Lungs of Europe // true answer
+c) Eyes of Europe
