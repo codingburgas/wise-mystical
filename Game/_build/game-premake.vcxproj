@@ -173,14 +173,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="activeCityAnimation.cpp" />
+    <ClCompile Include="animations.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="cityOperations.cpp" />
     <ClCompile Include="travelLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="activeCityAnimation.h" />
+    <ClInclude Include="animations.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="cityOperations.h" />
     <ClInclude Include="travelLogic.h" />

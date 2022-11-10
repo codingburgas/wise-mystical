@@ -6,7 +6,7 @@
 // Initialise cities
 City* intialiseCitiesArray(City cities[40])
 {
-	float hitboxWidth = 10, hitboxHeight = 10;
+	float hitboxWidth = 15, hitboxHeight = 20;
 	//--------------------------------------------------------------------------------------------------------//
 	// Categories:  Name:	      Position:            Rectangle Hitbox:                                      //
 	cities[0] =  { "Reykjavik",  Vector2{185,  355},  Rectangle{185,  355,  hitboxWidth, hitboxHeight}, false };
@@ -33,7 +33,7 @@ City* intialiseCitiesArray(City cities[40])
 	cities[21] = { "Munich",     Vector2{1305, 1875}, Rectangle{1305, 1875, hitboxWidth, hitboxHeight}, false };
 	cities[22] = { "Zagreb",     Vector2{1525, 2055}, Rectangle{1525, 2055, hitboxWidth, hitboxHeight}, false };
 	cities[23] = { "Belgrade",   Vector2{1790, 2080}, Rectangle{1790, 2080, hitboxWidth, hitboxHeight}, false };
-	cities[24] = { "Bucharest",  Vector2{2095, 2050}, Rectangle{2095, 2050, hitboxWidth, hitboxHeight}, false };
+	cities[24] = { "Buchapest",  Vector2{2095, 2050}, Rectangle{2095, 2050, hitboxWidth, hitboxHeight}, false };
 	cities[25] = { "Nessebar",   Vector2{2210, 2165}, Rectangle{2210, 2165, hitboxWidth, hitboxHeight}, false };
 	cities[26] = { "Sofia",      Vector2{1980, 2230}, Rectangle{1980, 2230, hitboxWidth, hitboxHeight}, false };
 	cities[27] = { "Sarajevo",   Vector2{1680, 2155}, Rectangle{1680, 2155, hitboxWidth, hitboxHeight}, false };
@@ -54,14 +54,14 @@ City* intialiseCitiesArray(City cities[40])
 }
 
 // Draw city marks on the map
-void drawCityPoints(City* cities, int citiesCounter, Font comfortaaRegular)
+void drawCityLandmarks(City* cities, int citiesCounter, Font comfortaaRegular, Texture2D cityMarker)
 {
 	for (int i = 0; i < citiesCounter; i++)
 	{
 		// Draw cities hitboxes
-		DrawRectangleRec(Rectangle{ cities[i].hitbox.x - (cities[i].hitbox.width / 2), cities[i].hitbox.y - (cities[i].hitbox.height / 2), cities[i].hitbox.width, cities[i].hitbox.height }, BLACK);
+		DrawTexture(cityMarker, cities[i].hitbox.x - cityMarker.width / float(2), cities[i].hitbox.y - cityMarker.height / float(2), RAYWHITE);
 
 		// Draw city names
-		DrawTextEx(comfortaaRegular, cities[i].name, Vector2{ cities[i].coordinates.x + 7,cities[i].coordinates.y + 7 }, (float)comfortaaRegular.baseSize, 1, BLACK);
+		DrawTextEx(comfortaaRegular, cities[i].name, Vector2{ cities[i].coordinates.x + 7,cities[i].coordinates.y + 7 }, (float)comfortaaRegular.baseSize, 1, WHITE);
 	}
 }

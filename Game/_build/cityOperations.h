@@ -13,10 +13,12 @@ struct City {
 
     // Boolean for highlighting current city
     bool isActive;
+
+    bool wasVisited = false;
 };
 
 // Initialise cities
 City* intialiseCitiesArray(City cities[40]);
 
 // Draw city marks on the map
-void drawCityPoints(City* cities, int citiesCounter, Font comfortaaRegular);
+void drawCityLandmarks(City* cities, int citiesCounter, Font comfortaaRegular, Texture2D cityMarker);

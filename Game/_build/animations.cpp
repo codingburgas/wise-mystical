@@ -1,8 +1,9 @@
 #include <iostream>
 #include "raylib.h"
-#include "activeCityAnimation.h"
+#include "animations.h"
+#include "cityOperations.h"
 
-void drawActiveCityAnimation(animationFrame* activeCityAnimationParts, Vector2 activeCityCoords)
+void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts, City activeCity)
 {
 	// Variable to store the animations frames
 	int opr = 0;
@@ -19,32 +20,32 @@ void drawActiveCityAnimation(animationFrame* activeCityAnimationParts, Vector2 a
 		case 5:
 			activeCityAnimationParts[i].color = frame1;
 			break;
-		case 6:
+		case 7:
 			activeCityAnimationParts[i].color = frame2;
 			break;
-		case 7:
+		case 8:
 			activeCityAnimationParts[i].color = frame3;
 			break;
-		case 8:
+		case 10:
 			activeCityAnimationParts[i].color = frame4;
 			break;
-		case 9:
+		case 11:
 			activeCityAnimationParts[i].color = frame5;
 			break;
-		case 10:
+		case 12:
 			activeCityAnimationParts[i].color = frame6;
 			break;
-		case 11:
+		case 14:
 			activeCityAnimationParts[i].color = frame7;
 			break;
-		case 12:
+		case 16:
 			activeCityAnimationParts[i].color = frame8;
 			break;
-		case 13:
+		case 17:
 			activeCityAnimationParts[i].color = frame9;
 			break;
-		case 14:
-		case 15:
+		case 19:
+		case 20:
 			activeCityAnimationParts[i].color = frame10;
 			break;
 		}
@@ -54,7 +55,7 @@ void drawActiveCityAnimation(animationFrame* activeCityAnimationParts, Vector2 a
 	for (int i = 0; i < 3; i++)
 	{
 		// Draw the 3 circles
-		DrawCircleV(Vector2{ activeCityCoords.x, activeCityCoords.y }, activeCityAnimationParts[i].size, activeCityAnimationParts[i].color);
+		DrawCircleV(Vector2{ activeCity.coordinates.x, activeCity.coordinates.y-float(3) }, activeCityAnimationParts[i].size, activeCityAnimationParts[i].color);
 
 		// Check for circle radius update direction (+, -)
 		if (activeCityAnimationParts[i].direction == '+')
@@ -63,7 +64,7 @@ void drawActiveCityAnimation(animationFrame* activeCityAnimationParts, Vector2 a
 			activeCityAnimationParts[i].size += float(0.05);
 
 			// Reverse update director when radius reaches maximum(15)
-			if (activeCityAnimationParts[i].size >= 15)
+			if (activeCityAnimationParts[i].size >= 20)
 			{
 				activeCityAnimationParts[i].direction = '-';
 			}
@@ -81,5 +82,59 @@ void drawActiveCityAnimation(animationFrame* activeCityAnimationParts, Vector2 a
 				activeCityAnimationParts[i].direction = '+';
 			}
 		}
+	}
+}
+
+// Draw pop-up animation across different states
+void popUpAnimation(popUpAnimationFrame* ptr2, bool showPopUpMenu)
+{
+	// Check for mouse input and update animation state 
+	if (showPopUpMenu)
+	{
+		// Update animation state to -1(decreasing)
+		ptr2->state = -1;
+	}
+	else if (!showPopUpMenu)
+	{
+		// Update animation state to 1(increasing)
+		ptr2->state = 1;
+	}
+
+	// Update target position based on animation state
+	switch (ptr2->state)
+	{
+	// Update target position in decreasing state
+	case -1:
+		ptr2->pos.y -= 2.5;
+
+		// Check for top animation boundary
+		if (ptr2->pos.y <= 919)
+		{
+			// Snap target to boundary
+			ptr2->pos.y = 919;
+
+			// Update animation state to 0(paused)
+			ptr2->state = 0;
+		}
+		break;
+
+	// Update target position in increasing state
+	case 1:
+		ptr2->pos.y += 2.5;
+
+		// Check for bottom animation boundary
+		if (ptr2->pos.y >= 1080)
+		{
+			// Snap target to boundary
+			ptr2->pos.y = 1080;
+
+			// Update animation state to 0(paused)
+			ptr2->state = 0;
+		}
+		break;
+
+	// Account for the paused animation state
+	default:
+		break;
 	}
 }

@@ -15,7 +15,7 @@
     <ClCompile Include="game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="activeCityAnimation.cpp">
+    <ClCompile Include="animations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cityOperations.cpp">
@@ -29,7 +29,7 @@
     <ClInclude Include="game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="activeCityAnimation.h">
+    <ClInclude Include="animations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cityOperations.h">
