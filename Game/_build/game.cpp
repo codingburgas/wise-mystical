@@ -48,6 +48,7 @@ void startGame()
 
 	// Active city variables
 	City activeCity = cities[startCityNum];
+	cities[startCityNum].wasVisited = true;
 	City* activeCityPtr = &activeCity;
 
 	// Temporary city variables
