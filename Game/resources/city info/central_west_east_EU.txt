@@ -1,3 +1,30 @@
+
+Paris
+Eiffel Tower, Louvre Museum
+Paris was founded towards the end of the 3rd century BC on what is now the Ile de la Cite by a tribe of Celtic Gauls known as the Parisii. Centuries of conflict between the Gauls and Romans ended in 52 BC, when Julius Caesar’s legions took control of the territory. Christianity was introduced in the 2nd century AD, and Roman rule finally ended in the 5th century with the arrival of the Franks. In 508 AD, Frankish king Clovis I united Gaul as a kingdom and made Paris the capital, naming it after the original Parisii tribe.
+
+What is the tallest building in Paris?
+a) Palace of Versailles
+b) Louvre Museum
+c) Eiffel Tower // true answer
+d) Cathédrale Notre-Dame de Paris
+
+Who designed the Eiffel Tower?
+a) Louis XIV
+b) Gustave Eiffel // true answer
+c) Coco Chanel
+d) Napoleon Bonaparte
+________________________________________________________________________________________________________________
+
+Dublin
+St Patrick's Cathedral
+Dublin's history stretches back over a millennium. Back in the fourth century, the first known settlement here was built in the Cornmarket area of the city centre. It was called Áth Cliath – which means 'Hurdled Fort' and continues to inspire the modern Irish translation today.
+
+Which river runs under Dublin Castle?
+a) The Dodder
+b) The Liffey
+c) The Poddle // true answer
+d) The Coddle
 London
 Buckingham Palace
 The city of London was founded by the Romans and their rule extended from 43 AD to the fifth century AD, when the Empire fell. During the third century, Londinium, the name given to the town by the Romans, had a population of 50,000, mainly due to the influence of its major port.
@@ -209,3 +236,76 @@ Forests, rivers and lakes occupy a large territory of Belarus. What name is also
 a) Heart of Europe
 b) Lungs of Europe // true answer
 c) Eyes of Europe
+______________________________________________________________________________________________________________________________________
+
+Kyiv
+Kyiv has a long and rich history. The traditionally recognized year of Kyiv’s establishment is 482 CE, and in 1982 the city celebrated its 1,500th anniversary. However, archaeological evidence suggests that the city was founded in the 6th or 7th century. According to the 12th-century chronicle Povest “Tale of Bygone Years”, Kyiv was founded by three brothers, Kyi, Shchek, and Khoryv, leaders of the Polyanian tribe of the East Slavs.
+
+Kyiv was founded about about how many years ago?
+a) 750
+b) 1500 // true answer
+c) 1100
+d) 810
+______________________________________________________________________________________________________________________________________
+
+Budapest
+The origins of Budapest can be traced to Celts who occupied the plains of Hungary in the 4th century BC. The area was later conquered by the Roman Empire, which established the fortress and town of Aquincum on the site of today's Budapest around AD 100.
+
+Largest city and capital of Hungary, Budapest lies on which river?
+(A) The Raul Tisa
+(B) The Danube // true answer
+(C) The Drava
+(D) The Ipoly
+______________________________________________________________________________________________________________________________________
+
+Zagreb
+The name "Zagreb" was first used in 1094 at the founding of the Zagreb diocese in Kaptol, after the Slavs had arrived in the area. Zagreb became a free royal city in 1242. It was made the capital of Croatia in 1845 and elected its first mayor, Janko Kamauf, in 1851.
+
+Croatians used their Glagolitic script which is the oldest of which languages?
+a) Slavic script // true answer
+b) Latin script
+c) Ivrit script
+______________________________________________________________________________________________________________________________________
+
+Belgrade
+The history of Belgrade dates back to at least 7000 BC. One of the largest prehistoric cultures of Europe, the Vinča culture, evolved from the Belgrade area in the 6th millennium BC. In antiquity, Thraco-Dacians inhabited the region, and after 279 BC Celts conquered the city, naming it Singidūn.
+
+You're sitting at the slava table: what is placed in the middle of the table?
+a) Blessed flowers and herbs bought in church.
+b) A large candle with a small picture of the celebrated saint. // true answer
+c) Nothing - the middle of the slava table should be empty.
+d) A large icon.
+______________________________________________________________________________________________________________________________________
+
+Sarajevo
+Sarajevo as it is known today was founded by the Ottoman Empire in the 1450s upon conquering the region, with 1461 typically used as the city's founding date. The first known Ottoman governor of Bosnia, Isa-Beg Ishaković, chose the tiny local village of Brodac as a good space for a new city.
+
+After the Ottomans invaded and conquered the city that is now Sarajevo, they destroyed everything in sight and the city remained in ruins for centuries.
+a) True
+b) False // true answer
+______________________________________________________________________________________________________________________________________
+
+Bucharest
+Bucharest was first mentioned on September 20, 1459, as one of the residences of Prince Vlad III Dracula. It soon became the preferred summer residence of the princely court – together with Targoviște, one of the two capitals of Wallachia – and was viewed by contemporaries as the strongest citadel in its country.
+
+The first mention of the name Bucharest can be found in correspondence in 1459 written by which infamously cruel prince who built a summer home in the city?
+a) Nicolae Alexandru
+b) Mihail I
+c) Radu II Chelul
+d) Vlad the Impaler // true answer
+______________________________________________________________________________________________________________________________________
+
+Veliko Tarnovo
+Veliko Tarnovo is one of the oldest towns in the country, as its history dates back to more than five thousand years ago, which is proven by archaeological excavations. The upsurge of Veliko Tarnovo is related to the period of the Second Bulgarian Empire (1185 – 1393).
+
+In which Bulgarian state in history is the upsurge of Veliko Tarnovo?
+a) First Bulgarian Empire
+b) Second Bulgarian Empire // true answer
+______________________________________________________________________________________________________________________________________
+
+Nessebar
+Situated on a rocky peninsula on the Black Sea, the more than 3,000-year-old site of Nessebar was originally a Thracian settlement (Menebria). At the beginning of the 6th century BC, the city became a Greek colony. The city’s remains, which date mostly from the Hellenistic period, include the acropolis, a temple of Apollo, an agora and a wall from the Thracian fortifications.
+
+Was "Nessebar" the first name of the city?
+a) Yes
+b) No
