@@ -4,6 +4,7 @@
 #include "animations.h"
 #include "cityOperations.h"
 #include "travelLogic.h"
+#include <vector>
 
 void startGame()
 {
@@ -47,6 +48,10 @@ void startGame()
 	// City variables
 	const int countiesCounter = 40;
 	int startCityNum = GetRandomValue(0, 39);
+
+	// Vector for lines
+	std::vector<LINEPOINTS> conLines;
+	std::vector<LINEPOINTS>* conLinesPtr = &conLines;
 
 	// Active city variables
 	City activeCity = cities[startCityNum];
@@ -213,7 +218,7 @@ void startGame()
 		travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, countiesCounter, indexPtr);
 
 		// Handle mouse input for the pop-up 
-		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr);
+		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, conLinesPtr);
 
 		BeginDrawing();
 		
@@ -226,11 +231,17 @@ void startGame()
 		// Draw the map on the screen
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
 
+		//
+		for (LINEPOINTS n : conLines)
+		{
+			DrawLineEx(n.startingPoint, n.finishPoint, 5, BLACK);
+		}
+
 		// Mark the current active city mark
 		drawActiveCityAnimation(activeCityAnimationPartsPtr, activeCity);
 
 		// Draw city markers on the map
-		drawCityLandmarks(citiArrayPtr, 40, comfortaaRegular, cityMarker);	
+		drawCityLandmarks(citiArrayPtr, 40, comfortaaRegular, cityMarker);
 
 		// End 2D mode
 		EndMode2D();

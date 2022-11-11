@@ -1,5 +1,7 @@
+#include <vector>
 #include "raylib.h"
 #include "cityOperations.h"
+#include "travelLogic.h"
 
 // Travel to next selected city (if possible)
 void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *tempCity, bool *searchingNextCity, bool *showPopUpMenu, int citiesCounter, int *indexPtr)
@@ -36,7 +38,7 @@ void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *t
 }
 
 // Handle mouse input for the pop-up 
-void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr)
+void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, std::vector<LINEPOINTS>* conLinesPtr)
 {
 	// Check if confirm was clicked
 	if (showPopUpMenu && CheckCollisionPointRec(Vector2(GetMousePosition()), confirmHitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -46,6 +48,9 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities
 
 		// Allow travel to other selected cities
 		*searchingNextCity = true;
+
+		// Add next set of start and end line points
+		conLinesPtr->push_back({ activeCity->coordinates, tempCity->coordinates });
 
 		// Upadate the active city 
 		*activeCity = *tempCity;
