@@ -44,3 +44,6 @@ void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts,
 
 // Draw pop-up animation across different states
 void popUpAnimation(popUpAnimationFrame* ptr2, bool showPopUpMenu);
+
+// Draw popUp buttons hover effect 
+void drawPopUpHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, popUpAnimationFrame* popUpAnimationFramePtr);

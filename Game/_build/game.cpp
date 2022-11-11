@@ -15,13 +15,15 @@ void startGame()
 	// Load map texture from the file structure
 	Texture2D map = LoadTexture("../resources/images/map.png");	
 
+	// Load font from the file structure
+	Font comfortaaRegular = LoadFontEx("../resources/font/Comfortaa-Regular.ttf", 25, 0, 250);
+
 	// Load UI from the file structure
 	Texture2D scoreBoard = LoadTexture("../resources/images/Score board.png");
 	Texture2D popUp = LoadTexture("../resources/images/Travel pop-up.png");
+	Texture2D confirmHover = LoadTexture("../resources/images/Confirm hover.png");
+	Texture2D denyHover = LoadTexture("../resources/images/Deny hover.png");
 	Texture2D cityMarker = LoadTexture("../resources/images/City marker.png");
-
-	// Load font from the file structure
-	Font comfortaaRegular = LoadFontEx("../resources/font/Comfortaa-Regular.ttf", 25, 0, 250);
 
 	// Mouse position
 	Vector2 mousePoint = { 0.0f, 0.0f };
@@ -73,7 +75,7 @@ void startGame()
 
 	// Define variables for pop up animation
 	popUpAnimationFrame popUpFrame = { popUp, Vector2{ 1367, 1080 }, 0};
-	popUpAnimationFrame* ptr3 = &popUpFrame;
+	popUpAnimationFrame* popUpAnimationFramePtr = &popUpFrame;
 	Rectangle confirmHitbox = { 1467, 980, 186, 67 };
 	Rectangle denyHitbox = { 1697, 980, 186, 67 };
 
@@ -237,10 +239,13 @@ void startGame()
 		DrawTexture(scoreBoard, -2, 2, RAYWHITE);
 
 		// Draw pop-up animation across different states
-		popUpAnimation(ptr3, showPopUpMenu);
+		popUpAnimation(popUpAnimationFramePtr, showPopUpMenu);
 
 		// Draw pop-up 
 		DrawTextureV(popUp, popUpFrame.pos, RAYWHITE);
+
+		// Draw popUp buttons hover effect 
+		drawPopUpHover(confirmHitbox, denyHitbox, confirmHover, denyHover, popUpAnimationFramePtr);
 		
 		EndDrawing();
 	}

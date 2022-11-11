@@ -138,3 +138,24 @@ void popUpAnimation(popUpAnimationFrame* ptr2, bool showPopUpMenu)
 		break;
 	}
 }
+
+// Draw popUp buttons hover effect
+void drawPopUpHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, popUpAnimationFrame* popUpAnimationFramePtr)
+{
+	// Check if pop-up is fully extended
+	if (popUpAnimationFramePtr->pos.y == 919)
+	{
+		// Check if the mouse is hovering over the confirm button
+		if (CheckCollisionPointRec(Vector2(GetMousePosition()), confirmHitbox))
+		{
+			// Draw confirm button hover effect
+			DrawTexture(confirmHover, 1458, 978, RAYWHITE);
+		}
+		// Check if the mouse is hovering over the deny button
+		else if (CheckCollisionPointRec(Vector2(GetMousePosition()), denyHitbox))
+		{
+			// Draw deny button hover effect
+			DrawTexture(denyHover, 1690, 978, RAYWHITE);
+		}
+	}
+}
