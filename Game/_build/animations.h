@@ -16,7 +16,7 @@
 #define frame10 CLITERAL(Color){ 5, 10, 23, 75 }
 
 // Define Active city animation frame struct
-struct activeCityAnimationFrame {
+struct ActiveCityAnimationFrame {
 
     // circle radius
     float size;
@@ -29,7 +29,7 @@ struct activeCityAnimationFrame {
 };
 
 // Define Pop up animation frame
-struct popUpAnimationFrame {
+struct PopUpAnimationFrame {
 
     // texture
     Texture2D texture;
@@ -42,14 +42,14 @@ struct popUpAnimationFrame {
 };
 
 // Draw active city animation on said location on the map
-void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts, City activeCity);
+void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts, City activeCity);
 
 // Draw pop-up animation across different states
-void drawPopUpAnimation(Texture2D componentTexture, popUpAnimationFrame* componentPtr, float endY, bool showComponent);
+void drawPopUpAnimation(Texture2D componentTexture, PopUpAnimationFrame* componentPtr, float endY, bool showComponent);
 
 // Draw popUp buttons hover effect 
-void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, popUpAnimationFrame* popUpAnimationFramePtr);
+void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, PopUpAnimationFrame* popUpAnimationFramePtr);
 
 // Manage warning animation 
-void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, popUpAnimationFrame* warningAnimationFramePtr, popUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
+void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, PopUpAnimationFrame* warningAnimationFramePtr, PopUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
 

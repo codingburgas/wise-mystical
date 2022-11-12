@@ -4,7 +4,7 @@
 #include "animations.h"
 #include "cityOperations.h"
 
-void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts, City activeCity)
+void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts, City activeCity)
 {
 	// Variable to store the animations frames
 	int opr = 0;
@@ -87,7 +87,7 @@ void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts,
 }
 
 // Draw pop-up animation across its different states
-void drawPopUpAnimation(Texture2D componentTexture,popUpAnimationFrame* componentPtr, float endY, bool showComponent)
+void drawPopUpAnimation(Texture2D componentTexture, PopUpAnimationFrame* componentPtr, float endY, bool showComponent)
 {
 	// Check for mouse input and update animation state 
 	if (showComponent)
@@ -144,7 +144,7 @@ void drawPopUpAnimation(Texture2D componentTexture,popUpAnimationFrame* componen
 }
 
 // Draw popUp buttons hover effect
-void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, popUpAnimationFrame* popUpAnimationFramePtr)
+void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, PopUpAnimationFrame* popUpAnimationFramePtr)
 {
 	// Check if pop-up is fully extended
 	if (popUpAnimationFramePtr->pos.y == 913)
@@ -165,7 +165,7 @@ void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D
 }
 
 // Manage warning animation 
-void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, popUpAnimationFrame* warningAnimationFramePtr, popUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu)
+void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, PopUpAnimationFrame* warningAnimationFramePtr, PopUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu)
 {
 	// Check if a visited city is clicked
 	for (int i = 0; i < 40; i++)

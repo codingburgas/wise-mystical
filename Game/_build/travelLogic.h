@@ -4,7 +4,9 @@
 #include "animations.h"
 #include "cityOperations.h"
 
-struct LINEPOINTS
+#define lineColor CLITERAL(Color){ 5, 10, 23, 255 }
+
+struct LinePoints
 {
 	// coordinates for line start
 	Vector2 startingPoint = {};
@@ -17,4 +19,4 @@ struct LINEPOINTS
 void travelToNextCity(Vector2 mousePoint, City* cities, City activeCity, City* tempCity, bool* searchingNextCity, bool* showPopUpMenu, int citiesCounter, int* indexPtr);
 
 // Handle mouse input for the pop-up 
-void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, popUpAnimationFrame popUpFrame, std::vector<LINEPOINTS>* conLinesPtr);
+void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, PopUpAnimationFrame popUpFrame, std::vector<LinePoints>* conLinesPtr);

@@ -36,7 +36,7 @@ void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *t
 }
 
 // Handle mouse input for the pop-up 
-void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, popUpAnimationFrame popUpFrame, std::vector<LINEPOINTS>* conLinesPtr)
+void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, PopUpAnimationFrame popUpFrame, std::vector<LinePoints>* conLinesPtr)
 {
 	// Check if confirm was clicked
 	if (showPopUpMenu && CheckCollisionPointRec(Vector2(GetMousePosition()), confirmHitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))

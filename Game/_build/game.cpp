@@ -56,8 +56,8 @@ void startGame()
 	int startCityNum = GetRandomValue(0, 39);
 
 	// Vector for gameplay path
-	std::vector<LINEPOINTS> conLines;
-	std::vector<LINEPOINTS>* conLinesPtr = &conLines;
+	std::vector<LinePoints> conLines;
+	std::vector<LinePoints>* conLinesPtr = &conLines;
 
 	// Active city variables
 	City activeCity = cities[startCityNum];
@@ -77,22 +77,22 @@ void startGame()
 	bool* showPopUpMenuPtr = &showPopUpMenu;
 
 	// Define variables for active city animation
-	activeCityAnimationFrame activeCityAnimationParts[3] = {
+	ActiveCityAnimationFrame activeCityAnimationParts[3] = {
 		{5, '+', frame1},
 		{15, '+', frame6},
 		{20, '+', frame10},
 	};
-	activeCityAnimationFrame* activeCityAnimationPartsPtr = activeCityAnimationParts;
+	ActiveCityAnimationFrame* activeCityAnimationPartsPtr = activeCityAnimationParts;
 
 	// Define variables for pop-up menu animation
-	popUpAnimationFrame popUpMenuFrame = { popUpMenu, Vector2{ 1347, 1080 }, 0};
-	popUpAnimationFrame* popUpMenuFramePtr = &popUpMenuFrame;
+	PopUpAnimationFrame popUpMenuFrame = { popUpMenu, Vector2{ 1347, 1080 }, 0};
+	PopUpAnimationFrame* popUpMenuFramePtr = &popUpMenuFrame;
 	Rectangle confirmHitbox = { 1462, 993, 186, 67 };
 	Rectangle denyHitbox = { 1693, 993, 186, 67 };
 
 	// Define variables for warning pop up animation
-	popUpAnimationFrame warningAnimationFrame = { visitedCityWarning, Vector2{ 936, 1080 }, 0 };
-	popUpAnimationFrame* warningAnimationFramePtr = &warningAnimationFrame;
+	PopUpAnimationFrame warningAnimationFrame = { visitedCityWarning, Vector2{ 936, 1080 }, 0 };
+	PopUpAnimationFrame* warningAnimationFramePtr = &warningAnimationFrame;
 	bool wariningVisible = false;
 	bool* warningVisiblePtr = &wariningVisible;
 
@@ -131,11 +131,15 @@ void startGame()
 		// Draw the map on the screen
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
 
-		// Under development
-		/*for (LINEPOINTS n : conLines)
+		// Draw travel pathway
+		for (LinePoints n : conLines)
 		{
-			DrawLineEx(n.startingPoint, n.finishPoint, 5, BLACK);
-		}*/
+			// Draw line outer layer
+			DrawLineEx(n.startingPoint, n.finishPoint, 10, WHITE);
+
+			// Draw line inner layer
+			DrawLineEx(n.startingPoint, n.finishPoint, 7, lineColor);
+		}
 
 		// Mark the current active city mark
 		drawActiveCityAnimation(activeCityAnimationPartsPtr, activeCity);
