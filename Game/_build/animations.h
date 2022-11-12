@@ -53,3 +53,4 @@ void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D
 // Manage warning animation 
 void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, PopUpAnimationFrame* warningAnimationFramePtr, PopUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
 
+

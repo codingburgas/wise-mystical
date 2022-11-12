@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 #include "raylib.h"
 #include "game.h"
 #include "movement.h"
@@ -34,9 +35,9 @@ void startGame()
 	Vector2 mousePoint = { 0.0f, 0.0f };
 
 	// Camera position
-	float cameraPosX = float(GetScreenWidth()) / 2;
+	float cameraPosX = 0;
 	float* cameraPosXPtr = &cameraPosX;
-	float cameraPosY = float(GetScreenHeight()) / 2;
+	float cameraPosY = 0;
 	float* cameraPosYPtr = &cameraPosY;
 
 	// Declare game camera
@@ -52,7 +53,7 @@ void startGame()
 	citiArrayPtr = cities;
 	
 	// City variables
-	const int countiesCounter = 40;
+	const int cityCounter = 40;
 	int startCityNum = GetRandomValue(0, 39);
 
 	// Vector for gameplay path
@@ -89,7 +90,7 @@ void startGame()
 	PopUpAnimationFrame* popUpMenuFramePtr = &popUpMenuFrame;
 	Rectangle confirmHitbox = { 1462, 993, 186, 67 };
 	Rectangle denyHitbox = { 1693, 993, 186, 67 };
-
+	
 	// Define variables for warning pop up animation
 	PopUpAnimationFrame warningAnimationFrame = { visitedCityWarning, Vector2{ 936, 1080 }, 0 };
 	PopUpAnimationFrame* warningAnimationFramePtr = &warningAnimationFrame;
@@ -105,17 +106,20 @@ void startGame()
 	// Define active text variables
 	std::string popUpText = "";
 
+	// Set initail camera target
+	setInitialCameraPos(cameraPosXPtr, cameraPosYPtr, startCityNum);
+
 	while (!WindowShouldClose())
 	{
 		// Update target
 		mousePoint = GetScreenToWorld2D({ GetMousePosition().x, GetMousePosition().y}, camera);
-		camera.target = { cameraPosX, cameraPosY };
+		camera.target = { *cameraPosXPtr, *cameraPosYPtr };
 
 		// Update the camera's position based on keyboard input
 		updateCameraPos(cameraPosXPtr, cameraPosYPtr);
 
 		// Travel to next selected city (if possible)
-		travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, countiesCounter, indexPtr);
+		travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, cityCounter, indexPtr);
 
 		// Handle mouse input for the pop-up 
 		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, popUpMenuFrame, conLinesPtr);
@@ -132,13 +136,13 @@ void startGame()
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
 
 		// Draw travel pathway
-		for (LinePoints n : conLines)
+		for (LinePoints &n : conLines)
 		{
 			// Draw line outer layer
-			DrawLineEx(n.startingPoint, n.finishPoint, 10, WHITE);
+			DrawLineEx(n.startPoint, n.endPoint, 10, WHITE);
 
 			// Draw line inner layer
-			DrawLineEx(n.startingPoint, n.finishPoint, 7, lineColor);
+			DrawLineEx(n.startPoint, n.endPoint, 7, lineColor);	
 		}
 
 		// Mark the current active city mark

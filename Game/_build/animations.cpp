@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "timer.h"
 #include "animations.h"
+#include "travelLogic.h"
 #include "cityOperations.h"
 
 void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts, City activeCity)

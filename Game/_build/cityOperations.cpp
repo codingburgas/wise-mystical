@@ -7,8 +7,8 @@
 City* intialiseCitiesArray(City cities[40])
 {
 	float hitboxWidth = 15, hitboxHeight = 20;
-	//--------------------------------------------------------------------------------------------------------//
-	// Categories:  Name:	      Position:            Rectangle Hitbox:                                      //
+	//-------------------------------------------------------------------------------------------------//
+	// Categories:  Name:	      Position:           Rectangle Hitbox:     Hitbox:                    //
 	cities[0] =  { "Reykjavik",  Vector2{185,  355},  Rectangle{185,  355,  hitboxWidth, hitboxHeight} };
 	cities[1] =  { "Oslo",       Vector2{1240, 940},  Rectangle{1240, 940,  hitboxWidth, hitboxHeight} };
 	cities[2] =  { "Stockholm",  Vector2{1540, 970},  Rectangle{1540, 970,  hitboxWidth, hitboxHeight} };
@@ -44,12 +44,14 @@ City* intialiseCitiesArray(City cities[40])
 	cities[32] = { "Madrid",     Vector2{405,  2410}, Rectangle{405,  2410, hitboxWidth, hitboxHeight} };
 	cities[33] = { "Barcelona",  Vector2{765,  2355}, Rectangle{765,  2355, hitboxWidth, hitboxHeight} };
 	cities[34] = { "Cagliari",   Vector2{1165, 2545}, Rectangle{1165, 2545, hitboxWidth, hitboxHeight} };
-	cities[35] = { "Palerno",    Vector2{1415, 2635}, Rectangle{1415, 2635, hitboxWidth, hitboxHeight} };
+	cities[35] = { "Palermo",    Vector2{1415, 2635}, Rectangle{1415, 2635, hitboxWidth, hitboxHeight} };
 	cities[36] = { "Helsinki",   Vector2{1765, 865},  Rectangle{1765, 865,  hitboxWidth, hitboxHeight} };
 	cities[37] = { "Ioannina",   Vector2{1870, 2465}, Rectangle{1870, 2465, hitboxWidth, hitboxHeight} };
 	cities[38] = { "Athens",     Vector2{2065, 2575}, Rectangle{2065, 2575, hitboxWidth, hitboxHeight} };
 	cities[39] = { "Istanbul",   Vector2{2315, 2275}, Rectangle{2315, 2275, hitboxWidth, hitboxHeight} };
-	//--------------------------------------------------------------------------------------------------------//
+	//-------------------------------------------------------------------------------------------------//
+
+	// Return intialised array
 	return cities;
 }
 

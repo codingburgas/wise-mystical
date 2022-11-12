@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include "raylib.h"
 #include "animations.h"
@@ -9,10 +10,19 @@
 struct LinePoints
 {
 	// coordinates for line start
-	Vector2 startingPoint = {};
+	Vector2 startPoint = {};
 
 	// coordinates for line finish
-	Vector2 finishPoint = {};
+	Vector2 endPoint = {};
+
+	Vector2 animationEndPoint = {};
+
+	float xStep = 0;
+
+	float yStep = 0;
+
+	bool check = false;
+
 };
 
 // Travel to next selected city (if possible)
