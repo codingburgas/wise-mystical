@@ -2,6 +2,7 @@
 #include <vector>
 #include "raylib.h"
 #include "game.h"
+#include "movement.h"
 #include "animations.h"
 #include "cityOperations.h"
 #include "travelLogic.h"
@@ -33,7 +34,9 @@ void startGame()
 
 	// Camera position
 	float cameraPosX = float(GetScreenWidth()) / 2;
+	float* cameraPosXPtr = &cameraPosX;
 	float cameraPosY = float(GetScreenHeight()) / 2;
+	float* cameraPosYPtr = &cameraPosY;
 
 	// Declare game camera
 	Camera2D camera = {};
@@ -103,133 +106,12 @@ void startGame()
 
 	while (!WindowShouldClose())
 	{
-		// Update camera position
+		// Update target
 		mousePoint = GetScreenToWorld2D({ GetMousePosition().x, GetMousePosition().y}, camera);
 		camera.target = { cameraPosX, cameraPosY };
 
-		// Uptade camera position, based on W, A, S, D keys
-		if (IsKeyDown(KEY_A))
-		{
-			// Check left camera boundary 
-			if (cameraPosX > 910)
-			{
-				cameraPosX -= 3.0f;
-			}
-			else
-			{
-				cameraPosX += 3.0f;
-			}
-
-			// Check top or bottom key down
-			if (IsKeyDown(KEY_W))
-			{
-				// Check top boundary
-				if (cameraPosY > 550)
-				{
-					cameraPosY -= 3.0f;
-				}
-				else
-				{
-					cameraPosY += 3.0f;
-				}
-			}
-			else if (IsKeyDown(KEY_S))
-			{
-				// Check bottom boundary
-				if (cameraPosY < 2250)
-				{
-					cameraPosY += 3.0f;
-				}
-				else
-				{
-					cameraPosY -= 3.0f;
-				}
-			}
-		}
-		else if (IsKeyDown(KEY_D))
-		{
-			// Check right camera boundary 
-			if (cameraPosX < 1815)
-			{
-				cameraPosX += 3.0f;
-			}
-			else
-			{
-				cameraPosX -= 3.0f;
-			}
-
-			// Check top or bottom key down
-			if (IsKeyDown(KEY_W))
-			{
-				// Check top boundary
-				if (cameraPosY > 550)
-				{
-					cameraPosY -= 3.0f;
-				}
-				else
-				{
-					cameraPosY += 3.0f;
-				}
-			}
-			else if (IsKeyDown(KEY_S))
-			{
-				// Check bottom boundary
-				if (cameraPosY < 2250)
-				{
-					cameraPosY += 3.0f;
-				}
-				else
-				{
-					cameraPosY -= 3.0f;
-				}
-			}
-		}
-
-		// Update camera, based on seperate key input - W, A, S, D 
-		if (IsKeyDown(KEY_W))
-		{
-			if (cameraPosY > 550)
-			{
-				cameraPosY -= 3.0f;
-			}
-			else
-			{
-				cameraPosY += 3.0f;
-			}
-		}
-		else if (IsKeyDown(KEY_S))
-		{
-			if (cameraPosY < 2250)
-			{
-				cameraPosY += 3.0f;
-			}
-			else
-			{
-				cameraPosY -= 3.0f;
-			}
-		}
-		else if (IsKeyDown(KEY_A))
-		{
-			if (cameraPosX > 910)
-			{
-				cameraPosX -= 3.0f;
-			}
-			else
-			{
-				cameraPosX += 3.0f;
-			}
-		}
-		else if (IsKeyDown(KEY_D))
-		{
-			if (cameraPosX < 1815)
-			{
-				cameraPosX += 3.0f;
-			}
-			else
-			{
-				cameraPosX -= 3.0f;
-			}
-		}
+		// Update the camera's position based on keyboard input
+		updateCameraPos(cameraPosXPtr, cameraPosYPtr);
 
 		// Travel to next selected city (if possible)
 		travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, countiesCounter, indexPtr);
@@ -290,5 +172,3 @@ void startGame()
 		EndDrawing();
 	}
 }
-
-// 913, 990

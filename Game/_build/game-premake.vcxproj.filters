@@ -27,6 +27,9 @@
     <ClCompile Include="updateActiveText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="movement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="updateActiveText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="movement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
