@@ -194,7 +194,7 @@ void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D
 }
 
 // Manage warning animation 
-void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, popUpAnimationFrame* warningAnimationFramePtr, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu)
+void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, popUpAnimationFrame* warningAnimationFramePtr, popUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu)
 {
 	// Check if a visited city is clicked
 	for (int i = 0; i < 40; i++)
@@ -229,7 +229,7 @@ void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity
 	}
 
 	// Check if the pop-up menu is drawn
-	if (!showPopUpMenu)
+	if (!showPopUpMenu && popUpMenuFrame.pos.y == 1080)
 	{
 		// Update the warning's position if the pop-up menu is retracted
 		warningAnimationFramePtr->pos.x = 1475;

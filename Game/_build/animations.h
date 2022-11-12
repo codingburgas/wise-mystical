@@ -66,7 +66,7 @@ void drawPopUpMenuAnimation(Texture2D popUpMenu, popUpAnimationFrame* ptr2, bool
 void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, popUpAnimationFrame* popUpAnimationFramePtr);
 
 // Manage warning animation 
-void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, popUpAnimationFrame* warningAnimationFramePtr, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
+void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, popUpAnimationFrame* warningAnimationFramePtr, popUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
 
 // Draw warning animation across its different states
 void drawWarningAnimation(Texture2D warning, popUpAnimationFrame* wwaarningAnimationFramePtr, bool wariningVisible);

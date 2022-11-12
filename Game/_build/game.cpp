@@ -14,19 +14,19 @@ void startGame()
 
 	InitWindow(width, height, "Game");
 
-	// Load map texture from the file structure
-	Texture2D map = LoadTexture("../resources/images/map.png");	
-
 	// Load font from the file structure
 	Font comfortaaRegular = LoadFontEx("../resources/font/Comfortaa-Regular.ttf", 25, 0, 250);
 
-	// Load UI from the file structure
-	Texture2D scoreBoard = LoadTexture("../resources/images/Score board.png");
-	Texture2D popUpMenu = LoadTexture("../resources/images/Travel pop-up.png");
-	Texture2D visitedCityWarning = LoadTexture("../resources/images/City warning.png");
-	Texture2D confirmHover = LoadTexture("../resources/images/Confirm hover.png");
-	Texture2D denyHover = LoadTexture("../resources/images/Deny hover.png");
-	Texture2D cityMarker = LoadTexture("../resources/images/City marker.png");
+	// Load map components texture from the file structure
+	Texture2D map = LoadTexture("../resources/images/map components/map.png");	
+	Texture2D cityMarker = LoadTexture("../resources/images/map components/City marker.png");
+
+	// Load UI components from the file structure
+	Texture2D scoreBoard = LoadTexture("../resources/images/UI components/Score board.png");
+	Texture2D popUpMenu = LoadTexture("../resources/images/UI components/Travel pop-up.png");
+	Texture2D visitedCityWarning = LoadTexture("../resources/images/UI components/City warning.png");
+	Texture2D confirmHover = LoadTexture("../resources/images/UI components/Confirm hover.png");
+	Texture2D denyHover = LoadTexture("../resources/images/UI components/Deny hover.png");
 
 	// Mouse position
 	Vector2 mousePoint = { 0.0f, 0.0f };
@@ -281,8 +281,10 @@ void startGame()
 		// Draw pop-up menu active text
 		DrawTextEx(comfortaaRegular, popUpText.c_str(), Vector2{ 1439, popUpMenuFrame.pos.y + float(19) }, 25, 1, WHITE);
 
-		manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
+		// Manage warning animation 
+		manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, popUpMenuFrame, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
 
+		// Draw warning animation across its different states
 		drawWarningAnimation(visitedCityWarning, warningAnimationFramePtr, wariningVisible);
 		
 		EndDrawing();
