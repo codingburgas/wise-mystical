@@ -60,14 +60,11 @@ bool TimerDone(Timer* timer);
 void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts, City activeCity);
 
 // Draw pop-up animation across different states
-void drawPopUpMenuAnimation(Texture2D popUpMenu, popUpAnimationFrame* ptr2, bool showPopUpMenu);
+void drawPopUpAnimation(Texture2D componentTexture, popUpAnimationFrame* componentPtr, float endY, bool showComponent);
 
 // Draw popUp buttons hover effect 
 void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, popUpAnimationFrame* popUpAnimationFramePtr);
 
 // Manage warning animation 
 void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, popUpAnimationFrame* warningAnimationFramePtr, popUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
-
-// Draw warning animation across its different states
-void drawWarningAnimation(Texture2D warning, popUpAnimationFrame* wwaarningAnimationFramePtr, bool wariningVisible);
 

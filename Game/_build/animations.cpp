@@ -116,50 +116,50 @@ void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts,
 }
 
 // Draw pop-up animation across its different states
-void drawPopUpMenuAnimation(Texture2D popUpMenu,popUpAnimationFrame* ptr2, bool showPopUpMenu)
+void drawPopUpAnimation(Texture2D componentTexture,popUpAnimationFrame* componentPtr, float endY, bool showComponent)
 {
 	// Check for mouse input and update animation state 
-	if (showPopUpMenu)
+	if (showComponent)
 	{
 		// Update animation state to -1(decreasing)
-		ptr2->state = -1;
+		componentPtr->state = -1;
 	}
-	else if (!showPopUpMenu)
+	else if (!showComponent)
 	{
 		// Update animation state to 1(increasing)
-		ptr2->state = 1;
+		componentPtr->state = 1;
 	}
 
 	// Update target position based on animation state
-	switch (ptr2->state)
+	switch (componentPtr->state)
 	{
 	// Update target position in decreasing state
 	case -1:
-		ptr2->pos.y -= 2.5;
+		componentPtr->pos.y -= 2.5;
 
 		// Check for top animation boundary
-		if (ptr2->pos.y <= 913)
+		if (componentPtr->pos.y <= endY)
 		{
 			// Snap target to boundary
-			ptr2->pos.y = 913;
+			componentPtr->pos.y = endY;
 
 			// Update animation state to 0(paused)
-			ptr2->state = 0;
+			componentPtr->state = 0;
 		}
 		break;
 
 	// Update target position in increasing state
 	case 1:
-		ptr2->pos.y += 2.5;
+		componentPtr->pos.y += 2.5;
 
 		// Check for bottom animation boundary
-		if (ptr2->pos.y >= 1080)
+		if (componentPtr->pos.y >= 1080)
 		{
 			// Snap target to boundary
-			ptr2->pos.y = 1080;
+			componentPtr->pos.y = 1080;
 
 			// Update animation state to 0(paused)
-			ptr2->state = 0;
+			componentPtr->state = 0;
 		}
 		break;
 
@@ -169,7 +169,7 @@ void drawPopUpMenuAnimation(Texture2D popUpMenu,popUpAnimationFrame* ptr2, bool 
 	}
 
 	// Draw pop-up menu
-	DrawTextureV(popUpMenu, ptr2->pos, RAYWHITE);
+	DrawTextureV(componentTexture, componentPtr->pos, RAYWHITE);
 }
 
 // Draw popUp buttons hover effect
@@ -239,61 +239,4 @@ void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity
 		// Keep original posion next to the pop-up menu
 		warningAnimationFramePtr->pos.x = 936;
 	}
-}
-
-// Draw warning animation across its different states
-void drawWarningAnimation(Texture2D warning, popUpAnimationFrame* warningAnimationFramePtr, bool wariningVisible)
-{
-	// Check for mouse input and update animation state 
-	if (wariningVisible)
-	{
-		// Update animation state to -1(decreasing)
-		warningAnimationFramePtr->state = -1;
-	}
-	else if (!wariningVisible)
-	{
-		// Update animation state to 1(increasing)
-		warningAnimationFramePtr->state = 1;
-	}
-
-	// Update target position based on animation state
-	switch (warningAnimationFramePtr->state)
-	{
-	// Update target position in decreasing state
-	case -1:
-		warningAnimationFramePtr->pos.y -= 2.5;
-
-		// Check for top animation boundary
-		if (warningAnimationFramePtr->pos.y <= 990)
-		{
-			// Snap target to boundary
-			warningAnimationFramePtr->pos.y = 990;
-
-			// Update animation state to 0(paused)
-			warningAnimationFramePtr->state = 0;
-		}
-		break;
-
-	// Update target position in increasing state
-	case 1:
-		warningAnimationFramePtr->pos.y += 2.5;
-
-		// Check for bottom animation boundary
-		if (warningAnimationFramePtr->pos.y >= 1080)
-		{
-			// Snap target to boundary
-			warningAnimationFramePtr->pos.y = 1080;
-
-			// Update animation state to 0(paused)
-			warningAnimationFramePtr->state = 0;
-		}
-		break;
-
-	// Account for the paused animation state
-	default:
-		break;
-	}
-
-	// Draw visited city warning
-	DrawTextureV(warning, warningAnimationFramePtr->pos, RAYWHITE);
 }

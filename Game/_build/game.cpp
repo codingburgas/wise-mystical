@@ -266,8 +266,8 @@ void startGame()
 		// Draw score board
 		DrawTexture(scoreBoard, -2, 2, RAYWHITE);
 
-		// Draw pop-up animation across different states
-		drawPopUpMenuAnimation(popUpMenu, popUpMenuFramePtr, showPopUpMenu);
+		// Draw pop-up menu animation across different states
+		drawPopUpAnimation(popUpMenu, popUpMenuFramePtr, 913, showPopUpMenu);
 
 		// Draw popUp buttons hover effect 
 		drawPopUpMenuHover(confirmHitbox, denyHitbox, confirmHover, denyHover, popUpMenuFramePtr);
@@ -285,8 +285,10 @@ void startGame()
 		manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, popUpMenuFrame, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
 
 		// Draw warning animation across its different states
-		drawWarningAnimation(visitedCityWarning, warningAnimationFramePtr, wariningVisible);
+		drawPopUpAnimation(visitedCityWarning, warningAnimationFramePtr, 990, wariningVisible);
 		
 		EndDrawing();
 	}
 }
+
+// 913, 990
