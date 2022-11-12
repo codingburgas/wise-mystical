@@ -1,4 +1,5 @@
 #pragma once
+#include "raylib.h"
 #include "cityOperations.h"
 
 // Define active city animation colors
@@ -13,7 +14,14 @@
 #define frame9 CLITERAL(Color){ 5, 10, 23, 80 }
 #define frame10 CLITERAL(Color){ 5, 10, 23, 75 }
 
-// Active city animation frame struct
+// Define Timer struct
+typedef struct
+{
+    float Lifetime;
+
+}Timer;
+
+// Define Active city animation frame struct
 struct activeCityAnimationFrame {
 
     // circle radius
@@ -26,7 +34,7 @@ struct activeCityAnimationFrame {
     Color color;
 };
 
-// Pop up animation frame
+// Define Pop up animation frame
 struct popUpAnimationFrame {
 
     // texture
@@ -39,11 +47,27 @@ struct popUpAnimationFrame {
     int state;
 };
 
+// Start or restart a timer with a specific lifetime
+void StartTimer(Timer* timer, float lifetime);
+
+// Update a timer with the current frame time
+void UpdateTimer(Timer* timer);
+
+// Check if a timer is done
+bool TimerDone(Timer* timer);
+
 // Draw active city animation on said location on the map
 void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts, City activeCity);
 
 // Draw pop-up animation across different states
-void popUpAnimation(popUpAnimationFrame* ptr2, bool showPopUpMenu);
+void drawPopUpMenuAnimation(Texture2D popUpMenu, popUpAnimationFrame* ptr2, bool showPopUpMenu);
 
 // Draw popUp buttons hover effect 
-void drawPopUpHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, popUpAnimationFrame* popUpAnimationFramePtr);
+void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, popUpAnimationFrame* popUpAnimationFramePtr);
+
+// Manage warning animation 
+void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, popUpAnimationFrame* warningAnimationFramePtr, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
+
+// Draw warning animation across its different states
+void drawWarningAnimation(Texture2D warning, popUpAnimationFrame* wwaarningAnimationFramePtr, bool wariningVisible);
+

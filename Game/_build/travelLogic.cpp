@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "cityOperations.h"
 #include "travelLogic.h"
+#include "animations.h"
 
 // Travel to next selected city (if possible)
 void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *tempCity, bool *searchingNextCity, bool *showPopUpMenu, int citiesCounter, int *indexPtr)
@@ -23,9 +24,6 @@ void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *t
 					// Update the temporary city's value
 					*tempCity = cities[i];
 
-					// Restrict further access to selected city
-					cities[i].wasVisited = true;
-
 					// Temporary restrict travel
 					*searchingNextCity = false;
 
@@ -38,7 +36,7 @@ void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *t
 }
 
 // Handle mouse input for the pop-up 
-void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, std::vector<LINEPOINTS>* conLinesPtr)
+void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, popUpAnimationFrame popUpFrame, std::vector<LINEPOINTS>* conLinesPtr)
 {
 	// Check if confirm was clicked
 	if (showPopUpMenu && CheckCollisionPointRec(Vector2(GetMousePosition()), confirmHitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -48,6 +46,9 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities
 
 		// Allow travel to other selected cities
 		*searchingNextCity = true;
+
+		// Restrict further access to selected city
+		cities[*indexPtr].wasVisited = true;
 
 		// Add next set of start and end line points
 		conLinesPtr->push_back({ activeCity->coordinates, tempCity->coordinates });
@@ -66,9 +67,6 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities
 
 		// Allow travel to other selected cities
 		*searchingNextCity = true;
-
-		// Allow denied city to be visited again
-		cities[*indexPtr].wasVisited = false;
 
 		// Reset the temporary city 
 		*tempCity = {};

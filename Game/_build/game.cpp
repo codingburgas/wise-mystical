@@ -1,10 +1,11 @@
 #include <iostream>
+#include <vector>
 #include "raylib.h"
 #include "game.h"
 #include "animations.h"
 #include "cityOperations.h"
 #include "travelLogic.h"
-#include <vector>
+#include "updateActiveText.h"
 
 void startGame()
 {
@@ -21,7 +22,8 @@ void startGame()
 
 	// Load UI from the file structure
 	Texture2D scoreBoard = LoadTexture("../resources/images/Score board.png");
-	Texture2D popUp = LoadTexture("../resources/images/Travel pop-up.png");
+	Texture2D popUpMenu = LoadTexture("../resources/images/Travel pop-up.png");
+	Texture2D visitedCityWarning = LoadTexture("../resources/images/City warning.png");
 	Texture2D confirmHover = LoadTexture("../resources/images/Confirm hover.png");
 	Texture2D denyHover = LoadTexture("../resources/images/Deny hover.png");
 	Texture2D cityMarker = LoadTexture("../resources/images/City marker.png");
@@ -49,7 +51,7 @@ void startGame()
 	const int countiesCounter = 40;
 	int startCityNum = GetRandomValue(0, 39);
 
-	// Vector for lines
+	// Vector for gameplay path
 	std::vector<LINEPOINTS> conLines;
 	std::vector<LINEPOINTS>* conLinesPtr = &conLines;
 
@@ -78,11 +80,26 @@ void startGame()
 	};
 	activeCityAnimationFrame* activeCityAnimationPartsPtr = activeCityAnimationParts;
 
-	// Define variables for pop up animation
-	popUpAnimationFrame popUpFrame = { popUp, Vector2{ 1367, 1080 }, 0};
-	popUpAnimationFrame* popUpAnimationFramePtr = &popUpFrame;
-	Rectangle confirmHitbox = { 1467, 980, 186, 67 };
-	Rectangle denyHitbox = { 1697, 980, 186, 67 };
+	// Define variables for pop-up menu animation
+	popUpAnimationFrame popUpMenuFrame = { popUpMenu, Vector2{ 1347, 1080 }, 0};
+	popUpAnimationFrame* popUpMenuFramePtr = &popUpMenuFrame;
+	Rectangle confirmHitbox = { 1462, 993, 186, 67 };
+	Rectangle denyHitbox = { 1693, 993, 186, 67 };
+
+	// Define variables for warning pop up animation
+	popUpAnimationFrame warningAnimationFrame = { visitedCityWarning, Vector2{ 936, 1080 }, 0 };
+	popUpAnimationFrame* warningAnimationFramePtr = &warningAnimationFrame;
+	bool wariningVisible = false;
+	bool* warningVisiblePtr = &wariningVisible;
+
+	// Variables for warning timer
+	float warningScreentime = 2.5f;
+	float* warningScreentimePtr = &warningScreentime;
+	Timer warningTimer = { 0 };
+	Timer* warningTimerPtr = &warningTimer;
+
+	// Define active text variables
+	std::string popUpText = "";
 
 	while (!WindowShouldClose())
 	{
@@ -218,7 +235,7 @@ void startGame()
 		travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, countiesCounter, indexPtr);
 
 		// Handle mouse input for the pop-up 
-		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, conLinesPtr);
+		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, popUpMenuFrame, conLinesPtr);
 
 		BeginDrawing();
 		
@@ -231,11 +248,11 @@ void startGame()
 		// Draw the map on the screen
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
 
-		//
-		for (LINEPOINTS n : conLines)
+		// Under development
+		/*for (LINEPOINTS n : conLines)
 		{
 			DrawLineEx(n.startingPoint, n.finishPoint, 5, BLACK);
-		}
+		}*/
 
 		// Mark the current active city mark
 		drawActiveCityAnimation(activeCityAnimationPartsPtr, activeCity);
@@ -250,13 +267,23 @@ void startGame()
 		DrawTexture(scoreBoard, -2, 2, RAYWHITE);
 
 		// Draw pop-up animation across different states
-		popUpAnimation(popUpAnimationFramePtr, showPopUpMenu);
-
-		// Draw pop-up 
-		DrawTextureV(popUp, popUpFrame.pos, RAYWHITE);
+		drawPopUpMenuAnimation(popUpMenu, popUpMenuFramePtr, showPopUpMenu);
 
 		// Draw popUp buttons hover effect 
-		drawPopUpHover(confirmHitbox, denyHitbox, confirmHover, denyHover, popUpAnimationFramePtr);
+		drawPopUpMenuHover(confirmHitbox, denyHitbox, confirmHover, denyHover, popUpMenuFramePtr);
+
+		// Update pop-up menu active text
+		if (popUpMenuFrame.pos.y == 1080 || popUpMenuFrame.pos.y == 913)
+		{
+			popUpText = updatePopUpActiveText(popUpText, activeCity, tempCity);
+		}
+		
+		// Draw pop-up menu active text
+		DrawTextEx(comfortaaRegular, popUpText.c_str(), Vector2{ 1439, popUpMenuFrame.pos.y + float(19) }, 25, 1, WHITE);
+
+		manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
+
+		drawWarningAnimation(visitedCityWarning, warningAnimationFramePtr, wariningVisible);
 		
 		EndDrawing();
 	}

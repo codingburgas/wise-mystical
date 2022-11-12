@@ -1,18 +1,16 @@
 #pragma once
+#include <string>
 #include "raylib.h"
 
 struct City {
     // Name of the city
-    const char* name;
+    std::string name = "";
 
     // X and Y coordinates on the map
-    Vector2 coordinates;
+    Vector2 coordinates = {};
 
     // Hitbox for collision with the mouse pointer
-    Rectangle hitbox;
-
-    // Boolean for highlighting current city
-    bool isActive;
+    Rectangle hitbox = {};
 
     bool wasVisited = false;
 };

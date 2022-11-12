@@ -178,12 +178,14 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="cityOperations.cpp" />
     <ClCompile Include="travelLogic.cpp" />
+    <ClCompile Include="updateActiveText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animations.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="cityOperations.h" />
     <ClInclude Include="travelLogic.h" />
+    <ClInclude Include="updateActiveText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
