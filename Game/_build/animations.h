@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "cityOperations.h"
+#include "timer.h"
 
 // Define active city animation colors
 #define frame1 CLITERAL(Color){ 5, 10, 23, 120 }
@@ -13,13 +14,6 @@
 #define frame8 CLITERAL(Color){ 5, 10, 23, 85 }
 #define frame9 CLITERAL(Color){ 5, 10, 23, 80 }
 #define frame10 CLITERAL(Color){ 5, 10, 23, 75 }
-
-// Define Timer struct
-typedef struct
-{
-    float Lifetime;
-
-}Timer;
 
 // Define Active city animation frame struct
 struct activeCityAnimationFrame {
@@ -46,15 +40,6 @@ struct popUpAnimationFrame {
     // -1(decreasing), 0(paused), 1(increasing)
     int state;
 };
-
-// Start or restart a timer with a specific lifetime
-void StartTimer(Timer* timer, float lifetime);
-
-// Update a timer with the current frame time
-void UpdateTimer(Timer* timer);
-
-// Check if a timer is done
-bool TimerDone(Timer* timer);
 
 // Draw active city animation on said location on the map
 void drawActiveCityAnimation(activeCityAnimationFrame* activeCityAnimationParts, City activeCity);

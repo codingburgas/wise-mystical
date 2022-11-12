@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "game.h"
 #include "movement.h"
+#include "timer.h"
 #include "animations.h"
 #include "cityOperations.h"
 #include "travelLogic.h"
