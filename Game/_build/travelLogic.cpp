@@ -50,14 +50,18 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities
 		// Restrict further access to selected city
 		cities[*indexPtr].wasVisited = true;
 
-		// Add next set of start and end line points
-		conLinesPtr->push_back({ activeCity->coordinates, tempCity->coordinates, activeCity->coordinates, 0, 0, false});
+		// Check and avoid line dublication
+		if (activeCity->coordinates.x > 0 && activeCity->coordinates.y > 0 && tempCity->coordinates.x > 0 && tempCity->coordinates.y > 0)
+		{
+			// Add next set of start and end line points
+			conLinesPtr->push_back({ activeCity->coordinates, tempCity->coordinates, activeCity->coordinates, 0, 0, false });
 
-		// Upadate the active city 
-		*activeCity = *tempCity;
+			// Upadate the active city 
+			*activeCity = *tempCity;
 
-		// Reset the temporary city 
-		*tempCity = {};
+			// Reset the temporary city 
+			*tempCity = {};
+		}	
 	}
 	// Check if deny was clicked
 	else if (showPopUpMenu && CheckCollisionPointRec(Vector2(GetMousePosition()), denyHitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
