@@ -14,6 +14,7 @@ std::string updatePopUpActiveText(std::string text, City activeCity, City tempCi
 	text.append(activeCity.name);
 	text.append(" to ");
 	text.append(tempCity.name);
+	text.append("?");
 
 	// Return the updated active text
 	return text;
