@@ -11,8 +11,15 @@ struct City {
 
     // Hitbox for collision with the mouse pointer
     Rectangle hitbox = {};
-
+    
+    // Visited city indicator
     bool wasVisited = false;
+
+    // True answer variable
+    int trueAnswer = 0;
+
+    // Texture file path
+    std::string textureFilePath = "";
 };
 
 // Initialise cities
