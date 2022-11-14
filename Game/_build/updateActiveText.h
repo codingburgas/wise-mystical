@@ -4,4 +4,4 @@
 #include "cityOperations.h"
 
 // Update the pop-up active text
-std::string updatePopUpActiveText(std::string text, City activeCity, City tempCity);
+std::string updatePopUpActiveText(std::string text, City activeCity, City tempCity, PopUpAnimationFrame popUpMenuFrame);

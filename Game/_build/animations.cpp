@@ -88,9 +88,9 @@ void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts,
 }
 
 // Draw pop-up animation across its different states
-void drawPopUpAnimation(Texture2D componentTexture, PopUpAnimationFrame* componentPtr, float endY, bool showComponent)
+void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, bool showComponent)
 {
-	// Check for mouse input and update animation state 
+	// Check if pop-up component should be extended ot retracted 
 	if (showComponent)
 	{
 		// Update animation state to -1(decreasing)
@@ -141,7 +141,62 @@ void drawPopUpAnimation(Texture2D componentTexture, PopUpAnimationFrame* compone
 	}
 
 	// Draw pop-up menu
-	DrawTextureV(componentTexture, componentPtr->pos, RAYWHITE);
+	DrawTextureV(componentPtr->texture, componentPtr->pos, RAYWHITE);
+}
+
+void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, bool showQuiz)
+{
+	// Check if pop-up component should be extended ot retracted 
+	if (showQuiz)
+	{
+		// Update animation state to -1(decreasing)
+		quizPtr->state = -1;
+	}
+	else if (!showQuiz)
+	{
+		// Update animation state to 1(increasing)
+		quizPtr->state = 1;
+	}
+
+	// Update target position based on animation state
+	switch (quizPtr->state)
+	{
+		// Update target position in decreasing state
+	case -1:
+		quizPtr->pos.x -= 2.5;
+
+		// Check for top animation boundary
+		if (quizPtr->pos.x <= 956)
+		{
+			// Snap target to boundary
+			quizPtr->pos.x = 956;
+
+			// Update animation state to 0(paused)
+			quizPtr->state = 0;
+		}
+		break;
+
+		// Update target position in increasing state
+	case 1:
+		quizPtr->pos.x += 2.5;
+
+		// Check for top animation boundary
+		if (quizPtr->pos.x >= 1920)
+		{
+			// Snap target to boundary
+			quizPtr->pos.x = 1920;
+
+			// Update animation state to 0(paused)
+			quizPtr->state = 0;
+		}	
+		break;
+
+		// Account for the paused animation state
+	default:
+		break;
+	}
+
+	DrawTextureV(quizPtr->texture, quizPtr->pos, RAYWHITE);
 }
 
 // Draw popUp buttons hover effect

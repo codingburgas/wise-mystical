@@ -54,7 +54,7 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities
 		if (activeCity->coordinates.x > 0 && activeCity->coordinates.y > 0 && tempCity->coordinates.x > 0 && tempCity->coordinates.y > 0)
 		{
 			// Add next set of start and end line points
-			conLinesPtr->push_back({ activeCity->coordinates, tempCity->coordinates, activeCity->coordinates, 0, 0, false });
+			conLinesPtr->push_back({ activeCity->coordinates, tempCity->coordinates});
 
 			// Upadate the active city 
 			*activeCity = *tempCity;

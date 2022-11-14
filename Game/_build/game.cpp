@@ -31,6 +31,8 @@ void startGame()
 	Texture2D confirmHover = LoadTexture("../resources/images/UI components/Confirm hover.png");
 	Texture2D denyHover = LoadTexture("../resources/images/UI components/Deny hover.png");
 
+	Texture2D test = LoadTexture("../resources/images/quizzes/Quiz window Amsterdam.png");
+
 	// Mouse position
 	Vector2 mousePoint = { 0.0f, 0.0f };
 
@@ -84,6 +86,12 @@ void startGame()
 		{20, '+', frame10},
 	};
 	ActiveCityAnimationFrame* activeCityAnimationPartsPtr = activeCityAnimationParts;
+
+	// Test
+	PopUpAnimationFrame quiz = { test, Vector2{1920, 2}, 0 };
+	PopUpAnimationFrame* quizPtr = &quiz;
+	bool showQuiz = false;
+	bool* showQuizPtr = &showQuiz;
 
 	// Define variables for pop-up menu animation
 	PopUpAnimationFrame popUpMenuFrame = { popUpMenu, Vector2{ 1347, 1080 }, 0};
@@ -158,7 +166,7 @@ void startGame()
 		DrawTexture(scoreBoard, -2, 2, RAYWHITE);
 
 		// Draw pop-up menu animation across different states
-		drawPopUpAnimation(popUpMenu, popUpMenuFramePtr, 913, showPopUpMenu);
+		drawPopUpAnimationBottom(popUpMenuFramePtr, 913, showPopUpMenu);
 
 		// Draw popUp buttons hover effect 
 		drawPopUpMenuHover(confirmHitbox, denyHitbox, confirmHover, denyHover, popUpMenuFramePtr);
@@ -166,7 +174,7 @@ void startGame()
 		// Update pop-up menu active text
 		if (popUpMenuFrame.pos.y == 1080 || popUpMenuFrame.pos.y == 913)
 		{
-			popUpText = updatePopUpActiveText(popUpText, activeCity, tempCity);
+			popUpText = updatePopUpActiveText(popUpText, activeCity, tempCity, popUpMenuFrame);
 		}
 		
 		// Draw pop-up menu active text
@@ -176,8 +184,13 @@ void startGame()
 		manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, popUpMenuFrame, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
 
 		// Draw warning animation across its different states
-		drawPopUpAnimation(visitedCityWarning, warningAnimationFramePtr, 990, wariningVisible);
-		
+		drawPopUpAnimationBottom(warningAnimationFramePtr, 990, wariningVisible);
+
+		for (int i = 0; i < 5; i++)
+		{
+			drawPopUpAnimationSide(quizPtr, showQuiz);
+		}
+	
 		EndDrawing();
 	}
 }

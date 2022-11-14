@@ -14,15 +14,6 @@ struct LinePoints
 
 	// coordinates for line finish
 	Vector2 endPoint = {};
-
-	Vector2 animationEndPoint = {};
-
-	float xStep = 0;
-
-	float yStep = 0;
-
-	bool check = false;
-
 };
 
 // Travel to next selected city (if possible)

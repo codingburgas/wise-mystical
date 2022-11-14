@@ -45,7 +45,9 @@ struct PopUpAnimationFrame {
 void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts, City activeCity);
 
 // Draw pop-up animation across different states
-void drawPopUpAnimation(Texture2D componentTexture, PopUpAnimationFrame* componentPtr, float endY, bool showComponent);
+void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, bool showComponent);
+
+void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, bool showQuiz);
 
 // Draw popUp buttons hover effect 
 void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, PopUpAnimationFrame* popUpAnimationFramePtr);
