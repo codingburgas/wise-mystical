@@ -22,7 +22,11 @@ void startGame()
 
 	// Load map components texture from the file structure
 	Texture2D map = LoadTexture("../resources/images/map components/map.png");	
-	Texture2D cityMarker = LoadTexture("../resources/images/map components/City marker.png");
+	Texture2D cityMarkers[3] = {
+		LoadTexture("../resources/images/map components/City marker Easy.png"),
+		LoadTexture("../resources/images/map components/City marker Medium.png"),
+		LoadTexture("../resources/images/map components/City marker Hard.png")
+	};
 
 	// Load UI components from the file structure
 	Texture2D scoreBoard = LoadTexture("../resources/images/UI components/Score board.png");
@@ -31,6 +35,7 @@ void startGame()
 	Texture2D confirmHover = LoadTexture("../resources/images/UI components/Confirm hover.png");
 	Texture2D denyHover = LoadTexture("../resources/images/UI components/Deny hover.png");
 
+	// Test
 	Texture2D test = LoadTexture("../resources/images/quizzes/Quiz window Amsterdam.png");
 
 	// Mouse position
@@ -156,8 +161,11 @@ void startGame()
 		// Mark the current active city mark
 		drawActiveCityAnimation(activeCityAnimationPartsPtr, activeCity);
 
-		// Draw city markers on the map
-		drawCityLandmarks(citiArrayPtr, 40, comfortaaRegular, cityMarker);
+		// Draw city markers based of distance from active city
+		drawCityMarkers(citiArrayPtr, activeCity, cityMarkers, cityCounter);
+
+		// Draw city names
+		drawCityNames(citiArrayPtr, 40, comfortaaRegular);
 
 		// End 2D mode
 		EndMode2D();

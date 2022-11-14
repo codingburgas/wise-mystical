@@ -56,14 +56,44 @@ City* intialiseCitiesArray(City cities[40])
 }
 
 // Draw city marks on the map
-void drawCityLandmarks(City* cities, int citiesCounter, Font comfortaaRegular, Texture2D cityMarker)
+void drawCityNames(City* cities, int citiesCounter, Font comfortaaRegular)
 {
 	for (int i = 0; i < citiesCounter; i++)
 	{
 		// Draw cities hitboxes
-		DrawTextureV(cityMarker, Vector2{ cities[i].hitbox.x - float(cityMarker.width / 2), cities[i].hitbox.y - float(cityMarker.height / 2) }, RAYWHITE);
+		/*DrawTextureV(cityMarker, Vector2{ cities[i].hitbox.x - float(cityMarker.width / 2), cities[i].hitbox.y - float(cityMarker.height / 2) }, RAYWHITE);*/
 
 		// Draw city names
 		DrawTextEx(comfortaaRegular, cities[i].name.c_str(), Vector2{cities[i].coordinates.x + 7,cities[i].coordinates.y + 7}, (float)comfortaaRegular.baseSize, 1, WHITE);
+	}
+}
+
+// Draw city markers based of distance from active city
+void drawCityMarkers(City* cities, City activeCity, Texture2D markers[3], int citiesCounter)
+{
+	double distance = 0;
+	for (int i = 0; i < citiesCounter; i++)
+	{
+		// Calculate distance between a city from the array and the active city
+		distance = sqrt(pow(activeCity.coordinates.x - cities[i].coordinates.x, 2) + pow(activeCity.coordinates.y - cities[i].coordinates.y, 2));
+
+		// Check for first range for distance (Close)
+		if (distance >= 0 && distance <= 350)
+		{
+			// Draw city markers for cities that are close to the active city
+			DrawTextureV(markers[0], Vector2{cities[i].hitbox.x - float(markers[0].width / 2), cities[i].hitbox.y - float(markers[0].height / 2)}, RAYWHITE);
+		}
+		// Check for second range for distance (Near)
+		else if(distance >= 351 && distance <= 800)
+		{
+			// Draw city markers for cities that are near the active city
+			DrawTextureV(markers[1], Vector2{ cities[i].hitbox.x - float(markers[1].width / 2), cities[i].hitbox.y - float(markers[1].height / 2) }, RAYWHITE);
+		}
+		// Check for second range for distance (Far away)
+		else if(distance > 800)
+		{ 
+			// Draw city markers for cities that are far away from the active city
+			DrawTextureV(markers[2], Vector2{ cities[i].hitbox.x - float(markers[2].width / 2), cities[i].hitbox.y - float(markers[2].height / 2) }, RAYWHITE);
+		}
 	}
 }

@@ -26,4 +26,7 @@ struct City {
 City* intialiseCitiesArray(City cities[40]);
 
 // Draw city marks on the map
-void drawCityLandmarks(City* cities, int citiesCounter, Font comfortaaRegular, Texture2D cityMarker);
+void drawCityNames(City* cities, int citiesCounter, Font comfortaaRegular);
+
+// Draw city markers based of distance from active city
+void drawCityMarkers(City* cities, City activeCity, Texture2D markers[3], int citiesCounter);
