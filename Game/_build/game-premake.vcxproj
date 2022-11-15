@@ -178,6 +178,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="cityOperations.cpp" />
     <ClCompile Include="movement.cpp" />
+    <ClCompile Include="quizLogic.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="travelLogic.cpp" />
     <ClCompile Include="updateActiveText.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="cityOperations.h" />
     <ClInclude Include="movement.h" />
+    <ClInclude Include="quizLogic.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="travelLogic.h" />
     <ClInclude Include="updateActiveText.h" />

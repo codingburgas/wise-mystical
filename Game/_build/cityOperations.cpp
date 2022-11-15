@@ -33,7 +33,7 @@ City* intialiseCitiesArray(City cities[40])
 	cities[21] = { "Munich",     Vector2{1305, 1875}, Rectangle{1305, 1875, hitboxWidth, hitboxHeight}, false,  2, "../resources/images/quizzes/Quiz window Munich.png"    };
 	cities[22] = { "Zagreb",     Vector2{1525, 2055}, Rectangle{1525, 2055, hitboxWidth, hitboxHeight}, false,  1, "../resources/images/quizzes/Quiz window Zagreb.png"    };
 	cities[23] = { "Belgrade",   Vector2{1790, 2080}, Rectangle{1790, 2080, hitboxWidth, hitboxHeight}, false,  3, "../resources/images/quizzes/Quiz window Belgrade.png"  };
-	cities[24] = { "Buchapest",  Vector2{2095, 2050}, Rectangle{2095, 2050, hitboxWidth, hitboxHeight}, false,  4, "../resources/images/quizzes/Quiz window Buchapest.png" };
+	cities[24] = { "Bucharest",  Vector2{2095, 2050}, Rectangle{2095, 2050, hitboxWidth, hitboxHeight}, false,  4, "../resources/images/quizzes/Quiz window Bucharest.png" };
 	cities[25] = { "Nessebar",   Vector2{2210, 2165}, Rectangle{2210, 2165, hitboxWidth, hitboxHeight}, false,  4, "../resources/images/quizzes/Quiz window Nessebar.png"  };
 	cities[26] = { "Sofia",      Vector2{1980, 2230}, Rectangle{1980, 2230, hitboxWidth, hitboxHeight}, false,  3, "../resources/images/quizzes/Quiz window Sofia.png"     };
 	cities[27] = { "Sarajevo",   Vector2{1680, 2155}, Rectangle{1680, 2155, hitboxWidth, hitboxHeight}, false,  4, "../resources/images/quizzes/Quiz window Sarajevo.png"  };

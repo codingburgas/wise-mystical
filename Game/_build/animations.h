@@ -44,10 +44,11 @@ struct PopUpAnimationFrame {
 // Draw active city animation on said location on the map
 void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts, City activeCity);
 
-// Draw pop-up animation across different states
+// Draw pop-up animation bottom across different states
 void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, bool showComponent);
 
-void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, bool showQuiz);
+// Draw pop-up animation side across different states
+void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, bool showQuiz);
 
 // Draw popUp buttons hover effect 
 void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, PopUpAnimationFrame* popUpAnimationFramePtr);

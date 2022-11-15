@@ -36,7 +36,7 @@ void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *t
 }
 
 // Handle mouse input for the pop-up 
-void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, PopUpAnimationFrame popUpFrame, std::vector<LinePoints>* conLinesPtr)
+void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, bool* nextCityChosenPtr, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, PopUpAnimationFrame popUpFrame, std::vector<LinePoints>* conLinesPtr)
 {
 	// Check if confirm was clicked
 	if (showPopUpMenu && CheckCollisionPointRec(Vector2(GetMousePosition()), confirmHitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -45,10 +45,12 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities
 		*showPopUpMenu = false;
 
 		// Allow travel to other selected cities
-		*searchingNextCity = true;
+		*searchingNextCity = true;	
 
 		// Restrict further access to selected city
 		cities[*indexPtr].wasVisited = true;
+
+		*nextCityChosenPtr = true;
 
 		// Check and avoid line dublication
 		if (activeCity->coordinates.x > 0 && activeCity->coordinates.y > 0 && tempCity->coordinates.x > 0 && tempCity->coordinates.y > 0)
@@ -61,6 +63,7 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities
 
 			// Reset the temporary city 
 			*tempCity = {};
+
 		}	
 	}
 	// Check if deny was clicked
@@ -70,7 +73,9 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, City* cities
 		*showPopUpMenu = false;
 
 		// Allow travel to other selected cities
-		*searchingNextCity = true;
+		*searchingNextCity = false;
+
+		*nextCityChosenPtr = false;
 
 		// Reset the temporary city 
 		*tempCity = {};

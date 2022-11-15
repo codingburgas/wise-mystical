@@ -144,7 +144,7 @@ void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, boo
 	DrawTextureV(componentPtr->texture, componentPtr->pos, RAYWHITE);
 }
 
-void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, bool showQuiz)
+void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, bool showQuiz)
 {
 	// Check if pop-up component should be extended ot retracted 
 	if (showQuiz)
@@ -196,7 +196,7 @@ void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, bool showQuiz)
 		break;
 	}
 
-	DrawTextureV(quizPtr->texture, quizPtr->pos, RAYWHITE);
+	DrawTextureV(texture, quizPtr->pos, RAYWHITE);
 }
 
 // Draw popUp buttons hover effect

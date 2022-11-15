@@ -19,7 +19,7 @@ struct City {
     int trueAnswer = 0;
 
     // Texture file path
-    std::string textureFilePath = "";
+    const char * textureFilePath = "";
 };
 
 // Initialise cities

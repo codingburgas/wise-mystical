@@ -8,7 +8,9 @@
 #include "animations.h"
 #include "cityOperations.h"
 #include "travelLogic.h"
+#include "quizLogic.h"
 #include "updateActiveText.h"
+
 
 void startGame()
 {
@@ -35,9 +37,6 @@ void startGame()
 	Texture2D confirmHover = LoadTexture("../resources/images/UI components/Confirm hover.png");
 	Texture2D denyHover = LoadTexture("../resources/images/UI components/Deny hover.png");
 
-	// Test
-	Texture2D test = LoadTexture("../resources/images/quizzes/Quiz window Amsterdam.png");
-
 	// Mouse position
 	Vector2 mousePoint = { 0.0f, 0.0f };
 
@@ -63,23 +62,23 @@ void startGame()
 	const int cityCounter = 40;
 	int startCityNum = GetRandomValue(0, 39);
 
-	// Vector for gameplay path
-	std::vector<LinePoints> conLines;
-	std::vector<LinePoints>* conLinesPtr = &conLines;
-
 	// Active city variables
 	City activeCity = cities[startCityNum];
 	cities[startCityNum].wasVisited = true;
 	City* activeCityPtr = &activeCity;
 
 	// Temporary city variables
+	City tempCity = {};
+	City* tempCityPtr = &tempCity;
 	int index = 0;
 	int* indexPtr = &index;
-	City tempCity = {};
-	City *tempCityPtr = &tempCity;
+
+	// Vector for gameplay path
+	std::vector<LinePoints> conLines;
+	std::vector<LinePoints>* conLinesPtr = &conLines;	
 
 	// Varibles for travel process
-	bool searchingNextCity = true;
+	bool searchingNextCity = false;
 	bool* searchingNextCityPtr = &searchingNextCity;
 	bool showPopUpMenu = false;
 	bool* showPopUpMenuPtr = &showPopUpMenu;
@@ -92,11 +91,28 @@ void startGame()
 	};
 	ActiveCityAnimationFrame* activeCityAnimationPartsPtr = activeCityAnimationParts;
 
-	// Test
-	PopUpAnimationFrame quiz = { test, Vector2{1920, 2}, 0 };
-	PopUpAnimationFrame* quizPtr = &quiz;
+	// Define variables for quizzes
+	Texture2D activeQuiz = LoadTexture("");
+	Texture2D* activeQuizPtr = &activeQuiz;
+	PopUpAnimationFrame quizAnimationFrame = { activeQuiz, Vector2{1920, 2}, 0 };
+	PopUpAnimationFrame* quizPtr = &quizAnimationFrame;
+	bool activeQuizLoaded = false;
+	bool* activeQuizLoadedPtr = &activeQuizLoaded;
 	bool showQuiz = false;
 	bool* showQuizPtr = &showQuiz;
+	bool nextCityChosen = true;
+	bool* nextCityChosenPtr = &nextCityChosen;
+	Rectangle optionHitboxes[4] = {
+		{1034, 800, 740, 51},
+		{1034, 867, 740, 51},
+		{1034, 934, 740, 51},
+		{1034, 1001, 740, 51}
+	};
+
+	// Initial quiz timer
+	float freeTime = 1.5f;
+	Timer freeTimeTimer = { 0 };
+	Timer* freeTimeTimerPtr = &freeTimeTimer;
 
 	// Define variables for pop-up menu animation
 	PopUpAnimationFrame popUpMenuFrame = { popUpMenu, Vector2{ 1347, 1080 }, 0};
@@ -122,6 +138,8 @@ void startGame()
 	// Set initail camera target
 	setInitialCameraPos(cameraPosXPtr, cameraPosYPtr, startCityNum);
 
+	StartTimer(&freeTimeTimer, freeTime);
+
 	while (!WindowShouldClose())
 	{
 		// Update target
@@ -131,11 +149,15 @@ void startGame()
 		// Update the camera's position based on keyboard input
 		updateCameraPos(cameraPosXPtr, cameraPosYPtr);
 
+
 		// Travel to next selected city (if possible)
-		travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, cityCounter, indexPtr);
+		if (quizAnimationFrame.pos.x == 1920 && !showQuiz)
+		{
+			travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, cityCounter, indexPtr);
+		}	
 
 		// Handle mouse input for the pop-up 
-		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, popUpMenuFrame, conLinesPtr);
+		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, nextCityChosenPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, popUpMenuFrame, conLinesPtr);
 
 		BeginDrawing();
 		
@@ -186,7 +208,7 @@ void startGame()
 		}
 		
 		// Draw pop-up menu active text
-		DrawTextEx(comfortaaRegular, popUpText.c_str(), Vector2{ 1439, popUpMenuFrame.pos.y + float(19) }, 25, 1, WHITE);
+		DrawTextEx(comfortaaRegular, popUpText.c_str(), Vector2{ 1427, popUpMenuFrame.pos.y + float(19) }, 25, 1, WHITE);
 
 		// Manage warning animation 
 		manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, popUpMenuFrame, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
@@ -194,11 +216,33 @@ void startGame()
 		// Draw warning animation across its different states
 		drawPopUpAnimationBottom(warningAnimationFramePtr, 990, wariningVisible);
 
-		for (int i = 0; i < 5; i++)
+		UpdateTimer(&freeTimeTimer);
+
+		// Still under development
+		if (nextCityChosen)
 		{
-			drawPopUpAnimationSide(quizPtr, showQuiz);
+			if (!activeQuizLoaded && popUpMenuFrame.pos.y == 1080 && !showPopUpMenu && TimerDone(&freeTimeTimer))
+			{
+				activeQuiz = LoadTexture(activeCity.textureFilePath);
+				activeQuizLoaded = true;
+				showQuiz = true;
+			}
+
+			if (quizAnimationFrame.pos.x == 1920 && !showQuiz && !searchingNextCity)
+			{
+				searchingNextCity = true;
+				UnloadTexture(activeQuiz);
+				activeQuizLoaded = false;
+			}
+
+			handleQuizInput(activeCity, optionHitboxes, showQuizPtr);
+
+			for (int i = 0; i < 5; i++)
+			{
+				drawPopUpAnimationSide(quizPtr, activeQuiz, showQuiz);
+			}	
 		}
-	
+		
 		EndDrawing();
 	}
 }
