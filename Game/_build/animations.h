@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "cityOperations.h"
 #include "timer.h"
+#include "quizLogic.h"
 
 // Define active city animation colors
 #define frame1 CLITERAL(Color){ 5, 10, 23, 120 }
@@ -55,5 +56,8 @@ void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D
 
 // Manage warning animation 
 void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, PopUpAnimationFrame* warningAnimationFramePtr, PopUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
+
+// Draw quiz options hover effect
+void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFrame, int index);
 
 

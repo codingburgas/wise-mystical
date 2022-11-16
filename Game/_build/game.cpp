@@ -70,7 +70,7 @@ void startGame()
 	// Temporary city variables
 	City tempCity = {};
 	City* tempCityPtr = &tempCity;
-	int index = 0;
+	int index = startCityNum;
 	int* indexPtr = &index;
 
 	// Vector for gameplay path
@@ -82,6 +82,12 @@ void startGame()
 	bool* searchingNextCityPtr = &searchingNextCity;
 	bool showPopUpMenu = false;
 	bool* showPopUpMenuPtr = &showPopUpMenu;
+
+	// Define variables for pop-up menu animation
+	PopUpAnimationFrame popUpMenuFrame = { popUpMenu, Vector2{ 1347, 1080 }, 0 };
+	PopUpAnimationFrame* popUpMenuFramePtr = &popUpMenuFrame;
+	Rectangle confirmHitbox = { 1462, 993, 186, 67 };
+	Rectangle denyHitbox = { 1693, 993, 186, 67 };
 
 	// Define variables for active city animation
 	ActiveCityAnimationFrame activeCityAnimationParts[3] = {
@@ -102,23 +108,17 @@ void startGame()
 	bool* showQuizPtr = &showQuiz;
 	bool nextCityChosen = true;
 	bool* nextCityChosenPtr = &nextCityChosen;
-	Rectangle optionHitboxes[4] = {
-		{1034, 800, 740, 51},
-		{1034, 867, 740, 51},
-		{1034, 934, 740, 51},
-		{1034, 1001, 740, 51}
+	Option options[4] = {
+		{{1034, 800, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option a hover.png")},
+		{{1034, 867, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option b hover.png")},
+		{{1034, 934, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option c hover.png")},
+		{{1034, 1001, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option d hover.png")}
 	};
 
 	// Initial quiz timer
 	float freeTime = 1.5f;
 	Timer freeTimeTimer = { 0 };
 	Timer* freeTimeTimerPtr = &freeTimeTimer;
-
-	// Define variables for pop-up menu animation
-	PopUpAnimationFrame popUpMenuFrame = { popUpMenu, Vector2{ 1347, 1080 }, 0};
-	PopUpAnimationFrame* popUpMenuFramePtr = &popUpMenuFrame;
-	Rectangle confirmHitbox = { 1462, 993, 186, 67 };
-	Rectangle denyHitbox = { 1693, 993, 186, 67 };
 	
 	// Define variables for warning pop up animation
 	PopUpAnimationFrame warningAnimationFrame = { visitedCityWarning, Vector2{ 936, 1080 }, 0 };
@@ -218,9 +218,10 @@ void startGame()
 
 		UpdateTimer(&freeTimeTimer);
 
-		// Still under development
+		// Manage quiz texture loading and unloading
 		if (nextCityChosen)
 		{
+			// Manage quiz texture loading
 			if (!activeQuizLoaded && popUpMenuFrame.pos.y == 1080 && !showPopUpMenu && TimerDone(&freeTimeTimer))
 			{
 				activeQuiz = LoadTexture(activeCity.textureFilePath);
@@ -228,6 +229,7 @@ void startGame()
 				showQuiz = true;
 			}
 
+			//Manage quiz texture unloading
 			if (quizAnimationFrame.pos.x == 1920 && !showQuiz && !searchingNextCity)
 			{
 				searchingNextCity = true;
@@ -235,12 +237,18 @@ void startGame()
 				activeQuizLoaded = false;
 			}
 
-			handleQuizInput(activeCity, optionHitboxes, showQuizPtr);
+			// Handle mouse input relative to the quiz optiopns
+			handleQuizInput(activeCity, options, showQuizPtr);
 
+			// Make animation 5 times faster
 			for (int i = 0; i < 5; i++)
 			{
+				// Draw pop-up animation side across different states
 				drawPopUpAnimationSide(quizPtr, activeQuiz, showQuiz);
 			}	
+
+			// Draw quiz options hover effect
+			drawQuizOptionsHover(options, quizAnimationFrame, index);
 		}
 		
 		EndDrawing();

@@ -3,6 +3,7 @@
 #include "timer.h"
 #include "animations.h"
 #include "travelLogic.h"
+#include "quizLogic.h"
 #include "cityOperations.h"
 
 void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts, City activeCity)
@@ -265,5 +266,63 @@ void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity
 	{	
 		// Keep original posion next to the pop-up menu
 		warningAnimationFramePtr->pos.x = 936;
+	}
+}
+
+// Draw quiz options hover effect
+void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFrame, int index)
+{
+	// Check if quiz window is fully extended
+	if (quizAnimationFrame.pos.x == 956)
+	{
+		// Check for all 4 buttons
+		for (int i = 0; i < 4; i++)
+		{
+			// Check for collision between the mouse pointer and the option hitbox
+			if (CheckCollisionPointRec(Vector2(GetMousePosition()), options[i].hitbox))
+			{ 
+				// Check for and fix minor line disposition
+				if ((i == 0 || i == 1) && index != 0 && index != 25 && index != 35 && index != 30 && index != 20 && index != 10 && index != 15)
+				{
+					// Draw option hover effect
+					DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 2, options[i].hitbox.y - 1 }, RAYWHITE);
+				}
+				else if(index != 0)
+				{
+					// Draw option hover effect
+					DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 2, options[i].hitbox.y - 2 }, RAYWHITE);
+				}	
+
+				// Check for and fix minor line disposition
+				if (index == 0)
+				{
+					if (i == 0 || i == 1)
+					{
+						// Draw option hover effect
+						DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 5, options[i].hitbox.y - 4 }, RAYWHITE);
+					}
+					else
+					{
+						// Draw option hover effect
+						DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 5, options[i].hitbox.y - 5 }, RAYWHITE);
+					}
+				}
+
+				// Check for and fix minor line disposition
+				if (index == 25 || index == 35 || index == 30 || index == 20 || index == 10 || index == 15)
+				{
+					if (i == 0 || i == 1)
+					{
+						// Draw option hover effect
+						DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 3, options[i].hitbox.y - 1 }, RAYWHITE);
+					}
+					else
+					{
+						// Draw option hover effect
+						DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 3, options[i].hitbox.y - 2 }, RAYWHITE);
+					}
+				}
+			}
+		}
 	}
 }

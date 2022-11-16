@@ -16,7 +16,7 @@ City* intialiseCitiesArray(City cities[40])
 	cities[4] =  { "Riga",       Vector2{1810, 1100}, Rectangle{1810, 1100, hitboxWidth, hitboxHeight}, false,  1, "../resources/images/quizzes/Quiz window Riga.png"      };
 	cities[5] =  { "Vilnius",    Vector2{1890, 1270}, Rectangle{1890, 1270, hitboxWidth, hitboxHeight}, false,  4, "../resources/images/quizzes/Quiz window Vilnius.png"   };
 	cities[6] =  { "Copenhagen", Vector2{1330, 1270}, Rectangle{1330, 1270, hitboxWidth, hitboxHeight}, false,  1, "../resources/images/quizzes/Quiz window Copenhagen.png"};
-	cities[7] =  { "Edinburg",   Vector2{670,  1200}, Rectangle{670,  1200, hitboxWidth, hitboxHeight}, false,  3, "../resources/images/quizzes/Quiz window Edinburg.png"  };
+	cities[7] =  { "Edinburgh",   Vector2{670,  1200}, Rectangle{670,  1200, hitboxWidth, hitboxHeight}, false,  3, "../resources/images/quizzes/Quiz window Edinburgh.png"};
 	cities[8] =  { "Dublin",     Vector2{470,  1360}, Rectangle{470,  1360, hitboxWidth, hitboxHeight}, false,  3, "../resources/images/quizzes/Quiz window Dublin.png"    };
 	cities[9] =  { "Hamburg",    Vector2{1215, 1440}, Rectangle{1215, 1440, hitboxWidth, hitboxHeight}, false,  3, "../resources/images/quizzes/Quiz window Hamburg.png"   };
 	cities[10] = { "Minsk",      Vector2{2020, 1340}, Rectangle{2020, 1340, hitboxWidth, hitboxHeight}, false,  2, "../resources/images/quizzes/Quiz window Minsk.png"     };
