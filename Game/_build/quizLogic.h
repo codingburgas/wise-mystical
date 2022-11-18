@@ -12,4 +12,4 @@ struct Option
 };
 
 // Handle mouse input relative to the quiz optiopns
-void handleQuizInput(City activeCity, Option optionHitboxes[4], bool* showQuizPtr);
+void handleQuizInput(City activeCity, Option options[4], bool* showQuizPtr, int* scorePtr, int* startNumPtr, int* endNumPtr, int* countUpstepPtr, bool* countUpDonePtr, int* bonusPtr);

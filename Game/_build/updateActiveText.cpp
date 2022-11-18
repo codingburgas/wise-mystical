@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 #include "raylib.h"
 #include "cityOperations.h"
 #include "animations.h"
@@ -22,4 +23,18 @@ std::string updatePopUpActiveText(std::string text, City activeCity, City tempCi
 
 	// Return the updated active text
 	return text;
+}
+
+// Update score count up sequence
+void updateScoreCountUp(bool* countUpDone, int* startNum, int* endNum, int countUpstep)
+{
+	// Update score count up
+	*startNum += countUpstep;
+
+	// Check for new score boundary
+	if (*startNum >= *endNum)
+	{
+		*startNum = *endNum;
+		*countUpDone = true;
+	}
 }

@@ -58,7 +58,7 @@ void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts,
 	for (int i = 0; i < 3; i++)
 	{
 		// Draw the 3 circles
-		DrawCircleV(Vector2{ activeCity.coordinates.x, activeCity.coordinates.y-float(3) }, activeCityAnimationParts[i].size, activeCityAnimationParts[i].color);
+		DrawCircleV(Vector2{ activeCity.coordinates.x, activeCity.coordinates.y - float(3) }, activeCityAnimationParts[i].size, activeCityAnimationParts[i].color);
 
 		// Check for circle radius update direction (+, -)
 		if (activeCityAnimationParts[i].direction == '+')
@@ -106,7 +106,7 @@ void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, boo
 	// Update target position based on animation state
 	switch (componentPtr->state)
 	{
-	// Update target position in decreasing state
+		// Update target position in decreasing state
 	case -1:
 		componentPtr->pos.y -= 2.5;
 
@@ -121,7 +121,7 @@ void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, boo
 		}
 		break;
 
-	// Update target position in increasing state
+		// Update target position in increasing state
 	case 1:
 		componentPtr->pos.y += 2.5;
 
@@ -136,7 +136,7 @@ void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, boo
 		}
 		break;
 
-	// Account for the paused animation state
+		// Account for the paused animation state
 	default:
 		break;
 	}
@@ -189,7 +189,7 @@ void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, boo
 
 			// Update animation state to 0(paused)
 			quizPtr->state = 0;
-		}	
+		}
 		break;
 
 		// Account for the paused animation state
@@ -263,7 +263,7 @@ void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity
 		warningAnimationFramePtr->pos.x = 1475;
 	}
 	else
-	{	
+	{
 		// Keep original posion next to the pop-up menu
 		warningAnimationFramePtr->pos.x = 936;
 	}
@@ -280,18 +280,18 @@ void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFr
 		{
 			// Check for collision between the mouse pointer and the option hitbox
 			if (CheckCollisionPointRec(Vector2(GetMousePosition()), options[i].hitbox))
-			{ 
+			{
 				// Check for and fix minor line disposition
 				if ((i == 0 || i == 1) && index != 0 && index != 25 && index != 35 && index != 30 && index != 20 && index != 10 && index != 15)
 				{
 					// Draw option hover effect
 					DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 2, options[i].hitbox.y - 1 }, RAYWHITE);
 				}
-				else if(index != 0)
+				else if (index != 0)
 				{
 					// Draw option hover effect
 					DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 2, options[i].hitbox.y - 2 }, RAYWHITE);
-				}	
+				}
 
 				// Check for and fix minor line disposition
 				if (index == 0)

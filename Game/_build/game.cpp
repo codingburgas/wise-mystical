@@ -19,11 +19,13 @@ void startGame()
 
 	InitWindow(width, height, "Game");
 
-	// Load font from the file structure
-	Font comfortaaRegular = LoadFontEx("../resources/font/Comfortaa-Regular.ttf", 25, 0, 250);
+	// Load font variants from the file structure
+	Font comfortaa = LoadFontEx("../resources/font/Comfortaa-Regular.ttf", 25, 0, 250);
+	Font comfortaaScore = LoadFontEx("../resources/font/Comfortaa-Regular.ttf", 32, 0, 250);
+	Font comfortaaTravelPoints = LoadFontEx("../resources/font/Comfortaa-Bold.ttf", 40, 0, 250);
 
 	// Load map components texture from the file structure
-	Texture2D map = LoadTexture("../resources/images/map components/map.png");	
+	Texture2D map = LoadTexture("../resources/images/map components/map.png");
 	Texture2D cityMarkers[3] = {
 		LoadTexture("../resources/images/map components/City marker Easy.png"),
 		LoadTexture("../resources/images/map components/City marker Medium.png"),
@@ -57,7 +59,7 @@ void startGame()
 	City cities[40];
 	City* citiArrayPtr = intialiseCitiesArray(cities);
 	citiArrayPtr = cities;
-	
+
 	// City variables
 	const int cityCounter = 40;
 	int startCityNum = GetRandomValue(0, 39);
@@ -75,7 +77,7 @@ void startGame()
 
 	// Vector for gameplay path
 	std::vector<LinePoints> conLines;
-	std::vector<LinePoints>* conLinesPtr = &conLines;	
+	std::vector<LinePoints>* conLinesPtr = &conLines;
 
 	// Varibles for travel process
 	bool searchingNextCity = false;
@@ -119,7 +121,7 @@ void startGame()
 	float freeTime = 1.5f;
 	Timer freeTimeTimer = { 0 };
 	Timer* freeTimeTimerPtr = &freeTimeTimer;
-	
+
 	// Define variables for warning pop up animation
 	PopUpAnimationFrame warningAnimationFrame = { visitedCityWarning, Vector2{ 936, 1080 }, 0 };
 	PopUpAnimationFrame* warningAnimationFramePtr = &warningAnimationFrame;
@@ -134,33 +136,55 @@ void startGame()
 
 	// Define active text variables
 	std::string popUpText = "";
+	int score = 0;
+	int* scorePtr = &score;
+	int bonus = 0;
+	int* bonusPtr = &bonus;
+	int travelPoints = 40;
+	int* travelPointsPtr = &travelPoints;
+
+	// Define variables for score count up
+	int startNum = 0;
+	int* startNumPtr = &startNum;
+	int endNum = 0;
+	int* endNumPtr = &endNum;
+	int countUpstep = 0;
+	int* countUpstepPtr = &countUpstep;
+	bool countUpDone = true;
+	bool* countUpDonePtr = &countUpDone;
 
 	// Set initail camera target
 	setInitialCameraPos(cameraPosXPtr, cameraPosYPtr, startCityNum);
 
+	// Start initial free timer countdown
 	StartTimer(&freeTimeTimer, freeTime);
+
+	// Put the game into fullscreen mode
+	ToggleFullscreen();
 
 	while (!WindowShouldClose())
 	{
 		// Update target
-		mousePoint = GetScreenToWorld2D({ GetMousePosition().x, GetMousePosition().y}, camera);
+		mousePoint = GetScreenToWorld2D({ GetMousePosition().x, GetMousePosition().y }, camera);
 		camera.target = { *cameraPosXPtr, *cameraPosYPtr };
 
 		// Update the camera's position based on keyboard input
 		updateCameraPos(cameraPosXPtr, cameraPosYPtr);
 
-
 		// Travel to next selected city (if possible)
 		if (quizAnimationFrame.pos.x == 1920 && !showQuiz)
 		{
 			travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, cityCounter, indexPtr);
-		}	
+		}
+
+		// Update city travel cost and bonus
+		updateCityTravelCostAndBonus(cities, activeCity, cityCounter);
 
 		// Handle mouse input for the pop-up 
-		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, nextCityChosenPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, popUpMenuFrame, conLinesPtr);
+		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, nextCityChosenPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, popUpMenuFrame, conLinesPtr, travelPointsPtr, bonusPtr);
 
 		BeginDrawing();
-		
+
 		// Set background color for the framebuffer 
 		ClearBackground(mapBackgroundColor);
 
@@ -171,29 +195,53 @@ void startGame()
 		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
 
 		// Draw travel pathway
-		for (LinePoints &n : conLines)
+		for (LinePoints& n : conLines)
 		{
 			// Draw line outer layer
 			DrawLineEx(n.startPoint, n.endPoint, 10, WHITE);
 
 			// Draw line inner layer
-			DrawLineEx(n.startPoint, n.endPoint, 7, lineColor);	
+			DrawLineEx(n.startPoint, n.endPoint, 7, lineColor);
 		}
 
 		// Mark the current active city mark
 		drawActiveCityAnimation(activeCityAnimationPartsPtr, activeCity);
 
 		// Draw city markers based of distance from active city
-		drawCityMarkers(citiArrayPtr, activeCity, cityMarkers, cityCounter);
+		updateCityTravelCostAndBonus(citiArrayPtr, activeCity, cityMarkers, cityCounter);
 
 		// Draw city names
-		drawCityNames(citiArrayPtr, 40, comfortaaRegular);
+		drawCityNames(citiArrayPtr, 40, comfortaa);
 
 		// End 2D mode
 		EndMode2D();
 
 		// Draw score board
 		DrawTexture(scoreBoard, -2, 2, RAYWHITE);
+
+		// Update count up sequence
+		updateScoreCountUp(countUpDonePtr, startNumPtr, endNumPtr, countUpstep);
+
+		// Check for score count up
+		if (countUpDone)
+		{
+			// Draw normal score
+			DrawTextEx(comfortaaScore, TextFormat("%i", score), Vector2{ 86,31 }, 32, 1, WHITE);
+		}
+		else if (!countUpDone)
+		{
+			// Draw count up with updated value
+			DrawTextEx(comfortaaScore, TextFormat("%i", startNum), Vector2{ 86,31 }, 32, 1, WHITE);
+		}
+
+		// Draw active city name
+		DrawTextEx(comfortaaScore, activeCity.name.c_str(), Vector2{ 86, 108 }, 32, 1, WHITE);
+
+		// Draw visited cities counter
+		DrawTextEx(comfortaaScore, TextFormat("%i / 40", conLines.size() + 1), Vector2{ 86, 180 }, 32, 1, WHITE);
+
+		// Draw travel points counter
+		DrawTextEx(comfortaaTravelPoints, TextFormat("%i", travelPoints), Vector2{ float(283.84), 242 }, 40, 1, WHITE);
 
 		// Draw pop-up menu animation across different states
 		drawPopUpAnimationBottom(popUpMenuFramePtr, 913, showPopUpMenu);
@@ -206,9 +254,9 @@ void startGame()
 		{
 			popUpText = updatePopUpActiveText(popUpText, activeCity, tempCity, popUpMenuFrame);
 		}
-		
+
 		// Draw pop-up menu active text
-		DrawTextEx(comfortaaRegular, popUpText.c_str(), Vector2{ 1427, popUpMenuFrame.pos.y + float(19) }, 25, 1, WHITE);
+		DrawTextEx(comfortaa, popUpText.c_str(), Vector2{ 1427, popUpMenuFrame.pos.y + float(19) }, 25, 1, WHITE);
 
 		// Manage warning animation 
 		manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, popUpMenuFrame, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
@@ -216,9 +264,10 @@ void startGame()
 		// Draw warning animation across its different states
 		drawPopUpAnimationBottom(warningAnimationFramePtr, 990, wariningVisible);
 
+		// Update initial free timer countdown
 		UpdateTimer(&freeTimeTimer);
 
-		// Manage quiz texture loading and unloading
+		// Manage quiz texture loading, unloading and drawing
 		if (nextCityChosen)
 		{
 			// Manage quiz texture loading
@@ -238,19 +287,19 @@ void startGame()
 			}
 
 			// Handle mouse input relative to the quiz optiopns
-			handleQuizInput(activeCity, options, showQuizPtr);
+			handleQuizInput(activeCity, options, showQuizPtr, scorePtr, startNumPtr, endNumPtr, countUpstepPtr, countUpDonePtr, bonusPtr);
 
 			// Make animation 5 times faster
 			for (int i = 0; i < 5; i++)
 			{
 				// Draw pop-up animation side across different states
 				drawPopUpAnimationSide(quizPtr, activeQuiz, showQuiz);
-			}	
+			}
 
 			// Draw quiz options hover effect
 			drawQuizOptionsHover(options, quizAnimationFrame, index);
 		}
-		
+
 		EndDrawing();
 	}
 }

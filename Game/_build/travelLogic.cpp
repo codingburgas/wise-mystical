@@ -3,9 +3,10 @@
 #include "cityOperations.h"
 #include "travelLogic.h"
 #include "animations.h"
+#include "updateActiveText.h"
 
 // Travel to next selected city (if possible)
-void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *tempCity, bool *searchingNextCity, bool *showPopUpMenu, int citiesCounter, int *indexPtr)
+void travelToNextCity(Vector2 mousePoint, City* cities, City activeCity, City* tempCity, bool* searchingNextCity, bool* showPopUpMenu, int citiesCounter, int* indexPtr)
 {
 	// Check if travel is allowed
 	if (searchingNextCity)
@@ -36,7 +37,7 @@ void travelToNextCity(Vector2 mousePoint, City *cities, City activeCity, City *t
 }
 
 // Handle mouse input for the pop-up 
-void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, bool* nextCityChosenPtr, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, PopUpAnimationFrame popUpFrame, std::vector<LinePoints>* conLinesPtr)
+void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, bool* nextCityChosenPtr, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, PopUpAnimationFrame popUpFrame, std::vector<LinePoints>* conLinesPtr, int* travelPointsPtr, int* bonusPtr)
 {
 	// Check if confirm was clicked
 	if (showPopUpMenu && CheckCollisionPointRec(Vector2(GetMousePosition()), confirmHitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -45,26 +46,32 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, bool* nextCi
 		*showPopUpMenu = false;
 
 		// Allow travel to other selected cities
-		*searchingNextCity = true;	
+		*searchingNextCity = true;
 
 		// Restrict further access to selected city
 		cities[*indexPtr].wasVisited = true;
 
+		// Check if next city is choosen(helps in managing the quizzes)
 		*nextCityChosenPtr = true;
 
 		// Check and avoid line dublication
 		if (activeCity->coordinates.x > 0 && activeCity->coordinates.y > 0 && tempCity->coordinates.x > 0 && tempCity->coordinates.y > 0)
 		{
 			// Add next set of start and end line points
-			conLinesPtr->push_back({ activeCity->coordinates, tempCity->coordinates});
+			conLinesPtr->push_back({ activeCity->coordinates, tempCity->coordinates });
+
+			// Update travel points count
+			*travelPointsPtr -= tempCity->travelCost;
+
+			// Assign bonus points
+			*bonusPtr = tempCity->bonus;
 
 			// Upadate the active city 
 			*activeCity = *tempCity;
 
 			// Reset the temporary city 
 			*tempCity = {};
-
-		}	
+		}
 	}
 	// Check if deny was clicked
 	else if (showPopUpMenu && CheckCollisionPointRec(Vector2(GetMousePosition()), denyHitbox) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -75,6 +82,7 @@ void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, bool* nextCi
 		// Allow travel to other selected cities
 		*searchingNextCity = false;
 
+		// Check if next city is choosen(helps in managing the quizzes)
 		*nextCityChosenPtr = false;
 
 		// Reset the temporary city 

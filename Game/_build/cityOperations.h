@@ -11,7 +11,7 @@ struct City {
 
     // Hitbox for collision with the mouse pointer
     Rectangle hitbox = {};
-    
+
     // Visited city indicator
     bool wasVisited = false;
 
@@ -19,7 +19,13 @@ struct City {
     int trueAnswer = 0;
 
     // Texture file path
-    const char * textureFilePath = "";
+    const char* textureFilePath = "";
+
+    // Travel cost
+    int travelCost = 0;
+
+    // Bonus score
+    int bonus = 0;
 };
 
 // Initialise cities
@@ -29,4 +35,7 @@ City* intialiseCitiesArray(City cities[40]);
 void drawCityNames(City* cities, int citiesCounter, Font comfortaaRegular);
 
 // Draw city markers based of distance from active city
-void drawCityMarkers(City* cities, City activeCity, Texture2D markers[3], int citiesCounter);
+void updateCityTravelCostAndBonus(City* cities, City activeCity, Texture2D markers[3], int citiesCounter);
+
+// Update city travel cost and bonus
+void updateCityTravelCostAndBonus(City* cities, City activeCity, int citiesCounter);
