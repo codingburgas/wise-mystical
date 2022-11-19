@@ -20,4 +20,4 @@ struct LinePoints
 void travelToNextCity(Vector2 mousePoint, City* cities, City activeCity, City* tempCity, bool* searchingNextCity, bool* showPopUpMenu, int citiesCounter, int* indexPtr);
 
 // Handle mouse input for the pop-up 
-void handlePopUpInput(bool* searchingNextCity, bool* showPopUpMenu, bool* nextCityChosenPtr, City* cities, City* activeCity, City* tempCity, Rectangle confirmHitbox, Rectangle denyHitbox, int* indexPtr, PopUpAnimationFrame popUpFrame, std::vector<LinePoints>* conLinesPtr, int* travelPointsPtr, int* bonusPtr);
+void handlePopUpInput(City* cities, City* activeCity, City* tempCity, PopUpAnimationFrame popUpFrame, Rectangle confirmHitbox, Rectangle denyHitbox, std::vector<LinePoints>* conLinesPtr, bool* searchingNextCity, bool* showPopUpMenu, bool* nextCityChosenPtr, int* indexPtr, int* travelPointsPtr, int* bonusPtr);

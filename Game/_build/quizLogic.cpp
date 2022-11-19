@@ -5,7 +5,7 @@
 #include "timer.h"
 
 // Handle mouse input relative to the quiz optiopns
-void handleQuizInput(City activeCity, Option options[4], bool* showQuizPtr, int* scorePtr, int* startNumPtr, int* endNumPtr, int* countUpstepPtr, bool* countUpDonePtr, int* bonusPtr)
+void handleQuizInput(City activeCity, Option options[4], bool* showQuizPtr, bool* optionSelectedPtr, int* scorePtr, int* startNumPtr, int* endNumPtr, int* countUpstepPtr, bool* countUpDonePtr, int* bonusPtr)
 {
 	// Chdck if the left mouse button is pressed
 	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
@@ -26,12 +26,13 @@ void handleQuizInput(City activeCity, Option options[4], bool* showQuizPtr, int*
 					*countUpstepPtr = (*endNumPtr - *startNumPtr) / 100;
 				}
 
-				// Update quiz animation status
+				*optionSelectedPtr = true;
 				*showQuizPtr = false;
+
 			}
 			else if (CheckCollisionPointRec(Vector2(GetMousePosition()), options[i].hitbox))
 			{
-				// Update quiz animation status
+				*optionSelectedPtr = true;
 				*showQuizPtr = false;
 			}
 		}

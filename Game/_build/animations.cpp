@@ -269,6 +269,52 @@ void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity
 	}
 }
 
+// Draw option components
+void drawOptionComponent(Option options[4], Texture2D texture, float x, float y, int index, int i)
+{
+	// Check for and fix minor line disposition
+	if ((i == 0 || i == 1) && index != 0 && index != 25 && index != 35 && index != 30 && index != 20 && index != 10 && index != 15)
+	{
+		// Draw option hover effect
+		DrawTextureV(texture, Vector2{ x - 2, y - 1 }, RAYWHITE);
+	}
+	else if (index != 0)
+	{
+		// Draw option hover effect
+		DrawTextureV(texture, Vector2{ x - 2, y - 2 }, RAYWHITE);
+	}
+
+	// Check for and fix minor line disposition
+	if (index == 0)
+	{
+		if (i == 0 || i == 1)
+		{
+			// Draw option hover effect
+			DrawTextureV(texture, Vector2{ x - 5, y - 4 }, RAYWHITE);
+		}
+		else
+		{
+			// Draw option hover effect
+			DrawTextureV(texture, Vector2{ x - 5, y - 5 }, RAYWHITE);
+		}
+	}
+
+	// Check for and fix minor line disposition
+	if (index == 25 || index == 35 || index == 30 || index == 20 || index == 10 || index == 15)
+	{
+		if (i == 0 || i == 1)
+		{
+			// Draw option hover effect
+			DrawTextureV(texture, Vector2{ x - 3, y - 1 }, RAYWHITE);
+		}
+		else
+		{
+			// Draw option hover effect
+			DrawTextureV(texture, Vector2{ x - 3, y - 2 }, RAYWHITE);
+		}
+	}
+}
+
 // Draw quiz options hover effect
 void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFrame, int index)
 {
@@ -281,47 +327,58 @@ void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFr
 			// Check for collision between the mouse pointer and the option hitbox
 			if (CheckCollisionPointRec(Vector2(GetMousePosition()), options[i].hitbox))
 			{
-				// Check for and fix minor line disposition
-				if ((i == 0 || i == 1) && index != 0 && index != 25 && index != 35 && index != 30 && index != 20 && index != 10 && index != 15)
-				{
-					// Draw option hover effect
-					DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 2, options[i].hitbox.y - 1 }, RAYWHITE);
-				}
-				else if (index != 0)
-				{
-					// Draw option hover effect
-					DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 2, options[i].hitbox.y - 2 }, RAYWHITE);
-				}
+				drawOptionComponent(options, options[i].hoverEffect, options[i].hitbox.x, options[i].hitbox.y, index, i);
+			}
+		}
+	}
+}
 
-				// Check for and fix minor line disposition
-				if (index == 0)
+// Draw option indicators to show if the selected option was true or false
+void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFrame quizAnimationFrame, bool optionSelected,int index)
+{
+	if (optionSelected)
+	{
+		// Check for all 4 buttons
+		for (int i = 0; i < 4; i++)
+		{
+			// Draw indicators if the selected option was true
+			if (activeCity.trueAnswer == i + 1)
+			{
+				switch (i)
 				{
-					if (i == 0 || i == 1)
-					{
-						// Draw option hover effect
-						DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 5, options[i].hitbox.y - 4 }, RAYWHITE);
-					}
-					else
-					{
-						// Draw option hover effect
-						DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 5, options[i].hitbox.y - 5 }, RAYWHITE);
-					}
+				case 0:
+					drawOptionComponent(options, options[i].trueAnswerIndicator, quizAnimationFrame.pos.x + 77, quizAnimationFrame.pos.y + 802, index, i);
+					break;
+				case 1:
+					drawOptionComponent(options, options[i].trueAnswerIndicator, quizAnimationFrame.pos.x + 77, quizAnimationFrame.pos.y + 869, index, i);
+					break;
+				case 2:
+					drawOptionComponent(options, options[i].trueAnswerIndicator, quizAnimationFrame.pos.x + 78, quizAnimationFrame.pos.y + 937, index, i);
+					break;
+				case 3:
+					drawOptionComponent(options, options[i].trueAnswerIndicator, quizAnimationFrame.pos.x + 77, quizAnimationFrame.pos.y + 1005, index, i);
+					break;
 				}
-
-				// Check for and fix minor line disposition
-				if (index == 25 || index == 35 || index == 30 || index == 20 || index == 10 || index == 15)
+			}
+			// Draw indicators if the selected option was false
+			else
+			{
+				switch (i)
 				{
-					if (i == 0 || i == 1)
-					{
-						// Draw option hover effect
-						DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 3, options[i].hitbox.y - 1 }, RAYWHITE);
-					}
-					else
-					{
-						// Draw option hover effect
-						DrawTextureV(options[i].hoverEffect, Vector2{ options[i].hitbox.x - 3, options[i].hitbox.y - 2 }, RAYWHITE);
-					}
+				case 0:
+					drawOptionComponent(options, options[i].falseAnswerIndicator, quizAnimationFrame.pos.x + 77, quizAnimationFrame.pos.y + 802, index, i);
+					break;
+				case 1:
+					drawOptionComponent(options, options[i].falseAnswerIndicator, quizAnimationFrame.pos.x + 77, quizAnimationFrame.pos.y + 869, index, i);
+					break;
+				case 2:
+					drawOptionComponent(options, options[i].falseAnswerIndicator, quizAnimationFrame.pos.x + 78, quizAnimationFrame.pos.y + 937, index, i);
+					break;
+				case 3:
+					drawOptionComponent(options, options[i].falseAnswerIndicator, quizAnimationFrame.pos.x + 77, quizAnimationFrame.pos.y + 1004, index, i);
+					break;
 				}
+				
 			}
 		}
 	}

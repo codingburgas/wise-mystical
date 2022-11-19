@@ -62,7 +62,7 @@ void startGame()
 
 	// City variables
 	const int cityCounter = 40;
-	int startCityNum = GetRandomValue(0, 39);
+	int startCityNum = GetRandomValue(0,39);
 
 	// Active city variables
 	City activeCity = cities[startCityNum];
@@ -110,11 +110,13 @@ void startGame()
 	bool* showQuizPtr = &showQuiz;
 	bool nextCityChosen = true;
 	bool* nextCityChosenPtr = &nextCityChosen;
+	bool optionSelected = false;
+	bool* optionSelectedPtr = &optionSelected;
 	Option options[4] = {
-		{{1034, 800, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option a hover.png")},
-		{{1034, 867, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option b hover.png")},
-		{{1034, 934, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option c hover.png")},
-		{{1034, 1001, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option d hover.png")}
+		{{1034, 800, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option a hover.png"), LoadTexture("../resources/images/UI components/option indicators/Right answer a.png"), LoadTexture("../resources/images/UI components/option indicators/Wrong answer a.png")},
+		{{1034, 867, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option b hover.png"), LoadTexture("../resources/images/UI components/option indicators/Right answer b.png"), LoadTexture("../resources/images/UI components/option indicators/Wrong answer b.png")},
+		{{1034, 934, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option c hover.png"), LoadTexture("../resources/images/UI components/option indicators/Right answer c.png"), LoadTexture("../resources/images/UI components/option indicators/Wrong answer c.png")},
+		{{1034, 1001, 740, 51}, LoadTexture("../resources/images/UI components/option hover/option d hover.png"), LoadTexture("../resources/images/UI components/option indicators/Right answer d.png"), LoadTexture("../resources/images/UI components/option indicators/Wrong answer d.png")}
 	};
 
 	// Initial quiz timer
@@ -181,7 +183,7 @@ void startGame()
 		updateCityTravelCostAndBonus(cities, activeCity, cityCounter);
 
 		// Handle mouse input for the pop-up 
-		handlePopUpInput(searchingNextCityPtr, showPopUpMenuPtr, nextCityChosenPtr, cities, activeCityPtr, tempCityPtr, confirmHitbox, denyHitbox, indexPtr, popUpMenuFrame, conLinesPtr, travelPointsPtr, bonusPtr);
+		handlePopUpInput(citiArrayPtr, activeCityPtr, tempCityPtr, popUpMenuFrame, confirmHitbox, denyHitbox, conLinesPtr, searchingNextCityPtr, showPopUpMenuPtr, nextCityChosenPtr, indexPtr, travelPointsPtr, bonusPtr);
 
 		BeginDrawing();
 
@@ -240,10 +242,8 @@ void startGame()
 		// Draw visited cities counter
 		DrawTextEx(comfortaaScore, TextFormat("%i / 40", conLines.size() + 1), Vector2{ 86, 180 }, 32, 1, WHITE);
 
-		drawtravelPointsCount(comfortaaTravelPoints, travelPoints);
-
-		// Draw travel points counter
-		/*DrawTextEx(comfortaaTravelPoints, TextFormat("%i", travelPoints), Vector2{ float(283.84), 242 }, 40, 1, WHITE);*/
+		// Draw travel points count
+		drawTravelPointsCount(comfortaaTravelPoints, travelPoints);
 
 		// Draw pop-up menu animation across different states
 		drawPopUpAnimationBottom(popUpMenuFramePtr, 913, showPopUpMenu);
@@ -289,7 +289,7 @@ void startGame()
 			}
 
 			// Handle mouse input relative to the quiz optiopns
-			handleQuizInput(activeCity, options, showQuizPtr, scorePtr, startNumPtr, endNumPtr, countUpstepPtr, countUpDonePtr, bonusPtr);
+			handleQuizInput(activeCity, options, showQuizPtr, optionSelectedPtr, scorePtr, startNumPtr, endNumPtr, countUpstepPtr, countUpDonePtr, bonusPtr);
 
 			// Make animation 5 times faster
 			for (int i = 0; i < 5; i++)
@@ -298,8 +298,20 @@ void startGame()
 				drawPopUpAnimationSide(quizPtr, activeQuiz, showQuiz);
 			}
 
-			// Draw quiz options hover effect
-			drawQuizOptionsHover(options, quizAnimationFrame, index);
+			if (!optionSelected)
+			{
+				// Draw quiz options hover effect
+				drawQuizOptionsHover(options, quizAnimationFrame, index);
+			}
+
+			// Draw option indicators to show if the selected option was true or false
+			drawOptionIndicators(activeCity, options, quizAnimationFrame, optionSelected, index);
+
+			// Reset the selected option check
+			if (quizAnimationFrame.pos.x == 1920)
+			{
+				optionSelected = false;
+			}
 		}
 
 		EndDrawing();

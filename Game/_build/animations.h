@@ -60,4 +60,7 @@ void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity
 // Draw quiz options hover effect
 void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFrame, int index);
 
+//
+void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFrame quizAnimationFrame, bool optionSelected, int index);
+
 

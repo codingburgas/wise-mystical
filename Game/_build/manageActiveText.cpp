@@ -40,7 +40,7 @@ void updateScoreCountUp(bool* countUpDone, int* startNum, int* endNum, int count
 }
 
 // Draw travel points count
-void drawtravelPointsCount(Font comfortaaTravelPoints, int travelPoints)
+void drawTravelPointsCount(Font comfortaaTravelPoints, int travelPoints)
 {
 	float x = 0;
 
