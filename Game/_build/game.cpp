@@ -9,7 +9,7 @@
 #include "cityOperations.h"
 #include "travelLogic.h"
 #include "quizLogic.h"
-#include "updateActiveText.h"
+#include "manageActiveText.h"
 
 
 void startGame()
@@ -160,7 +160,7 @@ void startGame()
 	StartTimer(&freeTimeTimer, freeTime);
 
 	// Put the game into fullscreen mode
-	ToggleFullscreen();
+	/*ToggleFullscreen();*/
 
 	while (!WindowShouldClose())
 	{
@@ -240,8 +240,10 @@ void startGame()
 		// Draw visited cities counter
 		DrawTextEx(comfortaaScore, TextFormat("%i / 40", conLines.size() + 1), Vector2{ 86, 180 }, 32, 1, WHITE);
 
+		drawtravelPointsCount(comfortaaTravelPoints, travelPoints);
+
 		// Draw travel points counter
-		DrawTextEx(comfortaaTravelPoints, TextFormat("%i", travelPoints), Vector2{ float(283.84), 242 }, 40, 1, WHITE);
+		/*DrawTextEx(comfortaaTravelPoints, TextFormat("%i", travelPoints), Vector2{ float(283.84), 242 }, 40, 1, WHITE);*/
 
 		// Draw pop-up menu animation across different states
 		drawPopUpAnimationBottom(popUpMenuFramePtr, 913, showPopUpMenu);

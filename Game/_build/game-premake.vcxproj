@@ -181,7 +181,7 @@
     <ClCompile Include="quizLogic.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="travelLogic.cpp" />
-    <ClCompile Include="updateActiveText.cpp" />
+    <ClCompile Include="manageActiveText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animations.h" />
@@ -191,7 +191,7 @@
     <ClInclude Include="quizLogic.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="travelLogic.h" />
-    <ClInclude Include="updateActiveText.h" />
+    <ClInclude Include="manageActiveText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

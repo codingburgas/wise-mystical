@@ -38,3 +38,37 @@ void updateScoreCountUp(bool* countUpDone, int* startNum, int* endNum, int count
 		*countUpDone = true;
 	}
 }
+
+// Draw travel points count
+void drawtravelPointsCount(Font comfortaaTravelPoints, int travelPoints)
+{
+	float x = 0;
+
+	// Check for travel points count and update x to center the counter
+	if (travelPoints >= 20 )
+	{
+		x += 2;
+		if (travelPoints / 10 % 10 == 1)
+		{
+			x += 6;
+		}
+	}
+	else if (travelPoints < 20 && travelPoints >= 10)
+	{
+		if (travelPoints / 10 % 10 == 1)
+		{
+			x += 6;
+		}
+	}
+	else if (travelPoints < 10) 
+	{
+		x += 13;
+		if (travelPoints / 10 % 10 == 1)
+		{
+			x += 6;
+		}
+	}
+
+	// Draw travel points counter
+	DrawTextEx(comfortaaTravelPoints, TextFormat("%i", travelPoints), Vector2{ float(283.84) + x, 242 }, 40, 1, WHITE);
+}

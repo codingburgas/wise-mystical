@@ -9,3 +9,6 @@ std::string updatePopUpActiveText(std::string text, City activeCity, City tempCi
 
 // Update score count up sequence
 void updateScoreCountUp(bool* countUpDone, int* startNum, int* endNum, int countUpstep);
+
+// Draw travel points count
+void drawtravelPointsCount(Font comfortaaTravelPoints, int travelPoints);

@@ -3,7 +3,7 @@
 #include "cityOperations.h"
 #include "travelLogic.h"
 #include "animations.h"
-#include "updateActiveText.h"
+#include "manageActiveText.h"
 
 // Travel to next selected city (if possible)
 void travelToNextCity(Vector2 mousePoint, City* cities, City activeCity, City* tempCity, bool* searchingNextCity, bool* showPopUpMenu, int citiesCounter, int* indexPtr)

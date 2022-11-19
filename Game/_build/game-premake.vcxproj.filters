@@ -24,7 +24,7 @@
     <ClCompile Include="travelLogic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="updateActiveText.cpp">
+    <ClCompile Include="manageActiveText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="movement.cpp">
@@ -50,7 +50,7 @@
     <ClInclude Include="travelLogic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="updateActiveText.h">
+    <ClInclude Include="manageActiveText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="movement.h">
