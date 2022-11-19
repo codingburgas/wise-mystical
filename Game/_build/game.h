@@ -1,5 +1,8 @@
 #pragma once
 
+// Initialize new type
+typedef enum GameScreen { MENU, GAMEPLAY, RESULT } GameScreen;
+
 // Define custom background color
 #define mapBackgroundColor CLITERAL(Color){ 56, 140, 233, 255 }
 

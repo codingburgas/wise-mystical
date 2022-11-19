@@ -44,7 +44,7 @@ void drawCityNames(City* cities, int citiesCounter, Font comfortaaRegular);
 /**
  * Draw city markers based of distance from active city.
  */
-void updateCityTravelCostAndBonus(City* cities, City activeCity, Texture2D markers[3], int citiesCounter);
+void drawCityMarkers(City* cities, City activeCity, Texture2D markers[3], int citiesCounter);
 
 /**
  * Update city travel cost and bonus.

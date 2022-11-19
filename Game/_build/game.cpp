@@ -11,9 +11,6 @@
 #include "quizLogic.h"
 #include "manageActiveText.h"
 
-/**
- * Start game.
- */
 void startGame()
 {
 	int width = 1920;
@@ -62,9 +59,12 @@ void startGame()
 	City* citiArrayPtr = intialiseCitiesArray(cities);
 	citiArrayPtr = cities;
 
+	// Declare screen variable
+	GameScreen currentScreen = GAMEPLAY;
+
 	// City variables
 	const int cityCounter = 40;
-	int startCityNum = GetRandomValue(0,39);
+	int startCityNum = GetRandomValue(0, 39);
 
 	// Active city variables
 	City activeCity = cities[startCityNum];
@@ -168,152 +168,184 @@ void startGame()
 
 	while (!WindowShouldClose())
 	{
-		// Update target
-		mousePoint = GetScreenToWorld2D({ GetMousePosition().x, GetMousePosition().y }, camera);
-		camera.target = { *cameraPosXPtr, *cameraPosYPtr };
-
-		// Update the camera's position based on keyboard input
-		updateCameraPos(cameraPosXPtr, cameraPosYPtr);
-
-		// Travel to next selected city (if possible)
-		if (quizAnimationFrame.pos.x == 1920 && !showQuiz)
+		// 
+		switch (currentScreen)
 		{
-			travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, cityCounter, indexPtr);
+		case MENU:
+		{
+			int i = 0;
+		} break;
+
+		case GAMEPLAY:
+		{
+			// Update target
+			mousePoint = GetScreenToWorld2D({ GetMousePosition().x, GetMousePosition().y }, camera);
+			camera.target = { *cameraPosXPtr, *cameraPosYPtr };
+
+			// Update the camera's position based on keyboard input
+			updateCameraPos(cameraPosXPtr, cameraPosYPtr);
+
+			// Travel to next selected city (if possible)
+			if (quizAnimationFrame.pos.x == 1920 && !showQuiz)
+			{
+				travelToNextCity(mousePoint, citiArrayPtr, activeCity, tempCityPtr, searchingNextCityPtr, showPopUpMenuPtr, cityCounter, indexPtr);
+			}
+
+			// Update city travel cost and bonus
+			updateCityTravelCostAndBonus(cities, activeCity, cityCounter);
+
+			// Handle mouse input for the pop-up 
+			handlePopUpInput(citiArrayPtr, activeCityPtr, tempCityPtr, popUpMenuFrame, confirmHitbox, denyHitbox, conLinesPtr, searchingNextCityPtr, showPopUpMenuPtr, nextCityChosenPtr, indexPtr, travelPointsPtr, bonusPtr);
+
+			// Update count up sequence
+			updateScoreCountUp(countUpDonePtr, startNumPtr, endNumPtr, countUpstep);
+
+			// Manage warning animation 
+			manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, popUpMenuFrame, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
+
+			// Update initial free timer countdown
+			UpdateTimer(&freeTimeTimer);
+
+			if (nextCityChosen)
+			{
+				// Manage quiz texture loading
+				if (!activeQuizLoaded && popUpMenuFrame.pos.y == 1080 && !showPopUpMenu && TimerDone(&freeTimeTimer))
+				{
+					activeQuiz = LoadTexture(activeCity.textureFilePath);
+					activeQuizLoaded = true;
+					showQuiz = true;
+				}
+
+				//Manage quiz texture unloading
+				if (quizAnimationFrame.pos.x == 1920 && !showQuiz && !searchingNextCity)
+				{
+					searchingNextCity = true;
+					UnloadTexture(activeQuiz);
+					activeQuizLoaded = false;
+				}
+
+				// Handle mouse input relative to the quiz optiopns
+				handleQuizInput(activeCity, options, showQuizPtr, optionSelectedPtr, scorePtr, startNumPtr, endNumPtr, countUpstepPtr, countUpDonePtr, bonusPtr);
+
+				// Reset the selected option check
+				if (quizAnimationFrame.pos.x == 1920)
+				{
+					optionSelected = false;
+				}
+			}
+		} break;
+
+		default: break;
 		}
-
-		// Update city travel cost and bonus
-		updateCityTravelCostAndBonus(cities, activeCity, cityCounter);
-
-		// Handle mouse input for the pop-up 
-		handlePopUpInput(citiArrayPtr, activeCityPtr, tempCityPtr, popUpMenuFrame, confirmHitbox, denyHitbox, conLinesPtr, searchingNextCityPtr, showPopUpMenuPtr, nextCityChosenPtr, indexPtr, travelPointsPtr, bonusPtr);
 
 		BeginDrawing();
 
 		// Set background color for the framebuffer 
 		ClearBackground(mapBackgroundColor);
 
-		// Begin 2D mode
-		BeginMode2D(camera);
-
-		// Draw the map on the screen
-		DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
-
-		// Draw travel pathway
-		for (LinePoints& n : conLines)
+		// Switch between gamemodes for drawing
+		switch (currentScreen)
 		{
-			// Draw line outer layer
-			DrawLineEx(n.startPoint, n.endPoint, 10, WHITE);
 
-			// Draw line inner layer
-			DrawLineEx(n.startPoint, n.endPoint, 7, lineColor);
-		}
-
-		// Mark the current active city mark
-		drawActiveCityAnimation(activeCityAnimationPartsPtr, activeCity);
-
-		// Draw city markers based of distance from active city
-		updateCityTravelCostAndBonus(citiArrayPtr, activeCity, cityMarkers, cityCounter);
-
-		// Draw city names
-		drawCityNames(citiArrayPtr, 40, comfortaa);
-
-		// End 2D mode
-		EndMode2D();
-
-		// Draw score board
-		DrawTexture(scoreBoard, -2, 2, RAYWHITE);
-
-		// Update count up sequence
-		updateScoreCountUp(countUpDonePtr, startNumPtr, endNumPtr, countUpstep);
-
-		// Check for score count up
-		if (countUpDone)
+		case MENU:
 		{
-			// Draw normal score
-			DrawTextEx(comfortaaScore, TextFormat("%i", score), Vector2{ 86,31 }, 32, 1, WHITE);
-		}
-		else if (!countUpDone)
+			DrawRectangle(GetScreenWidth() / 2, GetScreenHeight() / 2, 100, 100, BLACK);
+		} break;
+
+		case GAMEPLAY:
 		{
-			// Draw count up with updated value
-			DrawTextEx(comfortaaScore, TextFormat("%i", startNum), Vector2{ 86,31 }, 32, 1, WHITE);
-		}
+			// Begin 2D mode
+			BeginMode2D(camera);
 
-		// Draw active city name
-		DrawTextEx(comfortaaScore, activeCity.name.c_str(), Vector2{ 86, 108 }, 32, 1, WHITE);
+			// Draw the map on the screen
+			DrawTextureEx(map, Vector2{ 0,0 }, 0, 1, mapColor);
 
-		// Draw visited cities counter
-		DrawTextEx(comfortaaScore, TextFormat("%i / 40", conLines.size() + 1), Vector2{ 86, 180 }, 32, 1, WHITE);
-
-		// Draw travel points count
-		drawTravelPointsCount(comfortaaTravelPoints, travelPoints);
-
-		// Draw pop-up menu animation across different states
-		drawPopUpAnimationBottom(popUpMenuFramePtr, 913, showPopUpMenu);
-
-		// Draw popUp buttons hover effect 
-		drawPopUpMenuHover(confirmHitbox, denyHitbox, confirmHover, denyHover, popUpMenuFramePtr);
-
-		// Update pop-up menu active text
-		if (popUpMenuFrame.pos.y == 1080 || popUpMenuFrame.pos.y == 913)
-		{
-			popUpText = updatePopUpActiveText(popUpText, activeCity, tempCity, popUpMenuFrame);
-		}
-
-		// Draw pop-up menu active text
-		DrawTextEx(comfortaa, popUpText.c_str(), Vector2{ 1427, popUpMenuFrame.pos.y + float(19) }, 25, 1, WHITE);
-
-		// Manage warning animation 
-		manageWarningAnimation(mousePoint, cities, activeCity, warningAnimationFramePtr, popUpMenuFrame, warningTimerPtr, warningScreentimePtr, warningVisiblePtr, showPopUpMenu);
-
-		// Draw warning animation across its different states
-		drawPopUpAnimationBottom(warningAnimationFramePtr, 990, wariningVisible);
-
-		// Update initial free timer countdown
-		UpdateTimer(&freeTimeTimer);
-
-		// Manage quiz texture loading, unloading and drawing
-		if (nextCityChosen)
-		{
-			// Manage quiz texture loading
-			if (!activeQuizLoaded && popUpMenuFrame.pos.y == 1080 && !showPopUpMenu && TimerDone(&freeTimeTimer))
+			// Draw travel pathway
+			for (LinePoints& n : conLines)
 			{
-				activeQuiz = LoadTexture(activeCity.textureFilePath);
-				activeQuizLoaded = true;
-				showQuiz = true;
+				// Draw line outer layer
+				DrawLineEx(n.startPoint, n.endPoint, 10, WHITE);
+
+				// Draw line inner layer
+				DrawLineEx(n.startPoint, n.endPoint, 7, lineColor);
 			}
 
-			//Manage quiz texture unloading
-			if (quizAnimationFrame.pos.x == 1920 && !showQuiz && !searchingNextCity)
+			// Mark the current active city mark
+			drawActiveCityAnimation(activeCityAnimationPartsPtr, activeCity);
+
+			// Draw city markers based of distance from active city
+			drawCityMarkers(citiArrayPtr, activeCity, cityMarkers, cityCounter);
+
+			// Draw city names
+			drawCityNames(citiArrayPtr, 40, comfortaa);
+
+			// End 2D mode
+			EndMode2D();
+
+			// Draw score board
+			DrawTexture(scoreBoard, -2, 2, RAYWHITE);
+
+			// Check for score count up
+			if (countUpDone)
 			{
-				searchingNextCity = true;
-				UnloadTexture(activeQuiz);
-				activeQuizLoaded = false;
+				// Draw normal score
+				DrawTextEx(comfortaaScore, TextFormat("%i", score), Vector2{ 86,31 }, 32, 1, WHITE);
+			}
+			else if (!countUpDone)
+			{
+				// Draw count up with updated value
+				DrawTextEx(comfortaaScore, TextFormat("%i", startNum), Vector2{ 86,31 }, 32, 1, WHITE);
 			}
 
-			// Handle mouse input relative to the quiz optiopns
-			handleQuizInput(activeCity, options, showQuizPtr, optionSelectedPtr, scorePtr, startNumPtr, endNumPtr, countUpstepPtr, countUpDonePtr, bonusPtr);
+			// Draw active city name
+			DrawTextEx(comfortaaScore, activeCity.name.c_str(), Vector2{ 86, 108 }, 32, 1, WHITE);
 
-			// Make animation 5 times faster
-			for (int i = 0; i < 5; i++)
+			// Draw visited cities counter
+			DrawTextEx(comfortaaScore, TextFormat("%i / 40", conLines.size() + 1), Vector2{ 86, 180 }, 32, 1, WHITE);
+
+			// Draw travel points count
+			drawTravelPointsCount(comfortaaTravelPoints, travelPoints);
+
+			// Draw pop-up menu animation across different states
+			drawPopUpAnimationBottom(popUpMenuFramePtr, 913, showPopUpMenu);
+
+			// Draw popUp buttons hover effect 
+			drawPopUpMenuHover(confirmHitbox, denyHitbox, confirmHover, denyHover, popUpMenuFramePtr);
+
+			// Update pop-up menu active text
+			if (popUpMenuFrame.pos.y == 1080 || popUpMenuFrame.pos.y == 913)
 			{
-				// Draw pop-up animation side across different states
-				drawPopUpAnimationSide(quizPtr, activeQuiz, showQuiz);
+				popUpText = updatePopUpActiveText(popUpText, activeCity, tempCity, popUpMenuFrame);
 			}
 
-			if (!optionSelected)
-			{
-				// Draw quiz options hover effect
-				drawQuizOptionsHover(options, quizAnimationFrame, index);
-			}
+			// Draw pop-up menu active text
+			DrawTextEx(comfortaa, popUpText.c_str(), Vector2{ 1427, popUpMenuFrame.pos.y + float(19) }, 25, 1, WHITE);
 
-			// Draw option indicators to show if the selected option was true or false
-			drawOptionIndicators(activeCity, options, quizAnimationFrame, optionSelected, index);
+			// Draw warning animation across its different states
+			drawPopUpAnimationBottom(warningAnimationFramePtr, 990, wariningVisible);
 
-			// Reset the selected option check
-			if (quizAnimationFrame.pos.x == 1920)
+			// Manage quiz texture loading, unloading and drawing
+			if (nextCityChosen)
 			{
-				optionSelected = false;
+				// Make animation 5 times faster
+				for (int i = 0; i < 5; i++)
+				{
+					// Draw pop-up animation side across different states
+					drawPopUpAnimationSide(quizPtr, activeQuiz, showQuiz);
+				}
+					
+				if (!optionSelected)
+				{
+					// Draw quiz options hover effect
+					drawQuizOptionsHover(options, quizAnimationFrame, index);
+				}
+
+				// Draw option indicators to show if the selected option was true or false
+				drawOptionIndicators(activeCity, options, quizAnimationFrame, optionSelected, index);
 			}
+		} break;
+
+		default: break;
 		}
 
 		EndDrawing();
