@@ -4,7 +4,9 @@
 #include "quizLogic.h"
 #include "timer.h"
 
-// Handle mouse input relative to the quiz optiopns
+/**
+ * Handle mouse input relative to the quiz options.
+ */
 void handleQuizInput(City activeCity, Option options[4], bool* showQuizPtr, bool* optionSelectedPtr, int* scorePtr, int* startNumPtr, int* endNumPtr, int* countUpstepPtr, bool* countUpDonePtr, int* bonusPtr)
 {
 	// Chdck if the left mouse button is pressed

@@ -6,6 +6,9 @@
 #include "quizLogic.h"
 #include "cityOperations.h"
 
+/**
+ * Draw active city animation.
+ */
 void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts, City activeCity)
 {
 	// Variable to store the animations frames
@@ -88,7 +91,9 @@ void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts,
 	}
 }
 
-// Draw pop-up animation across its different states
+/**
+ * Draw pop-up animation across its different states.
+ */
 void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, bool showComponent)
 {
 	// Check if pop-up component should be extended ot retracted 
@@ -145,6 +150,9 @@ void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, boo
 	DrawTextureV(componentPtr->texture, componentPtr->pos, RAYWHITE);
 }
 
+/**
+ * Draw pop-up animation side.
+ */
 void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, bool showQuiz)
 {
 	// Check if pop-up component should be extended ot retracted 
@@ -200,7 +208,9 @@ void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, boo
 	DrawTextureV(texture, quizPtr->pos, RAYWHITE);
 }
 
-// Draw popUp buttons hover effect
+/**
+ * Draw popUp buttons hover effect.
+ */
 void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, PopUpAnimationFrame* popUpAnimationFramePtr)
 {
 	// Check if pop-up is fully extended
@@ -221,7 +231,9 @@ void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D
 	}
 }
 
-// Manage warning animation 
+/**
+ * Manage warning animation.
+ */
 void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, PopUpAnimationFrame* warningAnimationFramePtr, PopUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu)
 {
 	// Check if a visited city is clicked
@@ -269,7 +281,9 @@ void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity
 	}
 }
 
-// Draw option components
+/**
+ * Draw option components.
+ */
 void drawOptionComponent(Option options[4], Texture2D texture, float x, float y, int index, int i)
 {
 	// Check for and fix minor line disposition
@@ -315,7 +329,9 @@ void drawOptionComponent(Option options[4], Texture2D texture, float x, float y,
 	}
 }
 
-// Draw quiz options hover effect
+/**
+ * Draw quiz options hover effect.
+ */
 void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFrame, int index)
 {
 	// Check if quiz window is fully extended
@@ -333,7 +349,9 @@ void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFr
 	}
 }
 
-// Draw option indicators to show if the selected option was true or false
+/**
+ * Draw option indicators to show if the selected option was true or false.
+ */
 void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFrame quizAnimationFrame, bool optionSelected,int index)
 {
 	if (optionSelected)

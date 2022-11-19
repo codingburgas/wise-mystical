@@ -1,7 +1,9 @@
 #include "raylib.h"
 #include "movement.h"
 
-// Set the camera's intial positon based on the starter city's index
+/**
+ * Set the camera's intial positon based on the starter city's index.
+ */
 void setInitialCameraPos(float* cameraPosXPtr, float* cameraPosYPtr, int num)
 {
 	switch (num)
@@ -69,6 +71,9 @@ void setInitialCameraPos(float* cameraPosXPtr, float* cameraPosYPtr, int num)
 	}
 }
 
+/**
+ * Update camera position.
+ */
 void updateCameraPos(float* xCoordinate, float* yCoordinate)
 {
 	// Uptade camera position, based on W, A, S, D keys

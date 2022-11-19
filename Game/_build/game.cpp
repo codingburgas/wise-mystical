@@ -11,7 +11,9 @@
 #include "quizLogic.h"
 #include "manageActiveText.h"
 
-
+/**
+ * Start game.
+ */
 void startGame()
 {
 	int width = 1920;

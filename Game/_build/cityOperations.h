@@ -2,6 +2,9 @@
 #include <string>
 #include "raylib.h"
 
+/**
+ * Initialise cities.
+ */
 struct City {
     // Name of the city
     std::string name = "";
@@ -28,14 +31,22 @@ struct City {
     int bonus = 0;
 };
 
-// Initialise cities
+/**
+ * Initialise cities.
+ */
 City* intialiseCitiesArray(City cities[40]);
 
-// Draw city marks on the map
+/**
+ * Draw city marks on the map.
+ */
 void drawCityNames(City* cities, int citiesCounter, Font comfortaaRegular);
 
-// Draw city markers based of distance from active city
+/**
+ * Draw city markers based of distance from active city.
+ */
 void updateCityTravelCostAndBonus(City* cities, City activeCity, Texture2D markers[3], int citiesCounter);
 
-// Update city travel cost and bonus
+/**
+ * Update city travel cost and bonus.
+ */
 void updateCityTravelCostAndBonus(City* cities, City activeCity, int citiesCounter);

@@ -4,7 +4,9 @@
 #include "timer.h"
 #include "quizLogic.h"
 
-// Define active city animation colors
+/**
+ * Define active city animation colors.
+ */
 #define frame1 CLITERAL(Color){ 5, 10, 23, 120 }
 #define frame2 CLITERAL(Color){ 5, 10, 23, 115 }
 #define frame3 CLITERAL(Color){ 5, 10, 23, 110 }
@@ -16,7 +18,9 @@
 #define frame9 CLITERAL(Color){ 5, 10, 23, 80 }
 #define frame10 CLITERAL(Color){ 5, 10, 23, 75 }
 
-// Define Active city animation frame struct
+/**
+ * Define Active city animation frame struct.
+ */
 struct ActiveCityAnimationFrame {
 
     // circle radius
@@ -29,7 +33,9 @@ struct ActiveCityAnimationFrame {
     Color color;
 };
 
-// Define Pop up animation frame
+/**
+ * Define Pop up animation frame.
+ */
 struct PopUpAnimationFrame {
 
     // texture
@@ -42,25 +48,40 @@ struct PopUpAnimationFrame {
     int state;
 };
 
-// Draw active city animation on said location on the map
+/**
+ * Draw active city animation on said location on the map.
+ */
 void drawActiveCityAnimation(ActiveCityAnimationFrame* activeCityAnimationParts, City activeCity);
 
-// Draw pop-up animation bottom across different states
+/**
+ * Draw pop-up animation bottom across different states.
+ */
 void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, bool showComponent);
 
-// Draw pop-up animation side across different states
+
+/**
+ * Draw pop-up animation side across different states.
+ */
 void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, bool showQuiz);
 
-// Draw popUp buttons hover effect 
+/**
+ * Draw popUp buttons hover effect .
+ */
 void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, PopUpAnimationFrame* popUpAnimationFramePtr);
-
-// Manage warning animation 
+ 
+/**
+ * Manage warning animation.
+ */
 void manageWarningAnimation(Vector2 mousePoint, City cities[40], City activeCity, PopUpAnimationFrame* warningAnimationFramePtr, PopUpAnimationFrame popUpMenuFrame, Timer* warningTimerPtr, float* warningScreentimePtr, bool* wariningVisiblePtr, bool showPopUpMenu);
 
-// Draw quiz options hover effect
+/**
+ * Draw quiz options hover effect.
+ */
 void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFrame, int index);
 
-//
+/**
+ * Draw option indicators.
+ */
 void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFrame quizAnimationFrame, bool optionSelected, int index);
 
 

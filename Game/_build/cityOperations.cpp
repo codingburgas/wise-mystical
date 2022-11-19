@@ -3,7 +3,9 @@
 #include "raylib.h"
 #include "cityOperations.h"
 
-// Initialise cities
+/**
+ * Initialise cities.
+ */
 City* intialiseCitiesArray(City cities[40])
 {
 	float hitboxWidth = 15, hitboxHeight = 20;
@@ -55,7 +57,9 @@ City* intialiseCitiesArray(City cities[40])
 	return cities;
 }
 
-// Draw city marks on the map
+/**
+ * Draw city marks on the map.
+ */
 void drawCityNames(City* cities, int citiesCounter, Font comfortaaRegular)
 {
 	for (int i = 0; i < citiesCounter; i++)
@@ -65,7 +69,9 @@ void drawCityNames(City* cities, int citiesCounter, Font comfortaaRegular)
 	}
 }
 
-// Draw city markers based of distance from active city
+/**
+ * Draw city markers based of distance from active city.
+ */
 void updateCityTravelCostAndBonus(City* cities, City activeCity, Texture2D markers[3], int citiesCounter)
 {
 	double distance = 0;
@@ -95,7 +101,9 @@ void updateCityTravelCostAndBonus(City* cities, City activeCity, Texture2D marke
 	}
 }
 
-// Update city travel cost and bonus
+/**
+ * Update city travel cost and bonus.
+ */
 void updateCityTravelCostAndBonus(City* cities, City activeCity, int citiesCounter)
 {
 	double distance = 0;

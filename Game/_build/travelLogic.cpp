@@ -5,7 +5,9 @@
 #include "animations.h"
 #include "manageActiveText.h"
 
-// Travel to next selected city (if possible)
+/**
+ * Travel to next selected city (if possible).
+ */
 void travelToNextCity(Vector2 mousePoint, City* cities, City activeCity, City* tempCity, bool* searchingNextCity, bool* showPopUpMenu, int citiesCounter, int* indexPtr)
 {
 	// Check if travel is allowed
@@ -36,7 +38,9 @@ void travelToNextCity(Vector2 mousePoint, City* cities, City activeCity, City* t
 	}
 }
 
-// Handle mouse input for the pop-up 
+/**
+ * Handle mouse input for the pop-up.
+ */
 void handlePopUpInput(City* cities, City* activeCity, City* tempCity, PopUpAnimationFrame popUpFrame, Rectangle confirmHitbox, Rectangle denyHitbox, std::vector<LinePoints>* conLinesPtr, bool* searchingNextCity, bool* showPopUpMenu, bool* nextCityChosenPtr, int* indexPtr, int* travelPointsPtr, int* bonusPtr)
 {
 	// Check if confirm was clicked

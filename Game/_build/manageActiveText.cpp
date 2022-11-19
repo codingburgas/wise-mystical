@@ -5,7 +5,9 @@
 #include "cityOperations.h"
 #include "animations.h"
 
-// Update the pop-up active text
+/**
+ * Update the pop-up active text.
+ */
 std::string updatePopUpActiveText(std::string text, City activeCity, City tempCity, PopUpAnimationFrame popUpMenuFrame)
 {
 	// Reset the active text 
@@ -25,7 +27,9 @@ std::string updatePopUpActiveText(std::string text, City activeCity, City tempCi
 	return text;
 }
 
-// Update score count up sequence
+/**
+ * Update score count up sequence.
+ */
 void updateScoreCountUp(bool* countUpDone, int* startNum, int* endNum, int countUpstep)
 {
 	// Update score count up
@@ -39,7 +43,9 @@ void updateScoreCountUp(bool* countUpDone, int* startNum, int* endNum, int count
 	}
 }
 
-// Draw travel points count
+/**
+ * Draw travel points count.
+ */
 void drawTravelPointsCount(Font comfortaaTravelPoints, int travelPoints)
 {
 	float x = 0;
