@@ -177,6 +177,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="cityOperations.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="movement.cpp" />
     <ClCompile Include="quizLogic.cpp" />
     <ClCompile Include="timer.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="animations.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="cityOperations.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="movement.h" />
     <ClInclude Include="quizLogic.h" />
     <ClInclude Include="timer.h" />

@@ -2,6 +2,7 @@
 #include <vector>
 #include <math.h>
 #include "raylib.h"
+#include "menu.h"
 #include "game.h"
 #include "movement.h"
 #include "timer.h"
@@ -31,12 +32,27 @@ void startGame()
 		LoadTexture("../resources/images/map components/City marker Hard.png")
 	};
 
-	// Load UI components from the file structure
+	// Load game GUI components from the file structure
 	Texture2D scoreBoard = LoadTexture("../resources/images/UI components/Score board.png");
 	Texture2D popUpMenu = LoadTexture("../resources/images/UI components/Travel pop-up.png");
 	Texture2D visitedCityWarning = LoadTexture("../resources/images/UI components/City warning.png");
 	Texture2D confirmHover = LoadTexture("../resources/images/UI components/Confirm hover.png");
 	Texture2D denyHover = LoadTexture("../resources/images/UI components/Deny hover.png");
+
+	// Load menu components from the file structure
+	Texture2D menu = LoadTexture("../resources/images/UI components/menu components/menu.png");
+	menuButton menuButtons[3] = {
+		{LoadTexture("../resources/images/UI components/menu components/buttons/play button.png"), LoadTexture("../resources/images/UI components/menu components/hover effects/play button hover.png")},
+		{LoadTexture("../resources/images/UI components/menu components/buttons/about button.png"), LoadTexture("../resources/images/UI components/menu components/hover effects/about button hover.png")},
+		{LoadTexture("../resources/images/UI components/menu components/buttons/quit button.png"), LoadTexture("../resources/images/UI components/menu components/hover effects/quit button hover.png")}
+	};
+
+	// Define menu button hitboxes
+	Circle menuHitboxes[3] = {
+		{Vector2{ 606.5, 142.5 }, 90 },
+		{Vector2{ 450.5, 431.5 }, 90 },
+		{Vector2{ 170.5, 597.5 }, 90 }
+	};
 
 	// Mouse position
 	Vector2 mousePoint = { 0.0f, 0.0f };
@@ -60,7 +76,7 @@ void startGame()
 	citiArrayPtr = cities;
 
 	// Declare screen variable
-	GameScreen currentScreen = GAMEPLAY;
+	GameScreen currentScreen = MENU;
 
 	// City variables
 	const int cityCounter = 40;
@@ -168,7 +184,7 @@ void startGame()
 
 	while (!WindowShouldClose())
 	{
-		// 
+		// Switch between gamemodes for drawing
 		switch (currentScreen)
 		{
 		case MENU:
@@ -246,10 +262,12 @@ void startGame()
 		// Switch between gamemodes for drawing
 		switch (currentScreen)
 		{
-
 		case MENU:
 		{
-			DrawRectangle(GetScreenWidth() / 2, GetScreenHeight() / 2, 100, 100, BLACK);
+			DrawTexture(menu, 0, 0, RAYWHITE);
+
+			drawMenuButtons(menuHitboxes, menuButtons);
+
 		} break;
 
 		case GAMEPLAY:
@@ -333,7 +351,7 @@ void startGame()
 					// Draw pop-up animation side across different states
 					drawPopUpAnimationSide(quizPtr, activeQuiz, showQuiz);
 				}
-					
+
 				if (!optionSelected)
 				{
 					// Draw quiz options hover effect
