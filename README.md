@@ -9,7 +9,7 @@
 - [Description](#description)
 - [Getting started](#gettingStarted)
 - [Built Using](#builtUsing)
-- [Doxygen](https://eloquent-mousse-d54f69.netlify.app) *Click link*
+- [Doxygen](https://symphonious-muffin-a7c136.netlify.app) *Click link*
 
 ## 📖 Our Team <a name="OurTeam"></a>
 *Everyone who has participated in making this project:*
