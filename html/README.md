@@ -23,3 +23,7 @@
 
 ## 📖 Our Team <a name="OurTeam"></a>
 *Everyone who has participated in making this project:*
+- [Maksim Vasilev](https://github.com/MDVasilev20) - Scrum Trainer
+- [Mihail Petrov](https://github.com/MMPetrov20) - Game Developer
+- [Daniil Chebotarev](https://github.com/DSChebotarev) - Game Developer
+- [Daniil Furnika](https://github.com/DVFurnika20) - QA Engineer
