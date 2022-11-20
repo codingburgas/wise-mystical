@@ -54,6 +54,13 @@ void startGame()
 		{Vector2{ 170.5, 597.5 }, 90 }
 	};
 
+	// Define menu transition animation variables
+	TransitionFrame transition = { Vector2{float(GetScreenWidth() / 2), float(GetScreenHeight() / 2)}, 1 };
+	TransitionFrame* transitionPtr = &transition;
+	bool drawMenuTransition = false;
+	bool* drawMenuTransitionPtr = &drawMenuTransition;
+	bool menuUnloaded = false;
+
 	// Mouse position
 	Vector2 mousePoint = { 0.0f, 0.0f };
 
@@ -141,7 +148,8 @@ void startGame()
 	};
 
 	// Initial quiz timer
-	float freeTime = 1.5f;
+	bool intialTimerStarted = false;
+	float freeTime = 1.8;
 	Timer freeTimeTimer = { 0 };
 	Timer* freeTimeTimerPtr = &freeTimeTimer;
 
@@ -192,11 +200,31 @@ void startGame()
 		{
 		case MENU:
 		{
-			hangleMenuInput(currentScreenPtr, menuHitboxes, quitButtonPressedPtr);
+			hangleMenuInput(menuHitboxes, transitionPtr, quitButtonPressedPtr, drawMenuTransitionPtr);
 		} break;
 
 		case GAMEPLAY:
 		{
+			if (transition.radius <= 10 && !intialTimerStarted)
+			{
+				// Start initial free timer countdown
+				StartTimer(&freeTimeTimer, freeTime);
+				intialTimerStarted = true;
+			}
+
+			// Unload menu when it's not needed
+			if (currentScreen == GAMEPLAY && !menuUnloaded)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					UnloadTexture(menuButtons[i].button);
+					UnloadTexture(menuButtons[i].hoverEffect);
+				}
+
+				UnloadTexture(menu);
+				menuUnloaded = true;
+			}
+
 			// Update target
 			mousePoint = GetScreenToWorld2D({ GetMousePosition().x, GetMousePosition().y }, camera);
 			camera.target = { *cameraPosXPtr, *cameraPosYPtr };
@@ -261,6 +289,13 @@ void startGame()
 
 		// Set background color for the framebuffer 
 		ClearBackground(mapBackgroundColor);
+
+		// Switch gamemode
+		if (transitionPtr->radius >= 1120)
+		{
+			currentScreen = GAMEPLAY;
+			quitButtonPressed = false;
+		}
 
 		// Switch between gamemodes for drawing
 		switch (currentScreen)
@@ -364,15 +399,22 @@ void startGame()
 				// Draw option indicators to show if the selected option was true or false
 				drawOptionIndicators(activeCity, options, quizAnimationFrame, optionSelected, index);
 			}
+
 		} break;
 
 		default: break;
 		}
 
+		// Draw transition animation
+		for (int i = 0; i < 10; i++)
+		{
+			drawTransition(transitionPtr, drawMenuTransitionPtr);
+		}
+
 		EndDrawing();
 
 		// Close game if quit button is pressed
-		if (quitButtonPressed)
+		if (quitButtonPressed && transition.radius == 0)
 		{
 			CloseWindow();
 		}
