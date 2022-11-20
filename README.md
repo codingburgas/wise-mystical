@@ -10,7 +10,7 @@
 - [Our Team](#OurTeam)
 
 ## 🔎 Description <a name="description"></a>
-
+*Our game is a geography quizz game, where you need to answer questions about different countries in order to progress to the next.*
 
 ## 🖥️ Built Using <a name="builtUsing"></a>
 *Everything we used for creating this project. You can find the links to download the programs and information about the language used, as well as the external library.*
