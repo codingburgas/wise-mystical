@@ -4,7 +4,6 @@
 
 <p align = "center">
     <img alt="GitHub milestones" src="https://img.shields.io/github/milestones/all/codingburgas/wise-mystical?style=flat-square">
-    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/codingburgas/wise-mystical?style=flat-square">
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/codingburgas/wise-mystical?style=flat-square">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/codingburgas/wise-mystical?style=flat-square">
     <img src="https://img.shields.io/github/languages/count/codingburgas/wise-mystical?style=flat-square">
