@@ -77,6 +77,9 @@ void startGame()
 
 	// Declare screen variable
 	GameScreen currentScreen = MENU;
+	GameScreen* currentScreenPtr = &currentScreen;
+	bool quitButtonPressed = false;
+	bool* quitButtonPressedPtr = &quitButtonPressed;
 
 	// City variables
 	const int cityCounter = 40;
@@ -189,7 +192,7 @@ void startGame()
 		{
 		case MENU:
 		{
-			int i = 0;
+			hangleMenuInput(currentScreenPtr, menuHitboxes, quitButtonPressedPtr);
 		} break;
 
 		case GAMEPLAY:
@@ -367,5 +370,11 @@ void startGame()
 		}
 
 		EndDrawing();
+
+		// Close game if quit button is pressed
+		if (quitButtonPressed)
+		{
+			CloseWindow();
+		}
 	}
 }

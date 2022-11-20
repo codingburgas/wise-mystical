@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include "game.h"
 
 struct menuButton {
 
@@ -24,3 +25,8 @@ struct Circle {
  * Draw menu buttons.
  */
 void drawMenuButtons(Circle menuHitboxes[3], menuButton menuButtons[3]);
+
+/**
+ * Handle menu input.
+ */
+void hangleMenuInput(GameScreen* currentScreenPtr, Circle menuHitboxes[3], bool* quitButtonPressedPtr);
