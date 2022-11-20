@@ -9,7 +9,7 @@
  */
 void handleQuizInput(City activeCity, Option options[4], bool* showQuizPtr, bool* optionSelectedPtr, int* scorePtr, int* startNumPtr, int* endNumPtr, int* countUpstepPtr, bool* countUpDonePtr, int* bonusPtr)
 {
-	// Chdck if the left mouse button is pressed
+	// Check if the left mouse button is pressed
 	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
 		// Cycle through the option hitboxes

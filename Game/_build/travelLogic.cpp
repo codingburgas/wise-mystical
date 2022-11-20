@@ -30,7 +30,7 @@ void travelToNextCity(Vector2 mousePoint, City* cities, City activeCity, City* t
 					// Temporary restrict travel
 					*searchingNextCity = false;
 
-					// Extent pop-up
+					// Extend pop-up
 					*showPopUpMenu = true;
 				}
 			}
@@ -55,10 +55,10 @@ void handlePopUpInput(City* cities, City* activeCity, City* tempCity, PopUpAnima
 		// Restrict further access to selected city
 		cities[*indexPtr].wasVisited = true;
 
-		// Check if next city is choosen(helps in managing the quizzes)
+		// Check if next city is chosen(helps in managing the quizzes)
 		*nextCityChosenPtr = true;
 
-		// Check and avoid line dublication
+		// Check for and avoid line dublication
 		if (activeCity->coordinates.x > 0 && activeCity->coordinates.y > 0 && tempCity->coordinates.x > 0 && tempCity->coordinates.y > 0)
 		{
 			// Add next set of start and end line points
@@ -86,7 +86,7 @@ void handlePopUpInput(City* cities, City* activeCity, City* tempCity, PopUpAnima
 		// Allow travel to other selected cities
 		*searchingNextCity = false;
 
-		// Check if next city is choosen(helps in managing the quizzes)
+		// Check if next city is chosen(helps in managing the quizzes)
 		*nextCityChosenPtr = false;
 
 		// Reset the temporary city 

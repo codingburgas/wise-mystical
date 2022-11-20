@@ -17,7 +17,7 @@ void StartTimer(Timer* timer, float lifetime)
  */
 void UpdateTimer(Timer* timer)
 {
-	// Subtract this frame from the timer if it's not allready expired
+	// Subtract this frame from the timer if it's not already expired
 	if (timer != NULL && timer->Lifetime > 0)
 	{
 		timer->Lifetime -= GetFrameTime();

@@ -199,7 +199,7 @@ void startGame()
 	bool countUpDone = true;
 	bool* countUpDonePtr = &countUpDone;
 
-	// Set initail camera target
+	// Set initial camera target
 	setInitialCameraPos(cameraPosXPtr, cameraPosYPtr, startCityNum);
 
 	// Start initial free timer countdown
