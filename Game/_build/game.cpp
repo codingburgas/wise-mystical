@@ -206,7 +206,7 @@ void startGame()
 	StartTimer(&freeTimeTimer, freeTime);
 
 	// Put the game into fullscreen mode
-	/*ToggleFullscreen();*/
+	ToggleFullscreen();
 
 	while (!WindowShouldClose())
 	{
