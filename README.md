@@ -15,6 +15,7 @@
 - [Getting started](#gettingStarted)
 - [Built Using](#builtUsing)
 - [Doxygen](https://symphonious-muffin-a7c136.netlify.app) *Click link*
+- [Figma](https://www.figma.com/file/h083AkbKE3xLu3ufoFcPID/Project-GUI?node-id=0%3A1&t=uZq8hs2wpQOsK9Pz-1) *Click link*
 
 ## 📖 Our Team <a name="OurTeam"></a>
 *Everyone who has participated in making this project:*
