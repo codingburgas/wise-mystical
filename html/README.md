@@ -5,11 +5,18 @@
 <hr>
 
 ## 📋 Table of Contents
+- [Our Team](#OurTeam)
 - [Description](#description)
 - [Getting started](#gettingStarted)
 - [Built Using](#builtUsing)
-- [Our Team](#OurTeam)
 - [Doxygen](https://eloquent-mousse-d54f69.netlify.app)
+
+## 📖 Our Team 
+*Everyone who has participated in making this project:*
+- [Maksim Vasilev](https://github.com/MDVasilev20) - Scrum Trainer
+- [Mihail Petrov](https://github.com/MMPetrov20) - Game Developer
+- [Daniil Chebotarev](https://github.com/DSChebotarev) - Game Developer
+- [Daniil Furnika](https://github.com/DVFurnika20) - QA Engineer
 
 ## 🔎 Description 
 *Our project is a geography quiz game, where you need to answer questions about different capitals and big cities in order to progress.*
@@ -39,10 +46,3 @@ https://github.com/codingburgas/wise-mystical.git
 - [Word](https://www.microsoft.com/bg-bg/microsoft-365/word) - Documentation
 - [Excel](https://www.microsoft.com/en-us/microsoft-365/excel) and [Doxygen](https://doxygen.nl/index.html) - QA Documentation
 - [PowerPoint](https://www.microsoft.com/en-us/microsoft-365/powerpoint)- Presentation
-
-## 📖 Our Team 
-*Everyone who has participated in making this project:*
-- [Maksim Vasilev](https://github.com/MDVasilev20) - Scrum Trainer
-- [Mihail Petrov](https://github.com/MMPetrov20) - Game Developer
-- [Daniil Chebotarev](https://github.com/DSChebotarev) - Game Developer
-- [Daniil Furnika](https://github.com/DVFurnika20) - QA Engineer
