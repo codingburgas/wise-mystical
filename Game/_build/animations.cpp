@@ -1,5 +1,6 @@
 #include <iostream>
 #include "raylib.h"
+#include "menu.h"
 #include "timer.h"
 #include "animations.h"
 #include "travelLogic.h"
@@ -153,50 +154,50 @@ void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, boo
 /**
  * Draw pop-up animation side.
  */
-void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, bool showQuiz)
+void drawPopUpAnimationSide(PopUpAnimationFrame* componentPtr, Texture2D texture, float endX, bool showComponent)
 {
 	// Check if pop-up component should be extended ot retracted 
-	if (showQuiz)
+	if (showComponent)
 	{
 		// Update animation state to -1(decreasing)
-		quizPtr->state = -1;
+		componentPtr->state = -1;
 	}
-	else if (!showQuiz)
+	else if (!showComponent)
 	{
 		// Update animation state to 1(increasing)
-		quizPtr->state = 1;
+		componentPtr->state = 1;
 	}
 
 	// Update target position based on animation state
-	switch (quizPtr->state)
+	switch (componentPtr->state)
 	{
 		// Update target position in decreasing state
 	case -1:
-		quizPtr->pos.x -= 2.5;
+		componentPtr->pos.x -= 2.5;
 
 		// Check for top animation boundary
-		if (quizPtr->pos.x <= 956)
+		if (componentPtr->pos.x <= endX)
 		{
 			// Snap target to boundary
-			quizPtr->pos.x = 956;
+			componentPtr->pos.x = endX;
 
 			// Update animation state to 0(paused)
-			quizPtr->state = 0;
+			componentPtr->state = 0;
 		}
 		break;
 
 		// Update target position in increasing state
 	case 1:
-		quizPtr->pos.x += 2.5;
+		componentPtr->pos.x += 2.5;
 
 		// Check for top animation boundary
-		if (quizPtr->pos.x >= 1920)
+		if (componentPtr->pos.x >= 1920)
 		{
 			// Snap target to boundary
-			quizPtr->pos.x = 1920;
+			componentPtr->pos.x = 1920;
 
 			// Update animation state to 0(paused)
-			quizPtr->state = 0;
+			componentPtr->state = 0;
 		}
 		break;
 
@@ -205,7 +206,7 @@ void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, boo
 		break;
 	}
 
-	DrawTextureV(texture, quizPtr->pos, RAYWHITE);
+	DrawTextureV(texture, componentPtr->pos, RAYWHITE);
 }
 
 /**
@@ -398,6 +399,35 @@ void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFram
 				}
 				
 			}
+		}
+	}
+}
+
+// Draw game info button
+void drawGameInfoButton(Texture2D gameInfoButton, Circle gameInfoHitbox)
+{
+	if (CheckCollisionPointCircle(GetMousePosition(), gameInfoHitbox.centerPos, gameInfoHitbox.radius))
+	{
+		DrawTexture(gameInfoButton, -12, 979, RAYWHITE);
+	}
+	else
+	{
+		DrawTexture(gameInfoButton, -20, 987, RAYWHITE);
+	}
+}
+
+// Manage game info animation
+void mamageGameInfoWindowAnimation(Circle gameInfoHitbox, bool * showGameInfoPtr)
+{
+	if (CheckCollisionPointCircle(GetMousePosition(), gameInfoHitbox.centerPos, gameInfoHitbox.radius) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		if (*showGameInfoPtr)
+		{
+			*showGameInfoPtr = false;
+		}
+		else
+		{
+			*showGameInfoPtr = true;
 		}
 	}
 }

@@ -38,7 +38,7 @@ void startGame()
 	Texture2D visitedCityWarning = LoadTexture("../resources/images/UI components/City warning.png");
 	Texture2D confirmHover = LoadTexture("../resources/images/UI components/Confirm hover.png");
 	Texture2D denyHover = LoadTexture("../resources/images/UI components/Deny hover.png");
-
+	
 	// Load menu components from the file structure
 	Texture2D menu = LoadTexture("../resources/images/UI components/menu components/menu.png");
 	menuButton menuButtons[3] = {
@@ -53,6 +53,11 @@ void startGame()
 		{Vector2{ 450.5, 431.5 }, 90 },
 		{Vector2{ 170.5, 597.5 }, 90 }
 	};
+
+	// Load game info components from the file structure
+	Texture2D gameInfo = LoadTexture("../resources/images/UI components/game info.png");
+	Texture2D gameInfoButton = LoadTexture("../resources/images/UI components/game info button.png");
+	Circle gameInfoHitbox = { Vector2{41, 1038}, 49};
 
 	// Define menu transition animation variables
 	TransitionFrame transition = { Vector2{float(GetScreenWidth() / 2), float(GetScreenHeight() / 2)}, 1 };
@@ -165,6 +170,12 @@ void startGame()
 	Timer warningTimer = { 0 };
 	Timer* warningTimerPtr = &warningTimer;
 
+	// Define variables for game info window
+	PopUpAnimationFrame gameInfoAnimationFrame = { gameInfo , Vector2{1920, -2}, 0 };
+	PopUpAnimationFrame* gameInfoAnimationFramePtr = &gameInfoAnimationFrame;
+	bool showGameInfo = false;
+	bool* showGameInfoPtr = &showGameInfo;
+
 	// Define active text variables
 	std::string popUpText = "";
 	int score = 0;
@@ -200,7 +211,7 @@ void startGame()
 		{
 		case MENU:
 		{
-			hangleMenuInput(menuHitboxes, transitionPtr, quitButtonPressedPtr, drawMenuTransitionPtr);
+			hangleMenuInput(menuHitboxes, transitionPtr, quitButtonPressedPtr, drawMenuTransitionPtr, showGameInfoPtr);
 		} break;
 
 		case GAMEPLAY:
@@ -280,6 +291,7 @@ void startGame()
 					optionSelected = false;
 				}
 			}
+
 		} break;
 
 		default: break;
@@ -306,6 +318,11 @@ void startGame()
 
 			drawMenuButtons(menuHitboxes, menuButtons);
 
+			for (int i = 0; i < 5; i++)
+			{
+				// Draw game info
+				drawPopUpAnimationSide(gameInfoAnimationFramePtr, gameInfo, 918, showGameInfo);
+			}
 		} break;
 
 		case GAMEPLAY:
@@ -387,7 +404,7 @@ void startGame()
 				for (int i = 0; i < 5; i++)
 				{
 					// Draw pop-up animation side across different states
-					drawPopUpAnimationSide(quizPtr, activeQuiz, showQuiz);
+					drawPopUpAnimationSide(quizPtr, activeQuiz, 956, showQuiz);
 				}
 
 				if (!optionSelected)
@@ -398,6 +415,18 @@ void startGame()
 
 				// Draw option indicators to show if the selected option was true or false
 				drawOptionIndicators(activeCity, options, quizAnimationFrame, optionSelected, index);
+			}
+
+			// Draw game info button
+			drawGameInfoButton(gameInfoButton, gameInfoHitbox);
+
+			// Manage game info animation
+			mamageGameInfoWindowAnimation(gameInfoHitbox, showGameInfoPtr);
+
+			for (int i = 0; i < 5; i++)
+			{
+				// Draw game info
+				drawPopUpAnimationSide(gameInfoAnimationFramePtr, gameInfo, 918, showGameInfo);
 			}
 
 		} break;

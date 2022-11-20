@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include "menu.h"
 #include "cityOperations.h"
 #include "timer.h"
 #include "quizLogic.h"
@@ -62,8 +63,7 @@ void drawPopUpAnimationBottom(PopUpAnimationFrame* componentPtr, float endY, boo
 /**
  * Draw pop-up animation side across different states.
  */
-void drawPopUpAnimationSide(PopUpAnimationFrame* quizPtr, Texture2D texture, bool showQuiz);
-
+void drawPopUpAnimationSide(PopUpAnimationFrame* componentPtr, Texture2D texture, float endX, bool showComponent);
 /**
  * Draw popUp buttons hover effect .
  */
@@ -83,5 +83,15 @@ void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFr
  * Draw option indicators.
  */
 void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFrame quizAnimationFrame, bool optionSelected, int index);
+
+/**
+ * Draw game info button.
+ */
+void drawGameInfoButton(Texture2D gameInfoButton, Circle gameInfoHitbox);
+
+/**
+ * Manage game info animation.
+ */
+void mamageGameInfoWindowAnimation(Circle gameInfoHitbox, bool* showGameInfoPtr);
 
 
