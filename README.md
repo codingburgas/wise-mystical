@@ -6,11 +6,31 @@
 
 ## 📋 Table of Contents
 - [Description](#description)
+- [Getting started](#gettingStarted)
 - [Built Using](#builtUsing)
 - [Our Team](#OurTeam)
 
 ## 🔎 Description <a name="description"></a>
 *Our project is a geography quiz game, where you need to answer questions about different capitals and big cities in order to progress.*
+
+## 🚀 Getting started<a name="gettingStarted"></a>
+*These instructions will get you a copy of the project up and running on your local machine.*
+
+#### Compile from source
+
+- Installing
+1. Clone the repo
+```
+https://github.com/codingburgas/wise-mystical.git
+```
+2. Open the .sln file
+3. Run the project!
+
+or
+
+- Using release
+1. Download latest game release
+2. Run .exe file
 
 ## 🖥️ Built Using <a name="builtUsing"></a>
 *Everything we used for creating this project. You can find the links to download the programs and information about the language used, as well as the external library.*
