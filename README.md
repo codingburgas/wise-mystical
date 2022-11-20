@@ -9,6 +9,7 @@
 - [Getting started](#gettingStarted)
 - [Built Using](#builtUsing)
 - [Our Team](#OurTeam)
+- [Doxygen]()
 
 ## 🔎 Description <a name="description"></a>
 *Our project is a geography quiz game, where you need to answer questions about different capitals and big cities in order to progress.*
@@ -25,8 +26,6 @@ https://github.com/codingburgas/wise-mystical.git
 ```
 2. Open the .sln file
 3. Run the project!
-
-or
 
 - Using release
 1. Download latest game release
