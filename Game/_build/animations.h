@@ -19,9 +19,9 @@
 #define frame9 CLITERAL(Color){ 5, 10, 23, 80 }
 #define frame10 CLITERAL(Color){ 5, 10, 23, 75 }
 
-/**
- * Define Active city animation frame struct.
- */
+ /**
+  * Define Active city animation frame struct.
+  */
 struct ActiveCityAnimationFrame {
 
     // circle radius
@@ -68,7 +68,7 @@ void drawPopUpAnimationSide(PopUpAnimationFrame* componentPtr, Texture2D texture
  * Draw popUp buttons hover effect .
  */
 void drawPopUpMenuHover(Rectangle confirmHitbox, Rectangle denyHitbox, Texture2D confirmHover, Texture2D denyHover, PopUpAnimationFrame* popUpAnimationFramePtr);
- 
+
 /**
  * Manage warning animation.
  */
@@ -87,11 +87,9 @@ void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFram
 /**
  * Draw game info button.
  */
-void drawGameInfoButton(Texture2D gameInfoButton, Circle gameInfoHitbox);
+void drawSideButtons(Texture2D gameInfoButton, Texture2D backButton, Circle gameInfoHitbox, Circle backButtonHitbox);
 
 /**
  * Manage game info animation.
  */
-void mamageGameInfoWindowAnimation(Circle gameInfoHitbox, bool* showGameInfoPtr);
-
-
+void manageSideButtonInput(GameScreen* currentScreenPtr, Circle gameInfoHitbox, Circle backButtonHitbox, bool* showGameInfoPtr, bool* drawMenuTransitionPtr);

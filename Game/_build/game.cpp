@@ -38,7 +38,7 @@ void startGame()
 	Texture2D visitedCityWarning = LoadTexture("../resources/images/UI components/City warning.png");
 	Texture2D confirmHover = LoadTexture("../resources/images/UI components/Confirm hover.png");
 	Texture2D denyHover = LoadTexture("../resources/images/UI components/Deny hover.png");
-	
+
 	// Load menu components from the file structure
 	Texture2D menu = LoadTexture("../resources/images/UI components/menu components/menu.png");
 	menuButton menuButtons[3] = {
@@ -54,17 +54,21 @@ void startGame()
 		{Vector2{ 170.5, 597.5 }, 90 }
 	};
 
+	Texture2D backButton = LoadTexture("../resources/images/UI components/back button.png");
+	Circle backButtonHitbox = { Vector2{41, 1029}, 49 };
+
 	// Load game info components from the file structure
 	Texture2D gameInfo = LoadTexture("../resources/images/UI components/game info.png");
 	Texture2D gameInfoButton = LoadTexture("../resources/images/UI components/game info button.png");
-	Circle gameInfoHitbox = { Vector2{41, 1038}, 49};
+	Circle gameInfoHitbox = { Vector2{41, 925}, 49 };
 
 	// Define menu transition animation variables
 	TransitionFrame transition = { Vector2{float(GetScreenWidth() / 2), float(GetScreenHeight() / 2)}, 1 };
 	TransitionFrame* transitionPtr = &transition;
 	bool drawMenuTransition = false;
 	bool* drawMenuTransitionPtr = &drawMenuTransition;
-	bool menuUnloaded = false;
+	bool showMenu = false;
+	bool* showMenuPtr = &showMenu;
 
 	// Mouse position
 	Vector2 mousePoint = { 0.0f, 0.0f };
@@ -154,7 +158,7 @@ void startGame()
 
 	// Initial quiz timer
 	bool intialTimerStarted = false;
-	float freeTime = 1.8;
+	float freeTime = 1.8f;
 	Timer freeTimeTimer = { 0 };
 	Timer* freeTimeTimerPtr = &freeTimeTimer;
 
@@ -211,7 +215,7 @@ void startGame()
 		{
 		case MENU:
 		{
-			hangleMenuInput(menuHitboxes, transitionPtr, quitButtonPressedPtr, drawMenuTransitionPtr, showGameInfoPtr);
+			hangleMenuInput(menuHitboxes, transitionPtr, quitButtonPressedPtr, drawMenuTransitionPtr, showGameInfoPtr, showMenuPtr);
 		} break;
 
 		case GAMEPLAY:
@@ -221,19 +225,6 @@ void startGame()
 				// Start initial free timer countdown
 				StartTimer(&freeTimeTimer, freeTime);
 				intialTimerStarted = true;
-			}
-
-			// Unload menu when it's not needed
-			if (currentScreen == GAMEPLAY && !menuUnloaded)
-			{
-				for (int i = 0; i < 3; i++)
-				{
-					UnloadTexture(menuButtons[i].button);
-					UnloadTexture(menuButtons[i].hoverEffect);
-				}
-
-				UnloadTexture(menu);
-				menuUnloaded = true;
 			}
 
 			// Update target
@@ -291,6 +282,11 @@ void startGame()
 					optionSelected = false;
 				}
 			}
+			// Check if travel point have run out
+			if (travelPoints <= 0)
+			{
+				quitButtonPressed = true;
+			}
 
 		} break;
 
@@ -302,11 +298,16 @@ void startGame()
 		// Set background color for the framebuffer 
 		ClearBackground(mapBackgroundColor);
 
-		// Switch gamemode
-		if (transitionPtr->radius >= 1120)
+
+		// Switch gamemode from transition animation
+		if (transitionPtr->radius >= 1120 && currentScreen == MENU)
 		{
 			currentScreen = GAMEPLAY;
 			quitButtonPressed = false;
+		}
+		else if (transitionPtr->radius >= 1120 && currentScreen == GAMEPLAY)
+		{
+			currentScreen = MENU;
 		}
 
 		// Switch between gamemodes for drawing
@@ -418,10 +419,10 @@ void startGame()
 			}
 
 			// Draw game info button
-			drawGameInfoButton(gameInfoButton, gameInfoHitbox);
+			drawSideButtons(gameInfoButton, backButton, gameInfoHitbox, backButtonHitbox);
 
 			// Manage game info animation
-			mamageGameInfoWindowAnimation(gameInfoHitbox, showGameInfoPtr);
+			manageSideButtonInput(currentScreenPtr, gameInfoHitbox, backButtonHitbox, showGameInfoPtr, drawMenuTransitionPtr);
 
 			for (int i = 0; i < 5; i++)
 			{

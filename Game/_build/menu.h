@@ -42,7 +42,7 @@ void drawMenuButtons(Circle menuHitboxes[3], menuButton menuButtons[3]);
 /**
  * Handle menu input.
  */
-void hangleMenuInput(Circle menuHitboxes[3], TransitionFrame* transitionPtr, bool* quitButtonPressedPtr, bool* drawMenuTransitionPtr, bool* showGameInfoPtr);
+void hangleMenuInput(Circle menuHitboxes[3], TransitionFrame* transitionPtr, bool* quitButtonPressedPtr, bool* drawMenuTransitionPtr, bool* showGameInfoPtr, bool* showMenuPtr);
 
 /**
 * Draw transition animation.

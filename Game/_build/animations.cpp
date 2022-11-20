@@ -353,7 +353,7 @@ void drawQuizOptionsHover(Option options[4], PopUpAnimationFrame quizAnimationFr
 /**
  * Draw option indicators to show if the selected option was true or false.
  */
-void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFrame quizAnimationFrame, bool optionSelected,int index)
+void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFrame quizAnimationFrame, bool optionSelected, int index)
 {
 	if (optionSelected)
 	{
@@ -397,27 +397,36 @@ void drawOptionIndicators(City activeCity, Option options[4], PopUpAnimationFram
 					drawOptionComponent(options, options[i].falseAnswerIndicator, quizAnimationFrame.pos.x + 77, quizAnimationFrame.pos.y + 1004, index, i);
 					break;
 				}
-				
+
 			}
 		}
 	}
 }
 
 // Draw game info button
-void drawGameInfoButton(Texture2D gameInfoButton, Circle gameInfoHitbox)
+void drawSideButtons(Texture2D gameInfoButton, Texture2D backButton, Circle gameInfoHitbox, Circle backButtonHitbox)
 {
 	if (CheckCollisionPointCircle(GetMousePosition(), gameInfoHitbox.centerPos, gameInfoHitbox.radius))
 	{
-		DrawTexture(gameInfoButton, -12, 979, RAYWHITE);
+		DrawTexture(gameInfoButton, -87, 876, RAYWHITE);
 	}
 	else
 	{
-		DrawTexture(gameInfoButton, -20, 987, RAYWHITE);
+		DrawTexture(gameInfoButton, -97, 876, RAYWHITE);
+	}
+
+	if (CheckCollisionPointCircle(GetMousePosition(), backButtonHitbox.centerPos, backButtonHitbox.radius))
+	{
+		DrawTexture(backButton, -87, 980, RAYWHITE);
+	}
+	else
+	{
+		DrawTexture(backButton, -97, 980, RAYWHITE);
 	}
 }
 
 // Manage game info animation
-void mamageGameInfoWindowAnimation(Circle gameInfoHitbox, bool * showGameInfoPtr)
+void manageSideButtonInput(GameScreen* currentScreenPtr, Circle gameInfoHitbox, Circle backButtonHitbox, bool* showGameInfoPtr, bool* drawMenuTransitionPtr)
 {
 	if (CheckCollisionPointCircle(GetMousePosition(), gameInfoHitbox.centerPos, gameInfoHitbox.radius) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
@@ -429,5 +438,10 @@ void mamageGameInfoWindowAnimation(Circle gameInfoHitbox, bool * showGameInfoPtr
 		{
 			*showGameInfoPtr = true;
 		}
+	}
+
+	if (CheckCollisionPointCircle(GetMousePosition(), backButtonHitbox.centerPos, backButtonHitbox.radius) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	{
+		*drawMenuTransitionPtr = true;
 	}
 }

@@ -48,7 +48,7 @@ void drawMenuButtons(Circle menuHitboxes[3], menuButton menuButtons[3])
 /**
  * Handle menu input.
  */
-void hangleMenuInput(Circle menuHitboxes[3], TransitionFrame* transitionPtr, bool* quitButtonPressedPtr, bool* drawMenuTransitionPtr, bool* showGameInfoPtr)
+void hangleMenuInput(Circle menuHitboxes[3], TransitionFrame* transitionPtr, bool* quitButtonPressedPtr, bool* drawMenuTransitionPtr, bool* showGameInfoPtr, bool* showMenuPtr)
 {
 	//Check for mouse collison with the menu buttons
 	for (int i = 0; i < 3; i++)
@@ -57,11 +57,12 @@ void hangleMenuInput(Circle menuHitboxes[3], TransitionFrame* transitionPtr, boo
 		{
 			switch (i)
 			{
-			// Switch screen to GAMEPLAY
+				// Switch screen to GAMEPLAY
 			case 0:
 				*drawMenuTransitionPtr = true;
+				*showMenuPtr = false;
 				break;
-			// Show game info
+				// Show game info
 			case 1:
 				if (*showGameInfoPtr == true)
 				{
@@ -72,7 +73,7 @@ void hangleMenuInput(Circle menuHitboxes[3], TransitionFrame* transitionPtr, boo
 					*showGameInfoPtr = true;
 				}
 				break;
-			// Close game
+				// Close game
 			case 2:
 				*quitButtonPressedPtr = true;
 				break;
